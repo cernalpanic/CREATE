@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[StudentMentor]
+(
+	[StudentID] UNIQUEIDENTIFIER NOT NULL, 
+    [MentorID] UNIQUEIDENTIFIER NOT NULL,
+	CONSTRAINT [PK_StudentMentor] PRIMARY KEY CLUSTERED ([StudentID] ASC, [MentorID] ASC)
+)

@@ -1,0 +1,28 @@
+<app-breadcrumbs [currentPage]=""></app-breadcrumbs>
+<ng-container *ngIf="showM">
+  <h2>Modules Overview</h2>
+  <div class="modules-mentor">
+    <app-module-dash-card [modules]="allModules" [role]="role"></app-module-dash-card>
+  </div>
+  <h2>Student Overview</h2>
+  <div class="students-mentor">
+    <app-student-card [students]="mentorStudents" (studentUpdate)="updateMyStudents($event)"></app-student-card>
+  </div>
+  <button type="button" class="btn btn-primary" (click)="addMentor()"><i class="bi bi-plus-lg"></i> Add New Mentor</button>
+</ng-container>
+<ng-container *ngIf="showS">
+  <h2>Continue Learning</h2>
+  <div class="modules-student">
+    <app-module-dash-card [modules]="allModules" [role]="role"></app-module-dash-card>
+  </div>
+
+  <h2>Daily Standup</h2>
+  <div class="standups-student">
+    <app-daily-standup></app-daily-standup>
+  </div>
+
+  <h2>Contacts</h2>
+  <div class="contacts-student">
+    <app-student-dash-mentor-card [mentors]="studentMentors"></app-student-dash-mentor-card>
+  </div>
+</ng-container>

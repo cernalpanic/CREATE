@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[Authentication]
+(
+	[TokenID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [UserID] UNIQUEIDENTIFIER NOT NULL, 
+    [Role] NVARCHAR(50) NOT NULL, 
+    [Expires] DATETIME NOT NULL
+)

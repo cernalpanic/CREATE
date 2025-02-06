@@ -1,0 +1,88 @@
+.settings-container-student, .settings-container-mentor {
+  background: var(--modulebg);
+  border-radius: 30px;
+  box-shadow: 0px 2px 20px 2px var(--boxshadow);
+  padding: 20px;
+  display: grid;
+  grid-template-areas: 'img info';
+  justify-content: center;
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+  align-items: center;
+  position: relative;
+}
+.settings-container-student {
+  grid-template-columns: minmax(0, 200px) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+}
+.settings-container-student > div, .settings-container-mentor > div {
+  text-align: center;
+}
+h2 {
+  font-weight: 800;
+  padding: 15px 15px 0 15px;
+  color: var(--mainheading);
+  font-size: 1.8rem;
+}
+.profilepic {
+  margin: auto;
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  background: var(--profiledefaultbg);
+}
+.profilepic img {
+  max-width: 200px;
+  max-height: 200px;
+  border-radius: 100%;
+}
+h5 {
+  font-weight: 800;
+}
+.button-box {
+  position: absolute;
+  border-radius: 0 20px;
+  color: var(--headingtext);
+  text-align: center;
+  margin-left: auto;
+  padding: 3px 15px;
+  right: 0;
+  top: 0;
+  background-color: var(--btncolor);
+  border-color: var(--btncolor);
+  font-size: 0.8rem;
+  font-weight: 800;
+}
+.button-box i {
+  padding-right: 10px;
+}
+.button-box:hover {
+  cursor: pointer;
+}
+.btn-primary {
+  margin: 40px 0 0 auto;
+  background-color: var(--btncolor);
+  border-color: var(--btncolor);
+  font-weight: 700;
+}
+.btn-secondary {
+  margin: 40px auto 0 20px;
+  background-color: var(--inactivetab);
+  border-color: var(--inactivetab);
+}
+.form-floating > label {
+  left: 8px;
+}
+.form-control {
+  position: relative;
+}
+.set {
+  margin: auto;
+}
+.input-group {
+  width: auto;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+}
+.pic {
+  padding-top: 20px;
+}

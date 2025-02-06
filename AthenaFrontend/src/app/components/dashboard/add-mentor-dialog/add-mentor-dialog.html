@@ -1,0 +1,57 @@
+<div class="dialog-heading">
+  <i class="bi bi-person-fill"></i> Add Mentor
+  <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
+</div>
+<mat-dialog-content>
+  <form class="row g-3">
+    <div class="col-md-6 form-floating">
+      <input type="email"
+             class="form-control"
+             id="firstName"
+             [formControl]="firstName"
+             placeholder="Name">
+      <label for="firstName">First name</label>
+    </div>
+    <div class="col-md-6 form-floating">
+      <input type="text"
+             class="form-control"
+             id="lastName"
+             [formControl]="lastName"
+             placeholder="Name"
+             required>
+      <label for="lastName">Last name</label>
+    </div>
+    <div class="col-md-12 form-floating">
+      <input type="email"
+             class="form-control"
+             id="email"
+             [formControl]="email"
+             placeholder="something@email.com"
+             aria-describedby="validationServer03Feedback"
+             required>
+      <label for="email">Email</label>
+      <div id="validationServer01Feedback" class="invalid-feedback">
+        This email is already registered in our system.
+      </div>
+      <div id="validationServer02Feedback" class="invalid-feedback">
+        Please enter a valid email.
+      </div>
+    </div>
+    <div class="col-md-12 input-group">
+        <div class="form-floating col-md-8">
+          <input type="password"
+                 class="form-control"
+                 id="validationServer04"
+                 [formControl]="password"
+                 aria-label="Set Password"
+                 aria-describedby="button-addon2"
+                 placeholder="password">
+          <label for="validationServer04">Password</label>
+        </div>
+        <span id="show-hide" class="input-group-text" (click)="toggleHidePassword()"><i class="bi bi-eye-slash"></i></span>
+    </div>
+    <div class="col-12">
+      <button id="submit" class="btn btn-primary" type="submit" (click)="addMentor()">Add Mentor</button>
+    </div>
+  </form>
+</mat-dialog-content>

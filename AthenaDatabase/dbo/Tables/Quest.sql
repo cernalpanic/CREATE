@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Quest]
+(
+	[QuestID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [ModuleID] UNIQUEIDENTIFIER NOT NULL, 
+    [Name] NVARCHAR(256) NOT NULL, 
+    [Description] NVARCHAR(MAX) NULL, 
+    [ExpGain] INT NOT NULL
+)

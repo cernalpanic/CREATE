@@ -1,0 +1,6 @@
+﻿CREATE TABLE [dbo].[Note]
+(
+	[NoteID] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [DateCreated] DATETIME NOT NULL, 
+    [Description] NVARCHAR(MAX) NULL
+)

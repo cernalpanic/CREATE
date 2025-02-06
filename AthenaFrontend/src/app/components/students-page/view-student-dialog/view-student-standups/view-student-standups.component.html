@@ -1,0 +1,14 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let standup of standups" hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        {{ standup.dateCreated | date: 'MM/dd/yyyy' }}
+      </mat-panel-title>
+      <mat-panel-description>
+        {{ standup.description == '' ? 'Not Completed' : 'Completed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div [innerHTML]="standup.description">
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

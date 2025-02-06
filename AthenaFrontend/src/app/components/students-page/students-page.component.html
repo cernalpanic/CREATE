@@ -1,0 +1,20 @@
+<app-breadcrumbs [currentPage]=""></app-breadcrumbs>
+<button type="button" class="btn btn-primary" (click)="addStudent()"><i class="bi bi-plus-lg"></i></button>
+<ul class="nav nav-pills mb-3" id="student-tabs" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="pills-my-tab" data-bs-toggle="pill" data-bs-target="#pills-my" type="button"
+      role="tab" aria-controls="pills-my" aria-selected="true">My Students</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="pills-all-tab" data-bs-toggle="pill" data-bs-target="#pills-all" type="button"
+      role="tab" aria-controls="pills-all" aria-selected="false">All Students</button>
+  </li>
+</ul>
+<div class="tab-content" id="pills-tabContent">
+  <div class="tab-pane fade show active" id="pills-my" role="tabpanel" aria-labelledby="pills-my-tab" tabindex="0">
+    <app-student-card [students]="myStudents" (studentUpdate)="updateMyStudents($event)"></app-student-card>
+  </div>
+  <div class="tab-pane fade" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
+    <app-student-card [students]="allStudents" (studentUpdate)="updateMyStudents($event)"></app-student-card>
+  </div>
+</div>

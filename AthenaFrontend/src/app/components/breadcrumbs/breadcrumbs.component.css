@@ -1,0 +1,27 @@
+.breadcrumb-container {
+  display: inline-block;
+  background: var(--modulebg);
+  border-radius: 50px;
+  box-shadow: 0px 2px 20px 2px var(--boxshadow);
+  margin-top: 20px;
+}
+.breadcrumbs {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.breadcrumb {
+  text-transform: uppercase;
+  color: var(--cardsubtitle);
+  text-decoration: none;
+  font-weight: 800;
+  font-size: 0.8rem;
+  padding: 5px 10px;
+}
+.breadcrumb.active {
+  color: var(--activetab);
+}
+a {
+  margin: 0;
+}

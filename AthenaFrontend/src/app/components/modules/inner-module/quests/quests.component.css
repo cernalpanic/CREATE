@@ -1,0 +1,60 @@
+h2 {
+  font-weight: 800;
+  padding: 15px;
+  color: var(--mainheading);
+  font-size: 1.8rem;
+}
+h2 span {
+  color: var(--headsubtext);
+}
+h5 {
+  font-weight: 800;
+  text-align: center;
+}
+.quest-container {
+  background: var(--modulebg);
+  border-radius: 30px;
+  box-shadow: 0px 2px 20px 2px var(--boxshadow);
+}
+.buttons-row {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+.exp, .edit {
+  font-weight: 800;
+  padding: 5px 15px;
+  border-radius: 20px 0 20px 0;
+  color: var(--headingtext);
+}
+.edit {
+  border-radius: 0 0 20px 20px;
+}
+.edit:hover {
+  cursor: pointer;
+}
+.exp span {
+  font-weight: 600;
+}
+.quest-description {
+  margin: 20px;
+  padding: 20px;
+}
+.completed {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+.completed-button, .mark-complete-button {
+  display: inline-block;
+  padding: 5px 10px;
+  color: var(--headingtext);
+  font-weight: 800;
+  border-radius: 15px;
+}
+.completed-button {
+  background: var(--completed);
+}
+.completed-button:hover, .mark-complete-button:hover {
+  cursor: pointer;
+}

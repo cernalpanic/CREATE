@@ -1,0 +1,24 @@
+<div class="dialog-heading">
+  <i class="bi bi-person-fill"></i> Daily Standup
+  <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
+</div>
+<mat-dialog-content>
+  <div class="row g-3">
+    <div class="col-md-12">
+      <b>Description</b>:
+      <div [innerHTML]="standup.description"></div>
+    </div>
+    <div class="hint ps-4">Feel free to add HTML markdown to style your text and add links!</div>
+    <div class="col-md-12 form-floating">
+      <textarea class="form-control"
+                id="dsDescription"
+                style="height: 250px;"
+                [formControl]="dsDescription">
+      </textarea>
+      <label for="description">Description</label>
+    </div>
+    <div class="col-12">
+      <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()">OK</button>
+    </div>
+  </div>
+</mat-dialog-content>

@@ -1,0 +1,91 @@
+<ng-container *ngIf="role != undefined && role != null">
+  <div id="main">
+    <div id="sidebar">
+      <div id="profilepic"><img [src]="role.ImageURL"></div>
+      <div id="user-name">{{ role.Person.FirstName + ' ' + role.Person.LastName }}</div>
+      <ng-container *ngIf="role.Name == 'Student'">
+        <!-- If logged in user is a student -->
+        <div class="stats">
+          <div class="progress">
+            <div class="stats-mini">Overall</div>
+            <div class="stats-heading">Progress</div>
+            <div class="stats-num">
+              <!--Progress goes here -->
+              {{ studentProgress }}%
+            </div>
+          </div>
+          <div class="exp">
+            <div class="stats-mini">Exp until</div>
+            <div class="stats-heading">Next Rank</div>
+            <div class="stats-num">
+              <!--Exp goes here -->
+              +{{ nextRank == 0 ? '?' : nextRank }}
+            </div>
+          </div>
+        </div>
+        <div class="rank"></div>
+        <div class="title">
+          {{ studentTitle }}
+        </div>
+      </ng-container>
+      <ng-container *ngIf="role.Name == 'Mentor'">
+        <!-- If logged in user is a mentor -->
+        <div class="stats">
+          <div class="students">
+            <div class="stats-mini">Current</div>
+            <div class="stats-heading">Students</div>
+            <div class="stats-num">
+              {{studentNum}}
+            </div>
+          </div>
+        </div>
+        <div class="rank"></div>
+        <div class="title">
+          {{ role.Person.JobTitle }}
+        </div>
+      </ng-container>
+      <div id="side-nav">
+        <div class="nav-icons">
+          <div id="dashboard-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('dashboard')}">
+            <i class="bi bi-grid-fill"></i>
+          </div>
+          <div id="students-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('students')}" *ngIf="role.Name == 'Mentor'">
+            <i class="bi bi-people-fill"></i>
+          </div>
+          <div id="modules-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('modules') || activePage.includes('quests')}">
+            <i class="bi bi-mortarboard-fill"></i>
+          </div>
+          <div id="settings-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('settings')}">
+            <i class="bi bi-gear-fill"></i>
+          </div>
+          <div id="logout-icon" class="nav-icon">
+            <i class="bi bi-box-arrow-right"></i>
+          </div>
+        </div>
+        <div class="nav-links">
+          <div id="dashboard-link" class="navlink" routerLink="/dashboard" [state]="{role: this.role, auth: this.auth }">
+            Dashboard
+          </div>
+          <div id="students-link" class="navlink" [routerLink]="['/students']" [state]="{ auth: this.auth, expectedRole: 'Mentor' }" *ngIf="role.Name == 'Mentor'">
+            Students
+          </div>
+          <div id="modules-link" class="navlink" [routerLink]="['/modules']" [state]="{ role: this.role }">
+            Modules
+          </div>
+          <div id="settings-link" class="navlink" [routerLink]="['/settings']" [state]="{ role: this.role }">
+            Settings
+          </div>
+          <div id="logout-link" class="navlink" (click)="logout()" routerLink="/login">
+            Logout
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="role == null || role == undefined">
+  <router-outlet></router-outlet>
+</ng-container>

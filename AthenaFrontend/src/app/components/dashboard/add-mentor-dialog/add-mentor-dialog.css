@@ -1,0 +1,22 @@
+.form-floating > label {
+  left: 8px;
+}
+.form-control {
+  position: relative;
+}
+.input-group .form-floating > label {
+  left: 0;
+}
+#show-hide {
+  transition: all .5s ease;
+}
+#show-hide:hover {
+  cursor: pointer;
+  background: var(--headingbg);
+  color: var(--headingtext);
+}
+.btn-primary {
+  background-color: var(--btncolor);
+  border-color: var(--btncolor);
+  font-weight: 700;
+}

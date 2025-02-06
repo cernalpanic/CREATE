@@ -1,0 +1,19 @@
+.form-floating > label {
+    left: 8px;
+  }
+  .form-control {
+    position: relative;
+  }
+  .input-group .form-floating > label {
+    left: 0;
+  }
+  .btn-primary {
+    background-color: var(--btncolor);
+    border-color: var(--btncolor);
+    font-weight: 700;
+  }
+.hint {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-style: italic;
+}

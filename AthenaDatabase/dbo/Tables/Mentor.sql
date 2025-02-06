@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[Mentor]
+(
+	[MentorID] UNIQUEIDENTIFIER NOT NULL, 
+    [UserID] UNIQUEIDENTIFIER NOT NULL, 
+    [JobTitle] NVARCHAR(100) NOT NULL, 
+    [Availability] NVARCHAR(256) NULL,
+    CONSTRAINT [PK_Mentor] PRIMARY KEY CLUSTERED ([MentorID] ASC, [UserID] ASC)
+)

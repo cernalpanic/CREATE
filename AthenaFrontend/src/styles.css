@@ -1,0 +1,91 @@
+:root {
+    --mainbg: linear-gradient(0deg, rgba(69, 137, 125, 0.12), rgba(69, 137, 125, 0.12)), #FFFFFF;
+    --mainaccent: #45897D;
+    --sidebarbg: #ffffff;
+    --activetab: #45897D;
+    --inactivetab: rgba(39, 59, 74, 0.38);
+    --tabtext: #ffffff;
+    --tablabel: rgba(255, 255, 255, 0.5);
+    --boxshadow: rgba(69, 137, 125, 0.2);
+    --cardsubtitle: rgba(69, 137, 125, 0.5);
+    --cardtext: rgba(69, 137, 125, 1);
+    --cardtextbold: rgba(39, 59, 74, 1);
+    --btncolor: rgba(69, 137, 125, 1);
+    --headingbg: rgba(69, 137, 125, 1);
+    --headingtext: #ffffff;
+    --closebg: rgba(39, 59, 74, 0.38);
+    --closebghover: rgba(39, 59, 74, 0.5);
+    --namecolor: rgba(39, 59, 74, 1);
+    --profiledefaultbg: rgba(69, 137, 125, 0.16);
+    --statsbg: rgba(69, 137, 125, 0.12);
+    --statsborder: rgba(39, 137, 125, 0.3);
+    --statsmini: rgba(39, 137, 125, 0.5);
+    --statsheading: rgba(39, 137, 125, 1);
+    --statsnum: rgba(39, 59, 74, 1);
+    --rankbg: #FFFFFF;
+    --navlink: rgba(69, 137, 125, 1);
+    --activeiconcolor: #FFFFFF;
+    --errormsgcolor: rgba(221, 25, 25, 0.884);
+    --moduletext: rgba(0, 0, 0, 0.38);
+    --mainheading: #273B4A;
+    --modulebg: #FFFFFF;
+    --subheading: rgba(255, 255, 255, 0.5);
+    --questdescription: rgba(39, 59, 74, 0.38);
+    --headsubtext: rgba(39, 59, 74, 0.6);
+    --completedbg: black;
+}
+body {
+    background: var(--mainbg);
+    font-family: Nunito;
+}
+.custom-dialog, .standup-dialog {
+  mat-dialog-container {
+      padding: 0;
+      width: 60%;
+      margin: auto;
+      font-family: Nunito;
+  }
+  .mat-mdc-dialog-container .mdc-dialog__surface {
+    border-radius: 30px;
+    box-shadow: 0px 2px 20px 2px var(--boxshadow);
+  }
+  .mat-mdc-dialog-container .mdc-dialog__content {
+    font-family: Nunito;
+    letter-spacing: 0;
+  }
+  .dialog-heading {
+    background: var(--headingbg);
+    font-weight: 800;
+    font-size: 1.5rem;
+    padding: 15px;
+    color: var(--headingtext);
+    position: relative;
+  }
+  .close {
+    background: var(--closebg);
+    color: var(--headingtext);
+    font-size: 1rem;
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 5px 15px;
+    border-radius: 0 30px 0 30px;
+    transition: all 0.5s ease;
+  }
+  .close:hover {
+    cursor: pointer;
+    background: var(--closebghover);
+  }
+}
+.standup-dialog {
+  mat-dialog-container {
+    padding: 0;
+    width: 100%;
+    margin: auto;
+    font-family: Nunito;
+  }
+}
+
+html, body { height: 100%; }
+body { margin: 0; }

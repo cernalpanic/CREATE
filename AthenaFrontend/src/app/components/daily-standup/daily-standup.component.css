@@ -1,0 +1,21 @@
+.horizontal-scroll{
+    overflow-x: auto;
+}
+
+.btn {
+  margin: auto;
+  border-radius: 50px;
+  font-weight: 800;
+}
+
+.btn-container {
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  margin-left: 15px;
+}
+
+.btn-primary {
+  background-color: var(--btncolor);
+  border-color: var(--btncolor);
+}

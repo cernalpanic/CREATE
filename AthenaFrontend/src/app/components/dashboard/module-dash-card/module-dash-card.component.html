@@ -1,0 +1,61 @@
+<ng-container *ngIf="role.Name == 'Mentor'">
+  <div class="row row-cols-3 row-cols-md-2 g-4">
+    <ng-container *ngFor="let module of modules">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="img-box">
+              <img src="{{getImgLink(module.Name)}}">
+            </div>
+            <div class="info-box">
+              <h5 class="card-title">{{ module.Name + ' Module'}}</h5>
+              <p class="card-text">
+                {{ module.Description }}
+              </p>
+              <div class="btn-container">
+                <a href="#" class="btn btn-primary" [routerLink]="['/modules', module.ModuleID]" [state]="{ module: module }" [ngStyle]="{'background': '#' + module.Color, 'border-color': '#' + module.Color}">Go to module <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Leaving this here to be implemented at a later time -->
+        <!-- <div class="module-tabs">
+          <div class="card-tab" [ngStyle]="{'background': '#' + module.Color }">
+            <div class="tab-num">0</div>
+            <div class="tab-label">Quests</div>
+          </div>
+          <div class="card-tab" [ngStyle]="{'background': '#' + module.Color }">
+            <div class="tab-num">0</div>
+            <div class="tab-label">Students</div>
+          </div>
+        </div> -->
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+<ng-container *ngIf="role.Name == 'Student'">
+  <div class="row row-cols-3 row-cols-md-2 g-4">
+    <ng-container *ngFor="let module of modules">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <div class="img-box">
+              <img src="{{getImgLink(module.Name)}}">
+            </div>
+            <div class="info-box">
+              <h5 class="card-title">{{ module.Name + ' Module'}}</h5>
+              <p class="card-text">
+                {{ module.Description }}
+              </p>
+              <div class="btn-container">
+                <a href="#" class="btn btn-primary" [routerLink]="['/modules', module.ModuleID]" [state]="{ module: module }" [ngStyle]="{'background': '#' + module.Color, 'border-color': '#' + module.Color}">Go to module <i class="bi bi-arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</ng-container>
+
+

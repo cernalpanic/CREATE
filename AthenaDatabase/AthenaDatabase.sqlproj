@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <Name>AthenaDatabase</Name>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>4.1</ProjectVersion>
+    <ProjectGuid>{20a5f9ef-7371-4f5a-8f37-05cbbca12574}</ProjectGuid>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql150DatabaseSchemaProvider</DSP>
+    <OutputType>Database</OutputType>
+    <RootPath>
+    </RootPath>
+    <RootNamespace>AthenaDatabase</RootNamespace>
+    <AssemblyName>AthenaDatabase</AssemblyName>
+    <ModelCollation>1033,CI</ModelCollation>
+    <DefaultFileStructure>BySchemaAndSchemaType</DefaultFileStructure>
+    <DeployToDatabase>True</DeployToDatabase>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetLanguage>CS</TargetLanguage>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <SqlServerVerification>False</SqlServerVerification>
+    <IncludeCompositeObjects>True</IncludeCompositeObjects>
+    <TargetDatabaseSet>True</TargetDatabaseSet>
+    <DefaultCollation>SQL_Latin1_General_CP1_CI_AS</DefaultCollation>
+    <DefaultFilegroup>PRIMARY</DefaultFilegroup>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>bin\Debug\</OutputPath>
+    <BuildScriptName>$(MSBuildProjectName).sql</BuildScriptName>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">11.0</VisualStudioVersion>
+    <!-- Default to the v11.0 targets path if the targets file for the current VS version is not found -->
+    <SSDTExists Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets')">True</SSDTExists>
+    <VisualStudioVersion Condition="'$(SSDTExists)' == ''">11.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Condition="'$(SQLDBExtensionsRefPath)' != ''" Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <Import Condition="'$(SQLDBExtensionsRefPath)' == ''" Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.SqlTasks.targets" />
+  <ItemGroup>
+    <Folder Include="Properties" />
+    <Folder Include="dbo\" />
+    <Folder Include="dbo\Tables\" />
+    <Folder Include="dbo\Stored Procedures" />
+  </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\test table from vs.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentMentors.sql" />
+    <Build Include="dbo\Tables\Admin.sql" />
+    <Build Include="dbo\Tables\DailyStandup.sql" />
+    <Build Include="dbo\Tables\Mentor.sql" />
+    <Build Include="dbo\Tables\Module.sql" />
+    <Build Include="dbo\Tables\Note.sql" />
+    <Build Include="dbo\Tables\Quest.sql" />
+    <Build Include="dbo\Tables\QuestNotes.sql" />
+    <Build Include="dbo\Tables\Student.sql" />
+    <Build Include="dbo\Tables\StudentMentor.sql" />
+    <Build Include="dbo\Tables\StudentModules.sql" />
+    <Build Include="dbo\Tables\StudentQuests.sql" />
+    <Build Include="dbo\Stored Procedures\AddAuthentication.sql" />
+    <Build Include="dbo\Tables\Authentication.sql" />
+    <Build Include="dbo\Stored Procedures\GetAuthentication.sql" />
+    <Build Include="dbo\Stored Procedures\DeleteAuthentication.sql" />
+    <Build Include="dbo\Stored Procedures\CheckAuthentication.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudents.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudent.sql" />
+    <Build Include="dbo\Stored Procedures\AddStudent.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateStudent.sql" />
+    <Build Include="dbo\Stored Procedures\CheckEmail.sql" />
+    <Build Include="dbo\Stored Procedures\GetMentor.sql" />
+    <Build Include="dbo\Stored Procedures\AddMentor.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateMentor.sql" />
+    <Build Include="dbo\Stored Procedures\GetMentorStudents.sql" />
+    <Build Include="dbo\Stored Procedures\GetModules.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentsInModules.sql" />
+    <Build Include="dbo\Stored Procedures\GetDailyStandups.sql" />
+    <Build Include="dbo\Stored Procedures\GetMentors.sql" />
+    <Build Include="dbo\Stored Procedures\SaveStudentMentors.sql" />
+    <Build Include="dbo\Stored Procedures\GetQuests.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateQuest.sql" />
+    <Build Include="dbo\Stored Procedures\AddUpdateStudentQuest.sql" />
+    <Build Include="dbo\Stored Procedures\GetStudentQuests.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateDailyStandup.sql" />
+    <Build Include="dbo\Stored Procedures\AddDailyStandup.sql" />
+    <Build Include="dbo\Tables\UserImage.sql" />
+    <Build Include="dbo\Stored Procedures\UpsertUserImage.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserImage.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateUserSettings.sql" />
+    <Build Include="dbo\Stored Procedures\GetUserSettings.sql" />
+    <Build Include="dbo\Tables\PostQuest.sql" />
+    <Build Include="dbo\Stored Procedures\GetQuestsWithStatus.sql" />
+    <Build Include="dbo\Stored Procedures\AddUpdatePostQuest.sql" />
+    <Build Include="dbo\Stored Procedures\GetOverallProgress.sql" />
+    <Build Include="dbo\Stored Procedures\UpdateModule.sql" />
+    <Build Include="dbo\Stored Procedures\GetModuleProgress.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="AthenaDatabase.refactorlog" />
+  </ItemGroup>
+</Project>

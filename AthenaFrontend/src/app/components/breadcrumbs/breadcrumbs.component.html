@@ -1,0 +1,12 @@
+<div class="breadcrumb-container">
+  <div class="breadcrumbs">
+    <ng-container *ngFor="let page of prevPages; index as i; last as currentPage">
+      <ng-container *ngIf="currentPage">
+        <a [routerLink]="getRouterLink(page)" [state]="page.state" *ngIf="currentPage" class="active breadcrumb">{{ page.getName() }}</a>
+      </ng-container>
+      <ng-container *ngIf="!currentPage">
+        <a [routerLink]="getRouterLink(page)" [state]="page.state" *ngIf="!currentPage" class="breadcrumb">{{ page.getName() }}</a> >
+      </ng-container>
+    </ng-container>
+  </div>
+</div>

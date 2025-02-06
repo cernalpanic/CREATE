@@ -1,0 +1,8 @@
+<ng-container *ngIf="role.Name == 'Mentor'">
+  <button type="button" class="btn btn-primary" (click)="addModule()"><i class="bi bi-plus-lg"></i></button>
+</ng-container>
+<div>
+    <app-breadcrumbs [currentPage]=""></app-breadcrumbs>
+    <app-module-card [modules]="modules" [role]="role"></app-module-card>
+</div>
+

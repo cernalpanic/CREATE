@@ -1,0 +1,36 @@
+<div class="dialog-heading">
+  <i class="bi bi-mortarboard-fill"></i> Add Module
+  <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
+</div>
+<mat-dialog-content>
+  <form class="row g-3">
+    <div class="col-md-6 form-floating">
+      <input type="text"
+             class="form-control"
+             id="name"
+             [formControl]="name"
+             placeholder="Name">
+      <label for="name">Module Name</label>
+    </div>
+    <div class="col-md-6 form-floating">
+      <input type="color"
+             class="form-control"
+             id="color"
+             [formControl]="color"
+             placeholder="Color"
+             required>
+      <label for="color">Color</label>
+    </div>
+    <div class="col-md-12 form-floating">
+      <textarea class="form-control"
+                id="description"
+                [formControl]="description"
+                placeholder="something@email.com">
+      </textarea>
+      <label for="description">Description</label>
+    </div>
+    <div class="col-12">
+      <button id="submit" class="btn btn-primary" type="submit" (click)="addModule()">Add Module</button>
+    </div>
+  </form>
+</mat-dialog-content>

@@ -1,0 +1,43 @@
+button.btn {
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1rem;
+  padding: .375rem .75rem;
+  margin: 20px;
+}
+button.btn-primary {
+  background-color: var(--btncolor);
+  border-color: var(--btncolor);
+}
+
+div.modules-mentor {
+  height: 30vh; /* set a fixed height for the div */
+  overflow-y: auto; /* enable vertical scrollbar */
+}
+div.modules-student {
+  height: 30vh;
+  overflow-y: auto;
+}
+div.students-mentor {
+  height: 35vh;
+  overflow-y: auto;
+}
+div.standups-student {
+  height: 25vh;
+  overflow-y: auto;
+}
+div.contacts-student {
+  height: 20vh;
+  overflow-y: auto;
+}
+div.modules-student, div.standups-student, div.contacts-student, div.modules-mentor, div.students-mentor {
+  scrollbar-width: thin;
+  scrollbar-color: var(--btncolor) transparent;
+  padding-right: 5px;
+}
+h2 {
+  font-weight: 800;
+  padding: 15px 15px 0 15px;
+  color: var(--mainheading);
+  font-size: 1.8rem;
+}

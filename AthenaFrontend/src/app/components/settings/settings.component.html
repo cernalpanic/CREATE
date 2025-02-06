@@ -1,0 +1,116 @@
+<app-breadcrumbs [currentPage]=""></app-breadcrumbs>
+<h2>User Settings</h2>
+<div [ngClass]="{'settings-container-mentor': role.Name == 'Mentor', 'settings-container-student': role.Name == 'Student'}">
+  <ng-container *ngIf="!editing">
+    <div class="button-box" (click)="editSettings()"><i class="bi bi-pencil-fill"></i> Edit Settings</div>
+    <div class="profilepic"><img [src]="settings.ImageURL"></div>
+    <div class="fname">
+      <h5>First Name</h5>
+      <p>{{settings.FirstName}}</p>
+    </div>
+    <div class="lname">
+      <h5>Last Name</h5>
+      <p>{{settings.LastName}}</p>
+    </div>
+    <div class="avail">
+      <h5>Availability</h5>
+      <p>{{settings.Availability}}</p>
+    </div>
+    <div class="jobtitle"
+         *ngIf="role.Name == 'Mentor'">
+      <h5>Job Title</h5>
+      <p>{{settings.JobTitle}}</p>
+    </div>
+    <div class="email">
+      <h5>Email Address</h5>
+      <p>{{settings.Email}}</p>
+    </div>
+    <div class="password">
+      <h5>Password</h5>
+      <p>********</p>
+    </div>
+  </ng-container>
+  <ng-container *ngIf="editing">
+    <div class="profilepic"><img [src]="settings.ImageURL"></div>
+    <div class="fname">
+      <h5>First Name</h5>
+      <div class="col-md-7 set">
+        <input type="text"
+               class="form-control"
+               id="fname"
+               [formControl]="firstName"
+               required>
+      </div>
+    </div>
+    <div class="lname">
+      <h5>Last Name</h5>
+      <div class="col-md-7 set">
+        <input type="text"
+               class="form-control"
+               id="lname"
+               [formControl]="lastName"
+               required>
+      </div>
+    </div>
+    <div class="avail">
+      <h5>Availability</h5>
+      <div class="col-md-8 set">
+        <input type="text"
+               class="form-control"
+               id="avail"
+               [formControl]="availability">
+      </div>
+    </div>
+    <div class="jobtitle"
+         *ngIf="role.Name == 'Mentor'">
+      <h5>Job Title</h5>
+      <div class="col-md-8 set">
+        <input type="text"
+               class="form-control"
+               id="jobtitle"
+               [formControl]="jobTitle">
+      </div>
+    </div>
+    <div class="email">
+      <h5>Email Address</h5>
+      <div class="col-md-8 set">
+        <input type="email"
+               class="form-control"
+               id="email"
+               [formControl]="email"
+               required>
+      </div>
+      <div id="validationServer01Feedback" class="invalid-feedback">
+        This email is already registered in our system.
+      </div>
+      <div id="validationServer02Feedback" class="invalid-feedback">
+        Please enter a valid email.
+      </div>
+    </div>
+    <div class="password">
+      <h5>Password</h5>
+      <div class="col-md-8 input-group">
+        <div class="col-md-8">
+          <input type="password"
+                 class="form-control"
+                 id="validationServer04"
+                 [formControl]="password"
+                 aria-label="Set Password"
+                 aria-describedby="button-addon2">
+        </div>
+        <span id="show-hide" class="input-group-text" (click)="toggleHidePassword()"><i class="bi bi-eye-slash"></i></span>
+    </div>
+    </div>
+    <div class="pic">
+      <h5>Profile Picture URL</h5>
+      <div class="col set">
+        <input type="text"
+               class="form-control"
+               id="ppic"
+               [formControl]="imageURL">
+      </div>
+    </div>
+    <button id="submit" class="btn btn-primary" type="submit" (click)="saveSettings()">Save Settings</button>
+    <button id="cancel" class="btn btn-secondary" type="submit" (click)="toggleEdit()">Cancel</button>
+  </ng-container>
+</div>

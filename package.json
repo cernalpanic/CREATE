@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@ngtools/webpack": "^17.3.4"
+  }
+}
