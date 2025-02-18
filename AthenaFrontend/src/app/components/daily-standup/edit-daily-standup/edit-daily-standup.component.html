@@ -6,16 +6,37 @@
   <div class="row g-3">
     <div class="col-md-12">
       <b>Description</b>:
-      <div [innerHTML]="standup.description"></div>
+      <div [innerHTML]="standup.yesterdayTask"></div>
+      <div [innerHTML]="standup.todayPlan"></div>
+      <div [innerHTML]="standup.blockers"></div>
+      <div [innerHTML]="standup.adminFeedback"></div>
     </div>
     <div class="hint ps-4">Feel free to add HTML markdown to style your text and add links!</div>
-    <div class="col-md-12 form-floating">
+    <div class="col-md-12 form-floating" style="height: 400px;">
       <textarea class="form-control"
-                id="dsDescription"
-                style="height: 250px;"
-                [formControl]="dsDescription">
+                id="dsYesterdayTask"
+                style="height: 25%;"
+                [formControl]="dsYesterdayTask">
       </textarea>
-      <label for="description">Description</label>
+      <textarea class="form-control"
+                id="dsTodayPlan"
+                style="height: 25%;"
+                [formControl]="dsTodayPlan">
+      </textarea>
+      <textarea class="form-control"
+                id="dsBlockers"
+                style="height: 25%;"
+                [formControl]="dsBlockers">
+      </textarea>
+      <textarea class="form-control"
+                id="dsAdminFeedback"
+                style="height: 25%;"
+                [formControl]="dsAdminFeedback">
+      </textarea>
+      <label for="yesterdayTask">Yesterday's Task</label>
+      <label for="todayPlan">Today's Plan</label>
+      <label for="blockers">Blockers</label>
+      <label for="adminFeedback">Admin Feedback</label>
     </div>
     <div class="col-12">
       <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()">OK</button>
