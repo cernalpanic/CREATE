@@ -29,9 +29,9 @@ export class DailyStandupComponent {
     const response = await this.dailyStandupService.GetAllDailyStandups(id);
     if (response) {
       for (let ds of response) {
-          const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.description);
-          this.standups.push(standup);
-        }
+        const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.yesterdayTask, ds.todayPlan, ds.blockers, ds.adminFeedback);
+        this.standups.push(standup);
+      }
     }
   }
 
