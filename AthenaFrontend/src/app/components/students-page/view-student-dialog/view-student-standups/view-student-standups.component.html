@@ -5,10 +5,17 @@
         {{ standup.dateCreated | date: 'MM/dd/yyyy' }}
       </mat-panel-title>
       <mat-panel-description>
-        {{ standup.description == '' ? 'Not Completed' : 'Completed'}}
+        <b *ngIf="standup.yesterdayTask == '' || standup.todayPlan == '' || standup.blockers == ''">Not Completed</b>
+        <b *ngIf="standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''">Completed</b>
       </mat-panel-description>
     </mat-expansion-panel-header>
-    <div [innerHTML]="standup.description">
+    <div [innerHTML]="standup.yesterdayTask">
+    </div>
+    <div [innerHTML]="standup.todayPlan">
+    </div>
+    <div [innerHTML]="standup.blockers">
+    </div>
+    <div [innerHTML]="standup.adminFeedback">
     </div>
   </mat-expansion-panel>
 </mat-accordion>

@@ -28,15 +28,9 @@
                 style="height: 25%;"
                 [formControl]="dsBlockers">
       </textarea>
-      <textarea class="form-control"
-                id="dsAdminFeedback"
-                style="height: 25%;"
-                [formControl]="dsAdminFeedback">
-      </textarea>
       <label for="yesterdayTask">Yesterday's Task</label>
       <label for="todayPlan">Today's Plan</label>
       <label for="blockers">Blockers</label>
-      <label for="adminFeedback">Admin Feedback</label>
     </div>
     <div class="col-12">
       <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()">OK</button>
