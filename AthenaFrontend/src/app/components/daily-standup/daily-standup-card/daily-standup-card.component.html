@@ -6,8 +6,8 @@
           <div class="standupicon"><i class="bi bi-person-arms-up"></i></div>
           <h6 class="card-subtitle mb-2">{{ standup.dateCreated | date: 'MM/dd/yyyy' }}</h6>
           <p class="card-text">
-            <b *ngIf="standup.description == ''">Not Completed</b>
-            <b *ngIf="standup.description != ''">Completed</b>
+            <b *ngIf="standup.yesterdayTask == '' || standup.todayPlan == '' || standup.blockers == ''">Not Completed</b>
+            <b *ngIf="standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''">Completed</b>
           </p>
           <div class="btn-container">
             <a class="btn btn-primary" (click)="editStandup(standup)">Edit Daily Standup</a>
