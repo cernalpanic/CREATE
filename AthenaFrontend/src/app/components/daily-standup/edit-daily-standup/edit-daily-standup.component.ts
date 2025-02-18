@@ -6,7 +6,10 @@ import { DailyStandupService } from '../../../services/dailyStandup.service';
 import { Router } from '@angular/router';
 
 export interface StandupData {
-  Description: string;
+  YesterdayTask: string;
+  TodayPlan: string;
+  Blockers: string;
+  AdminFeedback: string;
 }
 
 @Component({
@@ -16,18 +19,27 @@ export interface StandupData {
 })
 export class EditDailyStandupComponent {
   public standup: DailyStandup;
-  public dsDescription = new FormControl('', [Validators.required]);
+  public dsYesterdayTask = new FormControl('', [Validators.required]);
+  public dsTodayPlan = new FormControl('', [Validators.required]);
+  public dsBlockers = new FormControl('', [Validators.required]);
+  public dsAdminFeedback = new FormControl('', [Validators.required]);
   public changes: boolean = false;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, private router: Router) {
     this.standup = this.data.standup;
-    this.dsDescription.setValue(this.standup.description);
+    this.dsYesterdayTask.setValue(this.standup.yesterdayTask);
+    this.dsTodayPlan.setValue(this.standup.todayPlan);
+    this.dsBlockers.setValue(this.standup.blockers);
+    this.dsAdminFeedback.setValue(this.standup.adminFeedback);
   }
 
   public updateDailyStandup(): void {
-    const newDescription = this.dsDescription.value || '';
+    const newYesterdayTask = this.dsYesterdayTask.value || '';
+    const newTodayPlan = this.dsTodayPlan.value || '';
+    const newBlockers = this.dsBlockers.value || '';
+    const newAdminFeedback = this.dsAdminFeedback.value || '';
 
-    this.dailyStandupService.UpdateDailyStandup(this.standup.standupID.toString(), newDescription).then((result: boolean) => {
+    this.dailyStandupService.UpdateDailyStandup(this.standup.standupID.toString(), newYesterdayTask, newTodayPlan, newBlockers, newAdminFeedback).then((result: boolean) => {
       if (result) {
         this.dialogRef.close(true);
         this.refreshPage();
