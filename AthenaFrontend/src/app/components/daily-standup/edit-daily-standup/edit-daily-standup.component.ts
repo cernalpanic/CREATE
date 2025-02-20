@@ -4,6 +4,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
 import { DailyStandupService } from '../../../services/dailyStandup.service';
 import { Router } from '@angular/router';
+import { Role } from 'src/models/role.model';
+
 
 export interface StandupData {
   YesterdayTask: string;
@@ -24,13 +26,16 @@ export class EditDailyStandupComponent {
   public dsBlockers = new FormControl('', [Validators.required]);
   public dsAdminFeedback = new FormControl('', [Validators.required]);
   public changes: boolean = false;
+  public role: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, private router: Router) {
     this.standup = this.data.standup;
+    this.role = this.data.role;
     this.dsYesterdayTask.setValue(this.standup.yesterdayTask);
     this.dsTodayPlan.setValue(this.standup.todayPlan);
     this.dsBlockers.setValue(this.standup.blockers);
     this.dsAdminFeedback.setValue(this.standup.adminFeedback);
+
   }
 
   public updateDailyStandup(): void {
@@ -61,4 +66,5 @@ export class EditDailyStandupComponent {
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([this.router.url]);
   }
+
 }

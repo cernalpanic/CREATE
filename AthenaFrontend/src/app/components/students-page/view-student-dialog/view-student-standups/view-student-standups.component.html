@@ -2,20 +2,41 @@
   <mat-expansion-panel *ngFor="let standup of standups" hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        {{ standup.dateCreated | date: 'MM/dd/yyyy' }}
+        <span> 
+          {{ standup.dateCreated | date: 'MM/dd/yyyy' }} 
+              <b *ngIf="standup.yesterdayTask == '' || standup.todayPlan == '' || standup.blockers == ''"> Not Completed</b>
+              <b *ngIf="standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''"> Completed</b>
+        </span>
       </mat-panel-title>
-      <mat-panel-description>
-        <b *ngIf="standup.yesterdayTask == '' || standup.todayPlan == '' || standup.blockers == ''">Not Completed</b>
-        <b *ngIf="standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''">Completed</b>
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <div [innerHTML]="standup.yesterdayTask">
-    </div>
-    <div [innerHTML]="standup.todayPlan">
-    </div>
-    <div [innerHTML]="standup.blockers">
-    </div>
-    <div [innerHTML]="standup.adminFeedback">
-    </div>
+  </mat-expansion-panel-header>
+  <mat-panel-description>
+    <span>
+      <h6>Yesterday's Task:</h6>
+      <div [innerHTML]="standup.yesterdayTask"></div>
+    </span>
+  </mat-panel-description>
+  <mat-panel-description>
+    <span>
+      <h6>Today's Plan:</h6>
+      <div [innerHTML]="standup.todayPlan"></div>
+    </span>
+  </mat-panel-description>
+  <mat-panel-description>
+    <span>
+      <h6>Blockers:</h6>
+      <div [innerHTML]="standup.blockers"></div>
+    </span>
+  </mat-panel-description>
+  <mat-panel-description>
+    <span>
+      <h6>Admin Feedback:</h6>
+      <div [innerHTML]="standup.adminFeedback"></div>
+    </span>
+  </mat-panel-description>
+  
+  <mat-action-row>
+    <button mat-button (click)="editStandup(standup, role)">Add Feedback</button>
+  </mat-action-row>
+
   </mat-expansion-panel>
 </mat-accordion>

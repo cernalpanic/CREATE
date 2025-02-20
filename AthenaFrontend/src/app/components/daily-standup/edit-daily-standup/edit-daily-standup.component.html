@@ -4,7 +4,7 @@
 </div>
 <mat-dialog-content>
   <div class="row g-3">
-    <div class="col-md-12">
+    <div *ngIf="role.Name == 'Student'" class="col-md-12">
       <b>Yesterday's Task</b>:
       <div [innerHTML]="standup.yesterdayTask"></div>
       <b>Today's Plan</b>:
@@ -14,24 +14,33 @@
       <b>Admin Feedback</b>:
       <div [innerHTML]="standup.adminFeedback"></div>
     </div>
-    <div class="hint">Feel free to add HTML markdown to style your text and add links!</div>
-    <div class="col-md-12 form-floating" style="height: 400px;">
-      <label class="textarea-label" for="dsYesterdayTask">What I did yesterday:</label>
-      <textarea class="form-control"
-                id="dsYesterdayTask"
-                [formControl]="dsYesterdayTask">
-      </textarea>
-      <label for="dsTodayPlan" class="textarea-label">What I plan to do today:</label>
-      <textarea class="form-control"
-                id="dsTodayPlan"
-                [formControl]="dsTodayPlan">
-      </textarea>
-      <label for="blockers" class="textarea-label">Blockers stopping me:</label>
-      <textarea class="form-control"
-                id="blockers"
-                [formControl]="dsBlockers"> 
-      </textarea>
-    </div>
+    <ng-container *ngIf="role.Name == 'Student'">
+      <div class="hint">Feel free to add HTML markdown to style your text and add links!</div>
+      <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating" style="height: 400px;">
+        <label class="textarea-label" for="dsYesterdayTask">What I did yesterday:</label>
+        <textarea class="form-control"
+                  id="dsYesterdayTask"
+                  [formControl]="dsYesterdayTask">
+        </textarea>
+        <label for="dsTodayPlan" class="textarea-label">What I plan to do today:</label>
+        <textarea class="form-control"
+                  id="dsTodayPlan"
+                  [formControl]="dsTodayPlan">
+        </textarea>
+        <label for="blockers" class="textarea-label">Blockers stopping my progress:</label>
+        <textarea class="form-control"
+                  id="blockers"
+                  [formControl]="dsBlockers"> 
+        </textarea>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="role.Name != 'Student'">
+      <label for="feedback" class="textarea-label">Feedback for student:</label>
+        <textarea class="form-control"
+                  id="feedback"
+                  [formControl]="dsAdminFeedback"> 
+        </textarea>
+    </ng-container>
     <div class="col-12">
       <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()">OK</button>
     </div>
