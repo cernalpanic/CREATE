@@ -5,18 +5,34 @@
 <mat-dialog-content>
   <div class="row g-3">
     <div *ngIf="role.Name == 'Student'" class="col-md-12">
-      <b>Yesterday's Task</b>:
-      <div [innerHTML]="standup.yesterdayTask"></div>
-      <b>Today's Plan</b>:
-      <div [innerHTML]="standup.todayPlan"></div>
-      <b>Blockers</b>:
-      <div [innerHTML]="standup.blockers"></div>
-      <b>Admin Feedback</b>:
-      <div [innerHTML]="standup.adminFeedback"></div>
+      <div class="standup-info">
+        <span>
+          <h6>Yesterday's Task:</h6>
+          <p [innerHTML]="standup.yesterdayTask"></p>
+        </span>
+      </div>
+      <div>
+        <span>
+          <h6>Today's Plan:</h6>
+          <p [innerHTML]="standup.todayPlan"></p>
+        </span>
+      </div>
+      <div>
+        <span>
+          <h6>Blockers:</h6>
+          <p [innerHTML]="standup.blockers"></p>
+        </span>
+      </div>
+      <div>
+        <span>
+          <h6>Admin Feedback:</h6>
+          <p [innerHTML]="standup.adminFeedback"></p>
+        </span>
+      </div>
     </div>
     <ng-container *ngIf="role.Name == 'Student'">
       <div class="hint">Feel free to add HTML markdown to style your text and add links!</div>
-      <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating" style="height: 400px;">
+      <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating">
         <label class="textarea-label" for="dsYesterdayTask">What I did yesterday:</label>
         <textarea class="form-control"
                   id="dsYesterdayTask"

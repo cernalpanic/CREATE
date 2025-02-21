@@ -23,6 +23,15 @@ mat-panel-description {
   margin-top: 10px;
 }
 
+button {
+  background-color: var(--mainaccent);
+  color: white;
+  border-radius: 12px;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+}
+
 h6 {
   text-decoration: underline;
 }

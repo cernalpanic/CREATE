@@ -45,3 +45,7 @@ textarea {
   margin-bottom: 20px;
   margin-top: 5px;
 }
+
+h6 {
+  text-decoration: underline;
+}
