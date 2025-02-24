@@ -40,17 +40,38 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ModuleDashCardComponent } from './components/dashboard/module-dash-card/module-dash-card.component';
+import { CodeKataComponent } from './components/code-kata/code-kata.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
-  { path: 'students', component: StudentsPageComponent, canActivate: [RoleGuard] },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'students',
+    component: StudentsPageComponent,
+    canActivate: [RoleGuard],
+  },
   { path: 'modules', component: ModulesComponent, canActivate: [AuthGuard] },
-  { path: 'modules/:ModuleID', component: InnerModuleComponent, canActivate: [AuthGuard] },
-  { path: 'quests/:QuestID', component: QuestsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'modules/:ModuleID',
+    component: InnerModuleComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'quests/:QuestID',
+    component: QuestsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
-]
+  {
+    path: 'edit-daily-standup',
+    component: EditDailyStandupComponent,
+    canActivate: [AuthGuard],
+  },
+];
 
 @NgModule({
   declarations: [
@@ -78,7 +99,8 @@ const ROUTES: Routes = [
     EditDailyStandupComponent,
     ViewStudentStandupsComponent,
     ModuleProgressComponent,
-    ModuleDashCardComponent
+    ModuleDashCardComponent,
+    CodeKataComponent,
   ],
 
   imports: [
@@ -103,17 +125,17 @@ const ROUTES: Routes = [
       radius: 40,
       outerStrokeWidth: 16,
       innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
+      outerStrokeColor: '#78C000',
+      innerStrokeColor: '#C7E596',
       animationDuration: 300,
       animation: true,
       showTitle: true,
       showInnerStroke: false,
-      showBackground: false
-    })
+      showBackground: false,
+    }),
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
