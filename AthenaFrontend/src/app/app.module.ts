@@ -54,6 +54,11 @@ const ROUTES: Routes = [
     component: StudentsPageComponent,
     canActivate: [RoleGuard],
   },
+  {
+    path: 'code-kata',
+    component: CodeKataComponent,
+    canActivate: [AuthGuard], //Set to role guard when working
+  },
   { path: 'modules', component: ModulesComponent, canActivate: [AuthGuard] },
   {
     path: 'modules/:ModuleID',
