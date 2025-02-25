@@ -25,7 +25,7 @@ export interface StudentData {
 })
 export class ViewStudentDialog implements OnInit {
   public student: Role;
-  public role: Role;
+  public role: any;
   public mentors: Role[] = [];
   public selectedMentors: Role[] = [];
   public allMentors: Role[] = [];

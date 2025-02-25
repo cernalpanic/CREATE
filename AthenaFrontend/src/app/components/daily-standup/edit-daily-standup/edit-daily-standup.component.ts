@@ -5,6 +5,9 @@ import { FormControl, Validators } from '@angular/forms';
 import { DailyStandupService } from '../../../services/dailyStandup.service';
 import { Router } from '@angular/router';
 import { Role } from 'src/models/role.model';
+import { AuthService } from '../../../services/auth/auth.service';
+import { AuthToken } from '../../../../models/authtoken.model';
+import { UnknownReference } from '@angular/compiler-cli/src/ngtsc/reflection';
 
 
 export interface StandupData {
@@ -28,13 +31,16 @@ export class EditDailyStandupComponent {
   public changes: boolean = false;
   public role: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, private router: Router) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, public authService: AuthService, private router: Router) {
     this.standup = this.data.standup;
-    this.role = this.data.role;
     this.dsYesterdayTask.setValue(this.standup.yesterdayTask);
     this.dsTodayPlan.setValue(this.standup.todayPlan);
     this.dsBlockers.setValue(this.standup.blockers);
     this.dsAdminFeedback.setValue(this.standup.adminFeedback);
+    // authService.getAuthentication().then(response => {
+    //   this.role = response.Role;
+    // });
+    this.role = this.data.role;
 
   }
 
