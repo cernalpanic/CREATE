@@ -4,12 +4,19 @@ export class Role {
   public Person: any;
   public ImageURL: string;
 
-  constructor(role: any){
-    if (role.roleID && role.roleID != null){
-      this.RoleID = role.roleID || role.RoleID;
-      this.Name = role.name || role.Name;
-      this.Person = role.person || role.Person;
-      this.ImageURL = role.imageURL || role.ImageURL;
+  constructor(role: any) {
+    if (role.roleID != null) {
+      this.RoleID = role.roleID;
+      this.Name = role.name;
+      this.Person = role.person;
+      this.ImageURL = role.imageURL;
+    }
+    else if (role.RoleID != null) {
+      this.RoleID = role.RoleID;
+      this.Name = role.Name;
+      this.Person = role.Person;
+      this.ImageURL = role.ImageURL;
+
     } else {
       this.RoleID = '00000000-0000-0000-0000-000000000000';
       this.Name = '';

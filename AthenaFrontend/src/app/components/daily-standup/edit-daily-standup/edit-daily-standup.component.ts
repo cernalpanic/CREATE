@@ -30,6 +30,7 @@ export class EditDailyStandupComponent {
   public dsAdminFeedback = new FormControl('', [Validators.required]);
   public changes: boolean = false;
   public role: any;
+  public auth: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, public authService: AuthService, private router: Router) {
     this.standup = this.data.standup;
@@ -37,11 +38,12 @@ export class EditDailyStandupComponent {
     this.dsTodayPlan.setValue(this.standup.todayPlan);
     this.dsBlockers.setValue(this.standup.blockers);
     this.dsAdminFeedback.setValue(this.standup.adminFeedback);
-    // authService.getAuthentication().then(response => {
-    //   this.role = response.Role;
-    // });
-    this.role = this.data.role;
+  }
 
+  public async ngOnInit() {
+    const response = await this.authService.getAuthentication();
+    this.auth = new AuthToken(response);
+    this.role = this.auth.Role;
   }
 
   public updateDailyStandup(): void {

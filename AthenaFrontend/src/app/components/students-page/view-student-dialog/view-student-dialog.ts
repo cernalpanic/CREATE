@@ -25,7 +25,6 @@ export interface StudentData {
 })
 export class ViewStudentDialog implements OnInit {
   public student: Role;
-  public role: any;
   public mentors: Role[] = [];
   public selectedMentors: Role[] = [];
   public allMentors: Role[] = [];
@@ -39,7 +38,6 @@ export class ViewStudentDialog implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewStudentDialog>, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public studentService: StudentService) {
     this.student = this.data.student;
-    this.role = this.data.role;
     this.getStudentMentors(this.student.RoleID);
     this.getAllMentors();
     this.getAllDailyStandups(this.student.RoleID);

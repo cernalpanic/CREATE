@@ -14,7 +14,6 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class StudentCardComponent {
   @Input() students: Role[] = [];
-  @Input() role: any;
   @Output() studentUpdate = new EventEmitter<string>();
 
   constructor(public dialog: MatDialog, public snackbar: MatSnackBar, public mentorService: MentorService, public authService: AuthService) { }
@@ -23,10 +22,10 @@ export class StudentCardComponent {
     this.studentUpdate.emit('updated');
   }
 
-  public async viewStudent(student: Role, role: Role): Promise<void> {
+  public async viewStudent(student: Role): Promise<void> {
     const dialogRef = this.dialog.open(ViewStudentDialog, {
       panelClass: 'custom-dialog',
-      data: { student: student, role: role }
+      data: { student: student }
     });
 
     dialogRef.afterClosed().subscribe(response => {

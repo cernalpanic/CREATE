@@ -12,9 +12,9 @@
 </ul>
 <div class="tab-content" id="pills-tabContent">
   <div class="tab-pane fade show active" id="pills-my" role="tabpanel" aria-labelledby="pills-my-tab" tabindex="0">
-    <app-student-card [students]="myStudents" [role]="mentor" (studentUpdate)="updateMyStudents($event)"></app-student-card>
+    <app-student-card [students]="myStudents" (studentUpdate)="updateMyStudents($event)"></app-student-card>
   </div>
   <div class="tab-pane fade" id="pills-all" role="tabpanel" aria-labelledby="pills-all-tab" tabindex="0">
-    <app-student-card [students]="allStudents" [role]="mentor" (studentUpdate)="updateMyStudents($event)"></app-student-card>
+    <app-student-card [students]="allStudents" (studentUpdate)="updateMyStudents($event)"></app-student-card>
   </div>
 </div>

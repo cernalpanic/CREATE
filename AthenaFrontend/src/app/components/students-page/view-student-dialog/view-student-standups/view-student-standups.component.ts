@@ -12,17 +12,16 @@ import { Role } from 'src/models/role.model';
 })
 export class ViewStudentStandupsComponent {
   @Input() standups: DailyStandup[] = [];
-  @Input() role: any;
 
   constructor(public dialog: MatDialog, public snackbar: MatSnackBar) { }
 
   statusText = 'Not Completed';
   thisdate = new Date;
 
-  public async editStandup(standup: DailyStandup, role: Role): Promise<void> {
+  public async editStandup(standup: DailyStandup): Promise<void> {
     this.dialog.open(EditDailyStandupComponent, {
       panelClass: 'standup-dialog',
-      data: { standup: standup, role: role }
+      data: { standup: standup }
     });
   }
 }
