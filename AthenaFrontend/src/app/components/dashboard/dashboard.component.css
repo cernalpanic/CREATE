@@ -36,6 +36,8 @@ div.modules-student, div.standups-student, div.contacts-student, div.modules-men
   padding-right: 5px;
 }
 h2 {
+  margin-top: 20px;
+  margin-bottom: -30px;
   font-weight: 800;
   padding: 15px 15px 0 15px;
   color: var(--mainheading);
