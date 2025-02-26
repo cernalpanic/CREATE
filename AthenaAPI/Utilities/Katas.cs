@@ -23,12 +23,12 @@ namespace AthenaAPI.Utilities
 
                     SqlDataReader reader = command.ExecuteReader();
 
-                    // Let's create a new DailyStandup list to read the result
+                    // Let's create a new Kata list to read the result
                     List<Kata> katas = new List<Kata>();
 
                     while (reader.Read())
                     {
-                        // New Daily Standup
+                        // New Kata
                         Kata kata = new Kata();
                         kata.KataID = Guid.Parse(reader["KataID"].ToString());
                         kata.Description = reader["Description"].ToString();
