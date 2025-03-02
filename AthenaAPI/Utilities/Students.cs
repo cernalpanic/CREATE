@@ -103,6 +103,8 @@ namespace AthenaAPI.Utilities
                         st.Email = reader["Email"].ToString();
                         st.Exp = Int32.Parse(reader["Exp"].ToString());
                         st.Availability = reader["Availability"].ToString();
+                        st.CurrentStandupStreak = Int32.Parse(reader["CurrentStandupStreak"].ToString());
+                        st.LongestStandupStreak = Int32.Parse(reader["LongestStandupStreak"].ToString());
                         student.ImageURL = reader["URL"].ToString();
                         student.Student = st;
                         students.Add(student);
