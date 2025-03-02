@@ -7,6 +7,8 @@
         public string Availability { get; set; }
         public string Email { get; set; }
         public int Exp { get; set; }
+        public int CurrentStandupStreak { get; set; }
+        public int LongestStandupStreak { get; set; }
         public bool IsActivated { get; set; }
         public string Rank { 
             // I know these are lame titles but they're just placeholders for now
