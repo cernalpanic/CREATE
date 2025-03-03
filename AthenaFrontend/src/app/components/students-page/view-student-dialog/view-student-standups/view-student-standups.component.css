@@ -1,6 +1,7 @@
 .mat-expansion-panel:not([class*="mat-elevation-z"]) {
   box-shadow: none;
   background: var(--mainaccent);
+  color: var(--tabtext)
 }
 
 .mat-expansion-panel-header-title {

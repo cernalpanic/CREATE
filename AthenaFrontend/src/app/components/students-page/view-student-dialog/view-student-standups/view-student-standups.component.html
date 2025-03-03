@@ -1,15 +1,14 @@
+<ng-container *ngIf="standups">
 <mat-accordion>
-  <mat-expansion-panel *ngFor="let standup of standups" hideToggle>
+  <!-- Panel showing today's standup -->
+  <mat-expansion-panel hideToggle>
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <span> 
-          {{ standup.dateCreated | date: 'MM/dd/yyyy' }} 
-              <b *ngIf="standup.yesterdayTask == '' || standup.todayPlan == '' || standup.blockers == ''"> Not Completed</b>
-              <b *ngIf="standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''"> Completed</b>
-        </span>
+          Most Recent Standup
       </mat-panel-title>
   </mat-expansion-panel-header>
-  <mat-panel-description>
+  
+    <!--
     <span>
       <h6>Yesterday's Task:</h6>
       <div [innerHTML]="standup.yesterdayTask"></div>
@@ -32,11 +31,70 @@
       <h6>Admin Feedback:</h6>
       <div [innerHTML]="standup.adminFeedback"></div>
     </span>
-  </mat-panel-description>
-  
+  -->
+
+  <!--
   <mat-action-row>
     <button (click)="editStandup(standup)">Add Feedback</button>
   </mat-action-row>
+-->
+  </mat-expansion-panel>
+
+  <!-- Paginated table panel showing past standups -->
+  <mat-expansion-panel hideToggle>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Previous Stanups
+      </mat-panel-title>
+  </mat-expansion-panel-header>
+
+    <table  class="table table-bordered text-center">
+      <thead>
+        <tr>
+         <th>Standup Date</th>
+         <th>Completed?</th>
+         <th>Add Feedback</th>
+           </tr>
+          </thead>
+        <tbody *ngIf="standups">
+         <tr *ngFor="let standup of standups | slice:1:standups.length | paginate: { itemsPerPage: 5, currentPage: p }">
+           <td>
+             <span class="text-success">{{standup.dateCreated | date: 'MM/dd/yyyy'}}</span>
+           </td>
+         <td>
+             {{standup.yesterdayTask}}
+        </td>
+         <td>{{standup.todayPlan}}</td>
+        </tr>
+          <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </tbody>
+        </table>
+    <!--
+    <span>
+      <h6>Yesterday's Task:</h6>
+      <div [innerHTML]="standup.yesterdayTask"></div>
+    </span>
+  </mat-panel-description>
+  <mat-panel-description>
+    <span>
+      <h6>Today's Plan:</h6>
+      <div [innerHTML]="standup.todayPlan"></div>
+    </span>
+  </mat-panel-description>
+  <mat-panel-description>
+    <span>
+      <h6>Blockers:</h6>
+      <div [innerHTML]="standup.blockers"></div>
+    </span>
+  </mat-panel-description>
+  <mat-panel-description>
+    <span>
+      <h6>Admin Feedback:</h6>
+      <div [innerHTML]="standup.adminFeedback"></div>
+    </span>
+    -->
 
   </mat-expansion-panel>
+
 </mat-accordion>
+</ng-container>
