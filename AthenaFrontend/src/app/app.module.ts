@@ -41,7 +41,6 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ModuleDashCardComponent } from './components/dashboard/module-dash-card/module-dash-card.component';
-import { NgxPaginationModule } from 'ngx-pagination';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -113,7 +112,6 @@ const ROUTES: Routes = [
       showInnerStroke: false,
       showBackground: false
     }),
-    NgxPaginationModule,
     MatPaginatorModule
   ],
 

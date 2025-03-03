@@ -15,9 +15,9 @@ export class ViewStudentStandupsComponent {
   displayedColumns: string[] = ["standup_date", "completed", "add_feedback"];
 
   //paginator setup
-  length = this.standups.length;
-  pageSize = 5;
-  pageIndex = 0;
+  dataLength = this.standups.length;
+  pageSize = 5; //default page size
+  pageIndex = 0; //intial page index
   pageSizeOptions = [5, 10, 15];
 
   hidePageSize = false;
@@ -32,7 +32,6 @@ export class ViewStudentStandupsComponent {
 
   handlePageEvent(e: PageEvent) {
     this.pageEvent = e;
-    this.length = e.length;
     this.pageSize = e.pageSize;
     this.pageIndex = e.pageIndex;
 
