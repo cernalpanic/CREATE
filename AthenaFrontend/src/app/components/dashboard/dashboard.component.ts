@@ -30,6 +30,7 @@ export class DashboardComponent {
 
   public allModules: Module[] = [];
   public studentMentors: any;
+  public currentUser: any;
 
   constructor(
     public dialog: MatDialog,
@@ -54,7 +55,9 @@ export class DashboardComponent {
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
     if (this.role.Name == 'Student') {
+      const student = await this.studentService.GetStudent(this.role.RoleID);
       this.role.Person = new Student(this.role.Person);
+      this.currentUser = student.student;
       this.showS = true;
     } else if (this.role.Name == 'Mentor') {
       this.role.Person = new Mentor(this.role.Person);
