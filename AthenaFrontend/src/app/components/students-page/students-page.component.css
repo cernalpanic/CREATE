@@ -28,7 +28,7 @@ button.btn-primary {
 }
 .tab-pane {
   height: 80vh;
-  overflow-y: auto;
+  /*overflow-y: auto;*/
   scrollbar-width: thin;
   scrollbar-color: var(--btncolor) transparent;
   padding-right: 5px;
