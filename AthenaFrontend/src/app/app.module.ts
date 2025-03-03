@@ -50,7 +50,7 @@ const ROUTES: Routes = [
   { path: 'modules/:ModuleID', component: InnerModuleComponent, canActivate: [AuthGuard] },
   { path: 'quests/:QuestID', component: QuestsComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
+  { path: 'edit-daily-standup/:StandupID', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

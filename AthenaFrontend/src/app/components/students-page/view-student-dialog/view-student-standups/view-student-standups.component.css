@@ -22,7 +22,6 @@
 }
 
 .feedback-button {
-  background-color: var(--mainaccent);
   color: white;
   border-radius: 12px;
   text-align: center;

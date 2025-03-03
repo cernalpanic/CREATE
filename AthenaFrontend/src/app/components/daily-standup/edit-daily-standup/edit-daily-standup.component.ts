@@ -1,4 +1,4 @@
-import { Component, Inject, } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DailyStandup } from 'src/models/dailystandup';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FormControl, Validators } from '@angular/forms';
@@ -49,9 +49,9 @@ export class EditDailyStandupComponent {
     const response = await this.authService.getAuthentication();
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
-    if(this.role.Name == "Student"){
+    if (this.role.Name == "Student") {
       const student = await this.studentService.GetStudent(this.role.RoleID);
-      this.student =  student.student;
+      this.student = student.student;
     }
   }
 
@@ -61,8 +61,6 @@ export class EditDailyStandupComponent {
     const newBlockers = this.dsBlockers.value || '';
     const newAdminFeedback = this.dsAdminFeedback.value || '';
 
-    //update student streak
-    this.updateStreak(newYesterdayTask, newTodayPlan, newBlockers);
 
     //update the standup
     this.dailyStandupService.UpdateDailyStandup(this.standup.standupID.toString(), newYesterdayTask, newTodayPlan, newBlockers, newAdminFeedback).then((result: boolean) => {
@@ -86,38 +84,6 @@ export class EditDailyStandupComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([this.router.url]);
-  }
-
-  private async updateStreak(yesterdayTask: string, todayPlan: string, blockers: string){
-    //Check to see if standup has already been completed
-    if(this.standup.yesterdayTask.trim() != '' && this.standup.todayPlan.trim() != '' && this.standup.blockers.trim() != '')
-      return;
-
-    //check to ensure standup completion
-    if(yesterdayTask.trim() == '' || todayPlan.trim() == '' || blockers.trim() == '')
-      return;
-    
-    //update current streak
-    let newCurrentStreak = this.student.currentStandupStreak + 1;
-    let newLongestStreak = this.student.longestStandupStreak;
-
-    //check if longest streak needs to be updated
-    if(newCurrentStreak > newLongestStreak){
-      newLongestStreak = newCurrentStreak;
-    }
-
-    this.student.currentStandupStreak = newCurrentStreak;
-    this.student.longestStandupStreak = newLongestStreak;
-
-    const studentUpdate = {
-      roleID: this.role.RoleID,
-      person: {
-        CurrentStandupStreak: this.student.currentStandupStreak,
-        LongestStandupStreak: this.student.longestStandupStreak
-      }
-    };
-
-    const response = await this.studentService.UpdateStudent(studentUpdate);
   }
 
 }
