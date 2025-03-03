@@ -29,8 +29,8 @@ export class DailyStandupService {
     });
   }
 
-  public UpdateDailyStandup(standupID: any, newDescription: string): Promise<any> {
-    const data = { standupID: standupID, description: newDescription };
+  public UpdateDailyStandup(standupID: any, yesterdayTask: string, todayPlan: string, blockers: string, adminFeedback: string): Promise<any> {
+    const data = { standupID: standupID, yesterdayTask: yesterdayTask, todayPlan: todayPlan, blockers: blockers, adminFeedback: adminFeedback };
 
     return new Promise(resolve => {
       this.http.put(this.apiUrl + '/DailyStandups/Update', data).subscribe((data: any) => {

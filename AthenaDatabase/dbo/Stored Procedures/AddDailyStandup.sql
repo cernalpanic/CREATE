@@ -15,8 +15,8 @@ BEGIN
 
         -- Insert the daily standup record
         INSERT INTO dbo.[DailyStandup] 
-        (StandupID, StudentID, UserID, [DateCreated], [Description]) 
-        VALUES (@StandupID, @StudentID, @UserID, @CurrentDate, '')
+        (StandupID, StudentID, UserID, [DateCreated], [YesterdayTask], [TodayPlan], [Blockers], [AdminFeedback]) 
+        VALUES (@StandupID, @StudentID, @UserID, @CurrentDate, '', '', '', '')
 
         -- Return the newly inserted daily standup
         SELECT * FROM dbo.[DailyStandup] WHERE StandupID = @StandupID;

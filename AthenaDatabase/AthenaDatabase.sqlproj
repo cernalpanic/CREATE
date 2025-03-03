@@ -64,7 +64,6 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="dbo\Tables\User.sql" />
-    <Build Include="dbo\Tables\test table from vs.sql" />
     <Build Include="dbo\Stored Procedures\GetStudentMentors.sql" />
     <Build Include="dbo\Tables\Admin.sql" />
     <Build Include="dbo\Tables\DailyStandup.sql" />

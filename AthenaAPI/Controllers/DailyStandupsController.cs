@@ -51,10 +51,14 @@ namespace AthenaAPI.Controllers
             {
                 // Deserialize JSON object to get standupID and newDescription
                 Guid standupID = Guid.Parse(standup["standupID"].ToString());
-                string newDescription = standup["description"].ToString();
+                string yesterdayTask = standup["yesterdayTask"].ToString();
+                string todayPlan = standup["todayPlan"].ToString();
+                string blockers = standup["blockers"].ToString();
+                string adminFeedback = standup["adminFeedback"].ToString();
+
 
                 // Call your utility method to update the daily standup
-                bool updateResult = Utilities.DailyStandups.UpdateDailyStandups(standupID, newDescription);
+                bool updateResult = Utilities.DailyStandups.UpdateDailyStandups(standupID, yesterdayTask, todayPlan, blockers, adminFeedback);
 
                 if (updateResult)
                 {

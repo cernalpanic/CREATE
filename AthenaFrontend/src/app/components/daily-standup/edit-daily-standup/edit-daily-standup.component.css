@@ -1,4 +1,4 @@
-.form-floating > label {
+.form-floating>label {
   left: 8px;
 }
 
@@ -6,7 +6,7 @@
   position: relative;
 }
 
-.input-group .form-floating > label {
+.input-group .form-floating>label {
   left: 0;
 }
 
@@ -14,19 +14,38 @@
   transition: all .5s ease;
 }
 
-  #show-hide:hover {
-    cursor: pointer;
-    background: var(--headingbg);
-    color: var(--headingtext);
-  }
+#show-hide:hover {
+  cursor: pointer;
+  background: var(--headingbg);
+  color: var(--headingtext);
+}
 
 .btn-primary {
   background-color: var(--btncolor);
   border-color: var(--btncolor);
   font-weight: 700;
 }
+
 .hint {
   font-size: 0.8rem;
   font-weight: 700;
   font-style: italic;
+}
+
+.textarea-label {
+  position: relative;
+  display: contents;
+  font-size: medium;
+  color: black;
+  padding-left: 0px;
+}
+
+textarea {
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+h6 {
+  text-decoration: underline;
 }

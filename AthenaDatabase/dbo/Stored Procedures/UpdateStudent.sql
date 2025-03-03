@@ -1,7 +1,9 @@
 ﻿CREATE PROCEDURE [dbo].[UpdateStudent]
 	@StudentID uniqueidentifier,
 	@Exp int					= NULL,
-	@Availability nvarchar(256)	= NULL
+	@Availability nvarchar(256)	= NULL,
+	@CurrentStandupStreak int	= NULL,
+	@LongestStandupStreak int	= NULL
 AS
 BEGIN
 	DECLARE @Result bit
@@ -9,7 +11,9 @@ BEGIN
 	BEGIN
 		UPDATE dbo.[Student]
 		SET [Exp] = @Exp,
-			[Availability] = @Availability
+			[Availability] = @Availability,
+			[CurrentStandupStreak] = @CurrentStandupStreak,
+			[LongestStandupStreak] = @LongestStandupStreak
 		WHERE StudentID = @StudentID
 		
 		SET @Result = 1		-- Returns true (update was successful)

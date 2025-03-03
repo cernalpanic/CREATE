@@ -1,5 +1,5 @@
-.horizontal-scroll{
-    overflow-x: auto;
+.horizontal-scroll {
+  overflow-x: auto;
 }
 
 .btn {
@@ -18,4 +18,11 @@
 .btn-primary {
   background-color: var(--btncolor);
   border-color: var(--btncolor);
+}
+
+h2 {
+  font-weight: 800;
+  padding: 15px 15px 0 15px;
+  color: var(--mainheading);
+  font-size: 1.8rem;
 }

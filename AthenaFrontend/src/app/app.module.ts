@@ -11,6 +11,7 @@ import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.servic
 import { RoleGuardService as RoleGuard } from './services/auth/role-guard.service';
 import { StudentCardComponent } from './components/students-page/student-card/student-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -49,7 +50,7 @@ const ROUTES: Routes = [
   { path: 'modules/:ModuleID', component: InnerModuleComponent, canActivate: [AuthGuard] },
   { path: 'quests/:QuestID', component: QuestsComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
+  { path: 'edit-daily-standup/:StandupID', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({
@@ -110,7 +111,8 @@ const ROUTES: Routes = [
       showTitle: true,
       showInnerStroke: false,
       showBackground: false
-    })
+    }),
+    MatPaginatorModule
   ],
 
   providers: [],
