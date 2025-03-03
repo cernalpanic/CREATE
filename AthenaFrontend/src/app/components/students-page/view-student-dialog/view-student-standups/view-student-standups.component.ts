@@ -15,7 +15,6 @@ export class ViewStudentStandupsComponent {
   displayedColumns: string[] = ["standup_date", "completed", "add_feedback"];
 
   //paginator setup
-  dataLength = this.standups.length;
   pageSize = 5; //default page size
   pageIndex = 0; //intial page index
   pageSizeOptions = [5, 10, 15];
@@ -25,7 +24,7 @@ export class ViewStudentStandupsComponent {
   showFirstLastButtons = true;
   disabled = false;
 
-  paginatedLower = 1;
+  paginatedLower = 0;
   paginatedUpper = 6;
 
   pageEvent: any;
@@ -36,7 +35,7 @@ export class ViewStudentStandupsComponent {
     this.pageIndex = e.pageIndex;
 
     //get lower and upper pagination bounds
-    this.paginatedLower = (this.pageIndex * this.pageSize) + 1;
+    this.paginatedLower = (this.pageIndex * this.pageSize);
     this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
   }
 
