@@ -65,6 +65,57 @@ export class DailyStandupComponent {
 
       await this.getAllDailyStandups(this.role.RoleID);
     }
+    this.updateStreaks();
+  }
+
+
+  //This function assumes that once a dailystandup is completed, it will stay completed.
+  private async updateStreaks() {
+    //Today's not complete and missed yesterday's
+    if (this.standups[0].yesterdayTask.trim() == '' || this.standups[0].todayPlan.trim() == '' || this.standups[0].blockers.trim() == '') {
+      //previous not complete, two missed resets streak
+      if (this.standups[1].yesterdayTask.trim() == '' || this.standups[1].todayPlan.trim() == '' || this.standups[1].blockers.trim() == '' || this.areMoreThanOneDayApart(new Date(this.standups[0].dateCreated), new Date(this.standups[1].dateCreated))) {
+        this.student.currentStandupStreak = 0;
+      }
+    }
+    //Today's complete
+    //Loop through till find incomplete
+    else {
+      let completed = 0;
+      let previousDate = new Date(this.standups[0].dateCreated);
+      for (let i = 0; i < this.standups.length; i++) {
+        if (this.standups[i].yesterdayTask.trim() == '' || this.standups[i].todayPlan.trim() == '' || this.standups[i].blockers.trim() == '' || this.areMoreThanOneDayApart(previousDate, new Date(this.standups[i].dateCreated))) {
+          break;
+        }
+        completed += 1;
+        previousDate = new Date(this.standups[i].dateCreated);
+      }
+      this.student.currentStandupStreak = completed;
+    }
+
+    //check if longest streak is less than current streak
+    if (this.student.currentStandupStreak > this.student.longestStandupStreak) {
+      this.student.longestStandupStreak = this.student.currentStandupStreak;
+    }
+
+    const studentUpdate = {
+      roleID: this.role.RoleID,
+      person: {
+        CurrentStandupStreak: this.student.currentStandupStreak,
+        LongestStandupStreak: this.student.longestStandupStreak
+      }
+    };
+
+    const response = await this.studentService.UpdateStudent(studentUpdate);
+  }
+
+  //Taken from ChatGPT, thanks ChatGPT
+  private areMoreThanOneDayApart(date1: Date, date2: Date) {
+    const oneDayMs = 24 * 60 * 60 * 1000;
+    date1.setHours(0, 0, 0, 0);;
+    date2.setHours(0, 0, 0, 0);
+
+    return Math.abs(date1.getTime() - date2.getTime()) > oneDayMs;
   }
 
 }
