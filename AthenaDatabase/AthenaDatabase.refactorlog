@@ -14,4 +14,18 @@
     <Property Name="ParentElementType" Value="SqlTable" />
     <Property Name="NewName" Value="UserID" />
   </Operation>
+  <Operation Name="Rename Refactor" Key="28d48ff6-2ec9-4801-a93b-ca6a46502a31" ChangeDateTime="02/14/2025 19:14:52">
+    <Property Name="ElementName" Value="[dbo].[DailyStandup].[Description]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DailyStandup]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="YesterdayTask" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="3ea87077-1c03-446b-854f-12931ea683be" ChangeDateTime="02/14/2025 19:16:22">
+    <Property Name="ElementName" Value="[dbo].[DailyStandup].[Completed]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[DailyStandup]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="DateCompleted" />
+  </Operation>
 </Operations>
