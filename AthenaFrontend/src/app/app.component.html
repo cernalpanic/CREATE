@@ -55,9 +55,15 @@
           <div id="modules-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('modules') || activePage.includes('quests')}">
             <i class="bi bi-mortarboard-fill"></i>
           </div>
+
+          <div id="kata-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('code-kata')}">
+            <i class="bi bi-code-square"></i>
+          </div>
+
           <div id="settings-icon" class="nav-icon" [ngClass]="{'active': activePage.includes('settings')}">
             <i class="bi bi-gear-fill"></i>
           </div>
+          
           <div id="logout-icon" class="nav-icon">
             <i class="bi bi-box-arrow-right"></i>
           </div>
@@ -71,6 +77,9 @@
           </div>
           <div id="modules-link" class="navlink" [routerLink]="['/modules']" [state]="{ role: this.role }">
             Modules
+          </div>
+          <div id="kata-link" class="navlink" [routerLink]="['/code-kata']" [state]="{ role: this.role }">
+            Katas
           </div>
           <div id="settings-link" class="navlink" [routerLink]="['/settings']" [state]="{ role: this.role }">
             Settings
