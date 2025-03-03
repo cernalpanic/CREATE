@@ -72,7 +72,7 @@ export class ViewStudentDialog implements OnInit {
   }
 
   private filterMentors(mentor: Role | null): void {
-    if (mentor == null){
+    if (mentor == null) {
       return;
     } else {
       let index = this.filteredMentors.findIndex(m => m.RoleID == mentor.RoleID);
@@ -87,7 +87,7 @@ export class ViewStudentDialog implements OnInit {
         let mentor = new Role(m);
         mentor.Person = new Mentor(m.mentor);
         this.allMentors.push(mentor);
-        if (!this.mentors.includes(mentor)){
+        if (!this.mentors.includes(mentor)) {
           this.filteredMentors.push(mentor);
         }
       });
@@ -96,7 +96,7 @@ export class ViewStudentDialog implements OnInit {
 
   public async getStudentMentors(StudentID: string): Promise<any> {
     const response = await this.studentService.GetStudentMentors(StudentID);
-    if (response){
+    if (response) {
       response.forEach((m: any) => {
         let mentor = new Role(m);
         mentor.Person = new Mentor(m.mentor);
@@ -115,7 +115,7 @@ export class ViewStudentDialog implements OnInit {
     this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
       this.filterMentors(mentor);
       this.changes = true;
-    });   
+    });
   }
 
 
@@ -129,7 +129,7 @@ export class ViewStudentDialog implements OnInit {
     const response = await this.dailyStandupService.GetAllDailyStandups(id);
     if (response) {
       for (let ds of response) {
-        const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.description);
+        const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.yesterdayTask, ds.todayPlan, ds.blockers, ds.adminFeedback);
         this.standups.push(standup);
       }
     }

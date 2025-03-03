@@ -52,11 +52,13 @@
   justify-content: center;
   align-items: center;
 }
+
 .progress {
   border-right: 1px solid var(--statsborder);
   background-color: transparent;
   border-radius: 0;
 }
+
 .progress,
 .exp {
   margin: 10px 0;
@@ -66,22 +68,26 @@
   text-align: center;
   padding: 0 10px;
 }
+
 .stats-mini {
   font-size: 0.6rem;
   text-transform: uppercase;
   color: var(--statsmini);
   font-weight: 700;
 }
+
 .stats-heading {
   font-size: 1rem;
   color: var(--statsheading);
   font-weight: 800;
 }
+
 .stats-num {
   font-size: 1.2rem;
   color: var(--statsnum);
   font-weight: 800;
 }
+
 .rank {
   height: 1px;
   background: var(--statsborder);
@@ -89,6 +95,7 @@
   margin: 2vh 2em -12px 2em;
   z-index: 1;
 }
+
 .title {
   font-size: 1rem;
   color: var(--statsheading);
@@ -104,18 +111,23 @@
 #side-nav {
   margin-top: 5vh;
   display: grid;
+
   grid-template-areas: "icons links";
   align-items: center;
 }
+
 .nav-icon,
 .navlink {
   padding: 1.5vh 0;
   line-height: 5vh;
 }
+
 .nav-icons {
   grid-area: "icons";
+
   color: var(--navlink);
 }
+
 .nav-links {
   grid-area: "links";
   text-align: justify;
@@ -123,14 +135,18 @@
   color: var(--navlink);
   font-size: 1.2rem;
 }
+
 .nav-icon.active {
   color: var(--activeiconcolor);
 }
+
 .nav-icon.active i {
   background: var(--navlink);
   padding: 10px 12px;
   border-radius: 100%;
 }
+
 .nav-links:hover {
   cursor: pointer;
 }
+
