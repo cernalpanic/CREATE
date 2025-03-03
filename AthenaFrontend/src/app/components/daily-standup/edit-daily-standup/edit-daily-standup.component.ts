@@ -29,11 +29,13 @@ export class EditDailyStandupComponent {
   public dsBlockers = new FormControl('', [Validators.required]);
   public dsAdminFeedback = new FormControl('', [Validators.required]);
   public changes: boolean = false;
+  public canEdit: boolean;
   public role: any;
   public auth: any;
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, public authService: AuthService, private router: Router) {
     this.standup = this.data.standup;
+    this.canEdit = this.data.canEdit;
     this.dsYesterdayTask.setValue(this.standup.yesterdayTask);
     this.dsTodayPlan.setValue(this.standup.todayPlan);
     this.dsBlockers.setValue(this.standup.blockers);

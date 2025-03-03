@@ -14,16 +14,20 @@ import { Role } from 'src/models/role.model';
 
 export class DailyStandupCardComponent {
   @Input() standups: DailyStandup[] = [];
+  public today: Date;
 
-  constructor(public dialog: MatDialog, public snackbar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, public snackbar: MatSnackBar) {
+    this.today = new Date();
+    this.today.setHours(0,0,0,0);
+   }
 
   statusText = 'Not Completed';
-  thisdate = new Date;
+  thisdate = new Date();
 
-  public async editStandup(standup: DailyStandup): Promise<void> {
+  public async editStandup(standup: DailyStandup, canEdit: boolean): Promise<void> {
     this.dialog.open(EditDailyStandupComponent, {
       panelClass: 'standup-dialog',
-      data: { standup: standup }
+      data: { standup: standup, canEdit: canEdit }
     });
   }
 

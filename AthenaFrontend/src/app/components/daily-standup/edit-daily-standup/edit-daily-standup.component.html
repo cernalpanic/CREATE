@@ -30,7 +30,7 @@
         </span>
       </div>
     </div>
-    <ng-container *ngIf="role.Name == 'Student'">
+    <ng-container *ngIf="role.Name == 'Student' && canEdit">
       <div class="hint">Feel free to add HTML markdown to style your text and add links!</div>
       <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating">
         <label class="textarea-label" for="dsYesterdayTask">What I did yesterday:</label>

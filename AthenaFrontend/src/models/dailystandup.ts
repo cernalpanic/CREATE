@@ -12,7 +12,7 @@ export class DailyStandup {
     this.standupID = standupID;
     this.studentID = studentID;
     this.userID = userID;
-    this.dateCreated = dateCreated;
+    this.dateCreated = new Date(dateCreated);
     this.yesterdayTask = yesterdayTask;
     this.todayPlan = todayPlan;
     this.blockers = blockers;
