@@ -193,6 +193,7 @@ export class DashboardComponent {
     const response = await this.studentService.UpdateStudent(studentUpdate);
   }
 
+  //Taken from ChatGPT, thanks ChatGPT
   private areMoreThanOneDayApart(date1: Date, date2: Date){
     const oneDayMs = 24 * 60 * 60 * 1000;
     date1.setHours(0, 0, 0, 0);;

@@ -105,7 +105,6 @@ export class StudentService {
   }
 
   public UpdateStudent(student: any): Promise<any> {
-    console.log(JSON.stringify(student));
     return new Promise(resolve => {
       
       this.http.put(this.apiUrl + '/Students/Update', JSON.stringify(student), { headers: this.postHeaders }).subscribe((data: any) => {
