@@ -7,7 +7,9 @@ import { Router } from '@angular/router';
 import { Role } from 'src/models/role.model';
 import { AuthService } from '../../../services/auth/auth.service';
 import { AuthToken } from '../../../../models/authtoken.model';
+import { StudentService } from '../../../services/student.service';
 import { UnknownReference } from '@angular/compiler-cli/src/ngtsc/reflection';
+import { Student } from 'src/models/student.model';
 
 
 export interface StandupData {
@@ -32,8 +34,9 @@ export class EditDailyStandupComponent {
   public canEdit: boolean;
   public role: any;
   public auth: any;
+  public student: any;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, public authService: AuthService, private router: Router) {
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditDailyStandupComponent>, public dailyStandupService: DailyStandupService, public authService: AuthService, public studentService: StudentService, private router: Router) {
     this.standup = this.data.standup;
     this.canEdit = this.data.canEdit;
     this.dsYesterdayTask.setValue(this.standup.yesterdayTask);
@@ -46,6 +49,11 @@ export class EditDailyStandupComponent {
     const response = await this.authService.getAuthentication();
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
+    if(this.role.Name == "Student"){
+      const student = await this.studentService.GetStudent(this.role.RoleID);
+      this.student =  student.student;
+      console.log(this.student.currentStandupStreak);
+    }
   }
 
   public updateDailyStandup(): void {
@@ -54,6 +62,10 @@ export class EditDailyStandupComponent {
     const newBlockers = this.dsBlockers.value || '';
     const newAdminFeedback = this.dsAdminFeedback.value || '';
 
+    //update student streak
+    this.updateStreak(newYesterdayTask, newTodayPlan, newBlockers);
+
+    //update the standup
     this.dailyStandupService.UpdateDailyStandup(this.standup.standupID.toString(), newYesterdayTask, newTodayPlan, newBlockers, newAdminFeedback).then((result: boolean) => {
       if (result) {
         this.dialogRef.close(true);
@@ -75,6 +87,34 @@ export class EditDailyStandupComponent {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([this.router.url]);
+  }
+
+  private async updateStreak(yesterdayTask: string, todayPlan: string, blockers: string){
+
+    //check to ensure standup completion
+    if(yesterdayTask.trim() == '' || todayPlan.trim() == '' || blockers.trim() == '')
+      return;
+    
+    //update current streak
+    let newCurrentStreak = this.student.currentStandupStreak + 1;
+    let newLongestStreak = this.student.longestStandupStreak;
+
+    //check if longest streak needs to be updated
+    if(newCurrentStreak > newLongestStreak)
+      newLongestStreak = newCurrentStreak;
+
+    this.student.currentStandupStreak = newCurrentStreak;
+    this.student.longestStandupStreak = newLongestStreak;
+
+    const studentUpdate = {
+      roleID: this.role.RoleID,
+      person: {
+        CurrentStandupStreak: this.student.currentStandupStreak,
+        LongestStandupStreak: this.student.longestSTandupStreak
+      }
+    };
+
+    const response = await this.studentService.UpdateStudent(studentUpdate);
   }
 
 }

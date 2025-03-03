@@ -3,6 +3,7 @@ import { environment } from 'src/environment/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Role } from 'src/models/role.model';
 import { Subject } from 'rxjs';
+import { ConsoleLogger } from '@angular/compiler-cli';
 
 @Injectable({
   providedIn: 'root'
@@ -104,7 +105,10 @@ export class StudentService {
   }
 
   public UpdateStudent(student: any): Promise<any> {
+    console.log("I AM IN THE CONSOLE HAHAHAHAHHAHA");
+    console.log(JSON.stringify(student));
     return new Promise(resolve => {
+      
       this.http.put(this.apiUrl + '/Students/Update', JSON.stringify(student), { headers: this.postHeaders }).subscribe((data: any) => {
         resolve(data);
       }, error => {
