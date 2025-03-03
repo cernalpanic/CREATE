@@ -52,7 +52,6 @@ export class EditDailyStandupComponent {
     if(this.role.Name == "Student"){
       const student = await this.studentService.GetStudent(this.role.RoleID);
       this.student =  student.student;
-      console.log(this.student.currentStandupStreak);
     }
   }
 
@@ -90,6 +89,9 @@ export class EditDailyStandupComponent {
   }
 
   private async updateStreak(yesterdayTask: string, todayPlan: string, blockers: string){
+    //Check to see if standup has already been completed
+    if(this.standup.yesterdayTask.trim() != '' && this.standup.todayPlan.trim() != '' && this.standup.blockers.trim() != '')
+      return;
 
     //check to ensure standup completion
     if(yesterdayTask.trim() == '' || todayPlan.trim() == '' || blockers.trim() == '')
@@ -100,8 +102,9 @@ export class EditDailyStandupComponent {
     let newLongestStreak = this.student.longestStandupStreak;
 
     //check if longest streak needs to be updated
-    if(newCurrentStreak > newLongestStreak)
+    if(newCurrentStreak > newLongestStreak){
       newLongestStreak = newCurrentStreak;
+    }
 
     this.student.currentStandupStreak = newCurrentStreak;
     this.student.longestStandupStreak = newLongestStreak;
@@ -110,7 +113,7 @@ export class EditDailyStandupComponent {
       roleID: this.role.RoleID,
       person: {
         CurrentStandupStreak: this.student.currentStandupStreak,
-        LongestStandupStreak: this.student.longestSTandupStreak
+        LongestStandupStreak: this.student.longestStandupStreak
       }
     };
 

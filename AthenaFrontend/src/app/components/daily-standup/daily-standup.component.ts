@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { DailyStandupService } from '../../services/dailyStandup.service';
 import { AuthToken } from 'src/models/authtoken.model';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { StudentService } from 'src/app/services/student.service'
 
 @Component({
   selector: 'app-daily-standup',
@@ -15,8 +16,9 @@ export class DailyStandupComponent {
   public standups: DailyStandup[] = [];
   public role: any;
   protected auth: any;
+  public student: any;
 
-  constructor(private authService: AuthService, public dailyStandupService: DailyStandupService, public snackbar: MatSnackBar, public router: Router) {
+  constructor(private authService: AuthService, private studentService: StudentService, public dailyStandupService: DailyStandupService, public snackbar: MatSnackBar, public router: Router) {
 
   }
 
@@ -52,6 +54,9 @@ export class DailyStandupComponent {
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
     if (this.role.Name == 'Student') {
+      const student = await this.studentService.GetStudent(this.role.RoleID);
+      this.student = student.student;
+
       await this.getAllDailyStandups(this.role.RoleID);
 
       if (this.standups.length == 0 || !(this.isToday(this.standups[0].dateCreated))) {
@@ -61,4 +66,5 @@ export class DailyStandupComponent {
       await this.getAllDailyStandups(this.role.RoleID);
     }
   }
+
 }

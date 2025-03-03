@@ -105,7 +105,6 @@ export class StudentService {
   }
 
   public UpdateStudent(student: any): Promise<any> {
-    console.log("I AM IN THE CONSOLE HAHAHAHAHHAHA");
     console.log(JSON.stringify(student));
     return new Promise(resolve => {
       
