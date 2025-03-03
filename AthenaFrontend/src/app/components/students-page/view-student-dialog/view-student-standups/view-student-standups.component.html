@@ -47,28 +47,76 @@
         Previous Stanups
       </mat-panel-title>
   </mat-expansion-panel-header>
+    <table mat-table [dataSource]="standups | slice:paginatedLower:paginatedUpper" class="mat-elevation-z8">
 
-    <table  class="table table-bordered text-center">
+      <!-- Standup Date Column -->
+      <ng-container matColumnDef="standup_date">
+        <th mat-header-cell *matHeaderCellDef> Standup Date </th>
+        <td mat-cell *matCellDef="let standup"> {{standup.dateCreated | date: "MM/dd/yyyy"}} </td>
+      </ng-container>
+
+      <!-- Completed Column -->
+      <ng-container matColumnDef="completed">
+        <th mat-header-cell *matHeaderCellDef> Completed? </th>
+        <td mat-cell *matCellDef="let standup"> 
+          {{(standup.yesterdayTask.trim() != '' && standup.todayPlan.trim() != '' && standup.blockers.trim() != '') ? 'Yes' : 'No' }} 
+        </td>
+      </ng-container>
+
+      <!-- Add Feedback Column -->
+      <ng-container matColumnDef="add_feedback">
+        <th mat-header-cell *matHeaderCellDef> Add Feedback </th>
+        <td mat-cell *matCellDef="let standup"> 
+          <button class="button btn-sm" (click)="editStandup(standup)">Add Feedback</button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <!-- Paginator Control for table -->
+    <mat-paginator #paginator
+      class="demo-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="length"
+      [pageSize]="pageSize"
+      [disabled]="disabled"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex"
+      aria-label="Select page">
+    </mat-paginator>
+   
+  <!--
+    <table class="table text-center">
       <thead>
         <tr>
          <th>Standup Date</th>
          <th>Completed?</th>
          <th>Add Feedback</th>
            </tr>
-          </thead>
+      </thead>
         <tbody *ngIf="standups">
-         <tr *ngFor="let standup of standups | slice:1:standups.length | paginate: { itemsPerPage: 5, currentPage: p }">
+         <tr *ngFor="let standup of standups | slice:1:standups.length | paginate: { itemsPerPage: 7, currentPage: p }">
            <td>
              <span class="text-success">{{standup.dateCreated | date: 'MM/dd/yyyy'}}</span>
            </td>
          <td>
-             {{standup.yesterdayTask}}
-        </td>
-         <td>{{standup.todayPlan}}</td>
-        </tr>
-          <pagination-controls (pageChange)="p = $event"></pagination-controls>
-          </tbody>
-        </table>
+             {{(standup.yesterdayTask.trim() != '' && standup.todayPlan.trim() != '' && standup.blockers.trim() != '') ? 'Yes' : 'No'}}
+          </td>
+          <td>
+            <button class="button btn-sm" (click)="editStandup(standup)">Add Feedback</button>
+          </td>
+          </tr>
+          <tr>
+            <pagination-controls (pageChange)="p = $event"></pagination-controls>
+          </tr>
+        </tbody>
+      </table>
+    -->
+      
     <!--
     <span>
       <h6>Yesterday's Task:</h6>

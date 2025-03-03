@@ -11,6 +11,7 @@ import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.servic
 import { RoleGuardService as RoleGuard } from './services/auth/role-guard.service';
 import { StudentCardComponent } from './components/students-page/student-card/student-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -112,7 +113,8 @@ const ROUTES: Routes = [
       showInnerStroke: false,
       showBackground: false
     }),
-    NgxPaginationModule
+    NgxPaginationModule,
+    MatPaginatorModule
   ],
 
   providers: [],

@@ -3,9 +3,7 @@ import { DailyStandup } from 'src/models/dailystandup';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDailyStandupComponent } from '../../../daily-standup/edit-daily-standup/edit-daily-standup.component';
-import { Role } from 'src/models/role.model';
-import { PaginatePipe } from 'ngx-pagination';
-import { PaginationControlsComponent } from 'ngx-pagination';
+import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-view-student-standups',
@@ -14,8 +12,34 @@ import { PaginationControlsComponent } from 'ngx-pagination';
 })
 export class ViewStudentStandupsComponent {
   @Input() standups: DailyStandup[] = [];
-  public p: any; //used for talbe pagination
-  panelOpenState = false;
+  displayedColumns: string[] = ["standup_date", "completed", "add_feedback"];
+
+  //paginator setup
+  length = this.standups.length;
+  pageSize = 5;
+  pageIndex = 0;
+  pageSizeOptions = [5, 10, 15];
+
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
+
+  paginatedLower = 1;
+  paginatedUpper = 6;
+
+  pageEvent: any;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.length = e.length;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+
+    //get lower and upper pagination bounds
+    this.paginatedLower = (this.pageIndex * this.pageSize) + 1;
+    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
+  }
 
   constructor(public dialog: MatDialog, public snackbar: MatSnackBar) { }
 
