@@ -1,5 +1,5 @@
 <div class="row row-cols-3 row-cols-md-2 g-4">
-  <ng-container *ngFor="let standup of standups">
+  <ng-container *ngFor="let standup of standups | slice:0:9">
     <div class="col">
       <div class="card">
         <div class="card-body">
