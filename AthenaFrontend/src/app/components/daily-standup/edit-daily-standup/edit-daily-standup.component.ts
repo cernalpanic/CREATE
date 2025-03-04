@@ -81,7 +81,7 @@ export class EditDailyStandupComponent {
   }
 
   private refreshPage(): void {
-    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.routeReuseStrategy.shouldReuseRoute = () => true;
     this.router.onSameUrlNavigation = 'reload';
     this.router.navigate([this.router.url]);
   }
