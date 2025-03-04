@@ -50,7 +50,7 @@ export class StudentsPageComponent {
     });
 
     dialogRef.afterClosed().subscribe(response => {
-      if (response){
+      if (response) {
         let student = new Role(response);
         student.Person = new Student(response.student);
         this.allStudents.push(student);
@@ -62,7 +62,7 @@ export class StudentsPageComponent {
   public async getAllStudents(): Promise<void> {
     this.allStudents = [];
     const response = await this.studentService.GetAllStudents();
-    for (let st of response){
+    for (let st of response) {
       let s = new Role(st);
       s.Person = new Student(st.student);
       this.allStudents.push(s);
@@ -73,7 +73,7 @@ export class StudentsPageComponent {
     this.myStudents = [];
     const response = await this.mentorService.GetMentorStudents(id);
     if (response) {
-      for (let s of response){
+      for (let s of response) {
         let student = new Role(s);
         student.Person = new Student(s.student);
         this.myStudents.push(student);
@@ -83,7 +83,7 @@ export class StudentsPageComponent {
   }
 
   public updateMyStudents(update: string) {
-    if (update == 'updated'){
+    if (update == 'updated') {
       this.getAllStudents();
       this.getMentorStudents(this.mentor.RoleID);
     }
