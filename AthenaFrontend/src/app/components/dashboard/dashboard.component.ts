@@ -44,14 +44,13 @@ export class DashboardComponent {
     public authService: AuthService,
     public breadcrumb: BreadcrumbService
   ) {
-    this.initialize();
-
     const pageName: string = 'dashboard';
     breadcrumb.makeCurrentPage(pageName, router.url, '');
     breadcrumb.setPrevPages();
   }
 
-  public async initialize() {
+  public async ngOnInit() {
+    console.log("dashboard initialize has run!");
     const response = await this.authService.getAuthentication();
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
