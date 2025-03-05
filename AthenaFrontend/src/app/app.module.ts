@@ -53,7 +53,7 @@ const ROUTES: Routes = [
   {
     path: 'students',
     component: StudentsPageComponent,
-    canActivate: [RoleGuard],
+    canActivate: [RoleGuard, AuthGuard],
   },
   {
     path: 'code-kata',
@@ -77,7 +77,6 @@ const ROUTES: Routes = [
     component: EditDailyStandupComponent,
     canActivate: [AuthGuard],
   },
-  { path: 'edit-daily-standup/:StandupID', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
 ];
 
 
@@ -148,4 +147,4 @@ const ROUTES: Routes = [
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
