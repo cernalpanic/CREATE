@@ -47,4 +47,13 @@ export class AuthService {
       return this.auth;
     }
   }
+
+  public logout(): Promise<void> {
+    return new Promise<void>(resolve => {
+      localStorage.removeItem('token');
+      this.auth = undefined;
+      this.token = '00000000-0000-0000-0000-000000000000';
+    }
+    );
+  }
 }
