@@ -359,3 +359,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Setup Scripts
+/AthenaFrontend/Athena-Run.bat
+/AthenaAPI/Backend-Run.bat

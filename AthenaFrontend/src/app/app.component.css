@@ -38,8 +38,10 @@
 }
 
 #profilepic img {
-  max-width: 100px;
+  width: 100px;
+  height: 100px;
   border-radius: 100%;
+  object-fit: cover;
 }
 
 .stats {
@@ -77,7 +79,7 @@
 .stats-heading {
   font-size: 1rem;
   color: var(--statsheading);
-  font-weight: 800
+  font-weight: 800;
 }
 
 .stats-num {
@@ -109,7 +111,8 @@
 #side-nav {
   margin-top: 5vh;
   display: grid;
-  grid-template-areas: 'icons links';
+
+  grid-template-areas: "icons links";
   align-items: center;
 }
 
@@ -120,12 +123,13 @@
 }
 
 .nav-icons {
-  grid-area: 'icons';
+  grid-area: "icons";
+
   color: var(--navlink);
 }
 
 .nav-links {
-  grid-area: 'links';
+  grid-area: "links";
   text-align: justify;
   font-weight: 800;
   color: var(--navlink);
@@ -140,9 +144,9 @@
   background: var(--navlink);
   padding: 10px 12px;
   border-radius: 100%;
-  ;
 }
 
 .nav-links:hover {
   cursor: pointer;
 }
+
