@@ -65,8 +65,7 @@
       <ng-container matColumnDef="add_feedback">
         <th mat-header-cell *matHeaderCellDef> Add Feedback </th>
         <td mat-cell *matCellDef="let standup"> 
-          <button *ngIf="standup.adminFeedback != ''" class="btn feedback-button feedback-present btn-sm" (click)="editStandup(standup)">Edit Feedback</button>
-          <button *ngIf="standup.adminFeedback == ''" class="btn feedback-button feedback-needed btn-sm" (click)="editStandup(standup)">Add Feedback</button>
+          <button class="btn feedback-button feedback-needed btn-sm" (click)="editStandup(standup)">Add Feedback</button>
         </td>
       </ng-container>
 
