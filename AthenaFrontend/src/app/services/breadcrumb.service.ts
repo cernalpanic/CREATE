@@ -32,7 +32,7 @@ export class BreadcrumbService {
   public getPrevPages(){return this.prevPages;}
 
   public setPrevPages(){
-    if (this.currentPage.name.toLowerCase() == "dashboard" || this.currentPage.name.toLowerCase() == "students" || this.currentPage.name.toLowerCase() == "modules" || this.currentPage.name.toLowerCase() == "settings"){
+    if (this.currentPage.name.toLowerCase() == "dashboard" || this.currentPage.name.toLowerCase() == "students" || this.currentPage.name.toLowerCase() == "modules" || this.currentPage.name.toLowerCase() == "settings" || this.currentPage.name.toLowerCase() == "code-kata"){
       this.prevPages = [];
     }
     for (let i = 0; i < this.prevPages.length; i++){

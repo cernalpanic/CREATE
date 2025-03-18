@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   public getAuthentication(): Promise<AuthToken> {
-    if (this.auth == undefined || this.auth == null){
+    if (this.auth == undefined || this.auth == null) {
       return new Promise<AuthToken>(resolve => {
         this.http.get(this.apiUrl + '/Users/Auth/' + this.token).subscribe((data: any) => {
           this.auth = data;
