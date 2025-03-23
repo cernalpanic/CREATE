@@ -1,10 +1,11 @@
 CREATE PROCEDURE [dbo].[AddStudentKata]
     @StudentID UNIQUEIDENTIFIER,
-    @KataID UNIQUEIDENTIFIER,
+    @KataID UNIQUEIDENTIFIER
 AS
 BEGIN
+	DECLARE @UserID UNIQUEIDENTIFIER
     -- Get the UserID associated with the provided StudentID
-    SELECT @UserID UNIQUEIDENTIFIER = UserID FROM dbo.Student WHERE StudentID = @StudentID
+    SELECT @UserID = UserID FROM dbo.Student WHERE StudentID = @StudentID
 
     BEGIN
 
