@@ -45,11 +45,12 @@ const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'students', component: StudentsPageComponent, canActivate: [RoleGuard] },
+  { path: 'students/:StudentName', component: ViewStudentDialog, canActivate: [RoleGuard] },
   { path: 'modules', component: ModulesComponent, canActivate: [AuthGuard] },
   { path: 'modules/:ModuleID', component: InnerModuleComponent, canActivate: [AuthGuard] },
   { path: 'quests/:QuestID', component: QuestsComponent, canActivate: [AuthGuard] },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
+  //{ path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
 ]
 
 @NgModule({

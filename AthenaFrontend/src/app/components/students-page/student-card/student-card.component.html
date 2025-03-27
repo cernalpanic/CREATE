@@ -16,8 +16,13 @@
           </p>
           <app-module-progress [studentID]="student.RoleID" [details]="false"></app-module-progress>
           <div class="btn-container">
+            <a class="btn btn-primary" [routerLink]="['/students', student.Person.FirstName + student.Person.LastName]" [state]="{ student: student, auth: this.auth, expectedRole: 'Mentor' }">View Student <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <!--
+          <div class="btn-container">
             <a class="btn btn-primary" (click)="viewStudent(student)">View Details</a>
           </div>
+           -->
         </div>
       </div>
     </div>
