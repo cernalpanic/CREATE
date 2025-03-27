@@ -34,7 +34,10 @@ namespace AthenaAPI.Utilities
                         standup.StudentID = Guid.Parse(reader["StudentID"].ToString());
                         standup.UserID = Guid.Parse(reader["UserID"].ToString());
                         standup.DateCreated = DateTime.Parse(reader["Date_Created"].ToString());
-                        standup.Description = reader["Description"].ToString();
+                        standup.YesterdayTask = reader["YesterdayTask"].ToString();
+                        standup.TodayPlan = reader["TodayPlan"].ToString();
+                        standup.Blockers = reader["Blockers"].ToString();
+                        standup.AdminFeedback = reader["AdminFeedback"].ToString();
 
                         dailyStandups.Add(standup);
                     }
@@ -50,7 +53,7 @@ namespace AthenaAPI.Utilities
             }
         }
 
-        public static Boolean UpdateDailyStandups(Guid standupID, string newDescription)
+        public static Boolean UpdateDailyStandups(Guid standupID, string yesterdayTask, string todayPlan, string blockers, string adminFeedback)
         {
             try
             {
@@ -61,7 +64,10 @@ namespace AthenaAPI.Utilities
                     SqlCommand command = new SqlCommand("UpdateDailyStandup", con);
                     command.CommandType = CommandType.StoredProcedure;
                     command.Parameters.Add(new SqlParameter("@StandupID", standupID));
-                    command.Parameters.Add(new SqlParameter("@Description", newDescription));
+                    command.Parameters.Add(new SqlParameter("@YesterdayTask", yesterdayTask));
+                    command.Parameters.Add(new SqlParameter("@TodayPlan", todayPlan));
+                    command.Parameters.Add(new SqlParameter("@Blockers", blockers));
+                    command.Parameters.Add(new SqlParameter("@AdminFeedback", adminFeedback));
 
                     con.Open();
 
@@ -110,7 +116,10 @@ namespace AthenaAPI.Utilities
                         standup.StudentID = Guid.Parse(reader["StudentID"].ToString());
                         standup.UserID = Guid.Parse(reader["UserID"].ToString());
                         standup.DateCreated = DateTime.Parse(reader["Date_Created"].ToString());
-                        standup.Description = reader["Description"].ToString();
+                        standup.YesterdayTask = reader["YesterdayTask"].ToString();
+                        standup.TodayPlan = reader["TodayPlan"].ToString();
+                        standup.Blockers = reader["Blockers"].ToString();
+                        standup.AdminFeedback = reader["AdminFeedback"].ToString();
                     }
                     con.Close();
 

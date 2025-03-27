@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   public getAuthentication(): Promise<AuthToken> {
-    if (this.auth == undefined || this.auth == null){
+    if (this.auth == undefined || this.auth == null) {
       return new Promise<AuthToken>(resolve => {
         this.http.get(this.apiUrl + '/Users/Auth/' + this.token).subscribe((data: any) => {
           this.auth = data;
@@ -46,5 +46,14 @@ export class AuthService {
     } else {
       return this.auth;
     }
+  }
+
+  public logout(): Promise<void> {
+    return new Promise<void>(resolve => {
+      localStorage.removeItem('token');
+      this.auth = undefined;
+      this.token = '00000000-0000-0000-0000-000000000000';
+    }
+    );
   }
 }

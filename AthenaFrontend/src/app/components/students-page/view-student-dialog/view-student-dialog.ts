@@ -128,6 +128,7 @@ export class ViewStudentDialog implements OnInit {
     //   this.filterMentors(mentor);
     //   this.changes = true;
     // });
+
   }
 
 
@@ -141,7 +142,7 @@ export class ViewStudentDialog implements OnInit {
     const response = await this.dailyStandupService.GetAllDailyStandups(id);
     if (response) {
       for (let ds of response) {
-        const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.description);
+        const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.yesterdayTask, ds.todayPlan, ds.blockers, ds.adminFeedback);
         this.standups.push(standup);
       }
     }

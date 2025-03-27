@@ -3,6 +3,7 @@ import { environment } from 'src/environment/environment';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Role } from 'src/models/role.model';
 import { Subject } from 'rxjs';
+import { ConsoleLogger } from '@angular/compiler-cli';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +90,27 @@ export class StudentService {
         resolve(mentorIds);
       }, error => {
         resolve([]);
+      });
+    });
+  }
+
+  public GetStudent(StudentID: string): Promise<any> {
+    return new Promise(resolve => {
+      this.http.get(this.apiUrl + '/Students/' + StudentID).subscribe((data: any) => {
+        resolve(data);
+      }, error => {
+        resolve(false);
+      });
+    });
+  }
+
+  public UpdateStudent(student: any): Promise<any> {
+    return new Promise(resolve => {
+
+      this.http.put(this.apiUrl + '/Students/Update', JSON.stringify(student), { headers: this.postHeaders }).subscribe((data: any) => {
+        resolve(data);
+      }, error => {
+        resolve(false);
       });
     });
   }

@@ -16,7 +16,7 @@ export class LoginComponent {
   public emailErrorMessage = '';
   public passwordErrorMessage = '';
 
-  constructor(public userService: UserService, public router: Router) {}
+  constructor(public userService: UserService, public router: Router) { }
 
   public async login(): Promise<void> {
     // reset error msgs
@@ -28,11 +28,11 @@ export class LoginComponent {
       this.emailErrorMessage = 'Please enter a valid email';
     }
 
-    if(!this.password.valid) {
+    if (!this.password.valid) {
       this.passwordErrorMessage = 'Please enter a valid password';
     }
 
-    if (this.email.valid && this.password.valid){
+    if (this.email.valid && this.password.valid) {
       const loginData = {
         Email: this.email.value,
         Password: this.password.value
