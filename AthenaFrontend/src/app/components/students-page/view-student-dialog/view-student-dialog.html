@@ -1,5 +1,8 @@
-<app-breadcrumbs [currentPage]=""></app-breadcrumbs>
-<div class="dialog-heading">
+<div>
+  <app-breadcrumbs [currentPage]=""></app-breadcrumbs>
+</div>
+<!-- <div class="dialog-heading">
+
   <i class="bi bi-person-fill"></i> View {{student.Person.FirstName + ' ' + student.Person.LastName}}
   <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
 </div>
@@ -17,8 +20,8 @@
   <div class="col-md-12">
       <mat-form-field class="mentor-chip-list">
         <mat-label>Mentors</mat-label>
-        <!--
-        <mat-chip-grid #chipGrid aria-label="Mentor selection">
+
+         <mat-chip-grid #chipGrid aria-label="Mentor selection">
           <ng-container *ngFor="let mentor of selectedMentors; let indx=index;">
             <mat-chip-row (removed)="remove(indx)">
               {{mentor.Person.FirstName + ' ' + mentor.Person.LastName }}
@@ -34,8 +37,8 @@
         <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
           <mat-option *ngFor="let mentor of filteredMentors" [value]="mentor">{{ mentor.Person.FirstName + ' ' +
             mentor.Person.LastName }}</mat-option>
-        </mat-autocomplete>
-        -->
+        </mat-autocomplete> 
+
       </mat-form-field>
   </div>
   <div class="col-md-12">
@@ -50,11 +53,28 @@
       <app-view-student-standups [standups]="standups"></app-view-student-standups>
     </div>
   </div>
-  <!--
+
   <div class="col-12">
     <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()" *ngIf="!changes">OK</button>
     <button id="submit" class="btn btn-primary" type="submit" (click)="saveChanges()" *ngIf="changes">Save Changes</button>
-  </div>
-  -->
+  </div> 
+
   </div>
 </mat-dialog-content>
+<div class="col-md-12">
+  <b style="display: block; padding-bottom: 10px;">Standup Progress</b>
+  
+</div> -->
+<!-- View the Student as a card to resemble the rest of the website -->
+ <div>
+  <div class="card">
+    <div class="card-title justify-content-center">
+      <h5 class="card-title">
+        {{ student.Person.FirstName + " " + student.Person.LastName }}
+      </h5>
+    </div>
+    <div class="card-body">
+      
+    </div>
+  </div>
+</div>

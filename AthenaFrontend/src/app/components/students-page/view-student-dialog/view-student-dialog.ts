@@ -38,7 +38,7 @@ export class ViewStudentDialog implements OnInit {
   public mentorCtrl = new FormControl(null);
   public filteredMentors: Role[] = [];
   //@ViewChild('mentorInput') mentorInput!: ElementRef<HTMLInputElement>;
-  //@Inject(MAT_DIALOG_DATA) public data: any, , public dialogRef: MatDialogRef<ViewStudentDialog>
+  //@Inject(MAT_DIALOG_DATA) public data: any, , public dialogRef: MatDialogRef<ViewStudentDialog>,
   constructor(public router: Router, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public studentService: StudentService, public breadcrumb: BreadcrumbService) {
     //this.student = this.data.student;
     const navigation = this.router.getCurrentNavigation();
@@ -46,42 +46,48 @@ export class ViewStudentDialog implements OnInit {
       student: Role;
     };
     this.student = state.student;
-    const pageName: string = this.student.Person.FirstName + this.student.Person.LastName;
-    breadcrumb.makeCurrentPage(pageName, router.url, state);
-    breadcrumb.setPrevPages();
+
 
     this.getStudentMentors(this.student.RoleID);
     this.getAllMentors();
     this.getAllDailyStandups(this.student.RoleID);
+    this.standups.forEach((standup) => {
+      console.log(standup); // This will log each number in the array to the console.
+    });
+
+
+    const pageName: string = this.student.Person.FirstName + this.student.Person.LastName;
+    breadcrumb.makeCurrentPage(pageName, router.url, state);
+    breadcrumb.setPrevPages();
   }
 
-  // public add(event: MatChipInputEvent): void {
-  //   const input = event.input;
-  //   const value = event.value;
-  //   // Add our mentor
-  //   if (value != undefined && value != null) {
-  //     this.selectedMentors.push(this.allMentors.find((x: Role) => x.RoleID == value.trim())!);
-  //   }
+  public add(event: MatChipInputEvent): void {
+    const input = event.input;
+    const value = event.value;
+    // Add our mentor
+    if (value != undefined && value != null) {
+      this.selectedMentors.push(this.allMentors.find((x: Role) => x.RoleID == value.trim())!);
+    }
 
-  //   // Reset the input value
-  //   if (input) {
-  //     input.value = '';
-  //   }
-  //   this.mentorCtrl.setValue(null);
-  //   this.changes = true;
-  // }
+    // Reset the input value
+    if (input) {
+      input.value = '';
+    }
+    this.mentorCtrl.setValue(null);
+    this.changes = true;
+  }
 
-  // public remove(indx: number): void {
-  //   const deleted = this.selectedMentors.splice(indx, 1);
-  //   this.filteredMentors.push(deleted[0]);
-  //   this.changes = true;
-  // }
+  public remove(indx: number): void {
+    const deleted = this.selectedMentors.splice(indx, 1);
+    this.filteredMentors.push(deleted[0]);
+    this.changes = true;
+  }
 
-  // public selected(event: MatAutocompleteSelectedEvent): void {
-  //   this.selectedMentors.push(event.option.value);
-  //   this.mentorInput.nativeElement.value = '';
-  //   this.mentorCtrl.setValue(null);
-  // }
+  public selected(event: MatAutocompleteSelectedEvent): void {
+    this.selectedMentors.push(event.option.value);
+    //this.mentorInput.nativeElement.value = '';
+    this.mentorCtrl.setValue(null);
+  }
 
   private filterMentors(mentor: Role | null): void {
     if (mentor == null) {
@@ -124,10 +130,10 @@ export class ViewStudentDialog implements OnInit {
   // }
 
   public ngOnInit(): void {
-    // this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
-    //   this.filterMentors(mentor);
-    //   this.changes = true;
-    // });
+    this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
+      this.filterMentors(mentor);
+      this.changes = true;
+    });
 
   }
 
