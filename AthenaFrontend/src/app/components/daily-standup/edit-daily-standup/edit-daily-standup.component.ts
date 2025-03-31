@@ -61,7 +61,6 @@ export class EditDailyStandupComponent {
     const newBlockers = this.dsBlockers.value || '';
     const newAdminFeedback = this.dsAdminFeedback.value || '';
 
-
     //update the standup
     this.dailyStandupService.UpdateDailyStandup(this.standup.standupID.toString(), newYesterdayTask, newTodayPlan, newBlockers, newAdminFeedback).then((result: boolean) => {
       if (result) {
@@ -83,7 +82,7 @@ export class EditDailyStandupComponent {
   private refreshPage(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([this.router.url]);
+    this.router.navigate([this.router.url] /*,[queryParams: {student: student}]*/);
   }
 
 }
