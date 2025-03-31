@@ -43,5 +43,18 @@ namespace AthenaAPI.Controllers
                 return StatusCode(500, "An error occurred while fetching katas.");
             }
         }
+
+        [HttpPost]
+        public async Task<ActionResult<Kata>> CreateKata()
+        {
+            try{
+                Kata kata = await Task.Run(() =>Utilities.Katas.AddKatas()) ;
+                return kata;
+            }catch(Exception ex)
+            {
+                return StatusCode(500, "An error occurred while creating kata.");
+            }
+        }
+        
     }
 }
