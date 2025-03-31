@@ -52,16 +52,15 @@ export class ViewStudentDialog implements OnInit {
     breadcrumb.setPrevPages();
   }
 
-  public async ngOnInit(): Promise<void> {
-    await this.getStudentMentors(this.student.RoleID);
-    await this.getAllMentors();
+  public ngOnInit(): void {
+    this.getStudentMentors(this.student.RoleID);
+    this.getAllMentors();
     this.getAllDailyStandups(this.student.RoleID);
 
     this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
       this.filterMentors(mentor);
       this.changes = true;
     });
-
   }
 
   public add(event: MatChipInputEvent): void {
@@ -69,15 +68,17 @@ export class ViewStudentDialog implements OnInit {
     const value = event.value;
     // Add our mentor
     if (value != undefined && value != null) {
+      console.log(value)
       this.selectedMentors.push(this.allMentors.find((x: Role) => x.RoleID == value.trim())!);
     }
-
+    console.log()
     // Reset the input value
     if (input) {
       input.value = '';
     }
-    this.mentorCtrl.setValue(null);
     this.saveChanges();
+    this.mentorCtrl.setValue(null);
+
   }
 
   public remove(indx: number): void {
@@ -90,6 +91,7 @@ export class ViewStudentDialog implements OnInit {
     this.selectedMentors.push(event.option.value);
     //this.mentorInput.nativeElement.value = '';
     this.mentorCtrl.setValue(null);
+    this.saveChanges();
   }
 
   private filterMentors(mentor: Role | null): void {
@@ -109,9 +111,9 @@ export class ViewStudentDialog implements OnInit {
         mentor.Person = new Mentor(m.person);
         this.allMentors.push(mentor);
 
-        //Remove it from the filtered mentors if student is already assigned
-        this.mentors.forEach((m: Role) => {
-          if (m.RoleID != mentor.RoleID) {
+        //Add it to the filtered mentors if student isn't already assigned the mentor
+        this.mentors.forEach((ment: Role) => {
+          if (ment.RoleID != mentor.RoleID) {
             this.filteredMentors.push(mentor);
           }
         });
@@ -126,7 +128,6 @@ export class ViewStudentDialog implements OnInit {
         let mentor = new Role(m);
         mentor.Person = new Mentor(m.person);
         this.mentors.push(mentor);
-        console.log("Student Mentor: " + mentor.RoleID)
         this.selectedMentors.push(mentor);
       });
     }
