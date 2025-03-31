@@ -112,11 +112,15 @@ export class ViewStudentDialog implements OnInit {
         this.allMentors.push(mentor);
 
         //Add it to the filtered mentors if student isn't already assigned the mentor
+        let addFilteredMentor = true;
         this.mentors.forEach((ment: Role) => {
-          if (ment.RoleID != mentor.RoleID) {
-            this.filteredMentors.push(mentor);
+          if (ment.RoleID == mentor.RoleID) {
+            addFilteredMentor = false;
           }
         });
+        if (addFilteredMentor) {
+          this.filteredMentors.push(mentor);
+        }
       });
     }
   }
