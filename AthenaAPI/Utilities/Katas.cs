@@ -49,7 +49,7 @@ namespace AthenaAPI.Utilities
             }
         }
 
-        public static Kata AddKatas()
+        public static Kata AddKatas(string Description, string KataName)
         {
             try
             {
@@ -59,6 +59,9 @@ namespace AthenaAPI.Utilities
                 {
                     SqlCommand command = new SqlCommand("AddKata", con);
                     command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@Description", Description));
+                    command.Parameters.Add(new SqlParameter("@KataName", KataName));
+
                     con.Open();
 
                     SqlDataReader reader = command.ExecuteReader();
@@ -83,6 +86,44 @@ namespace AthenaAPI.Utilities
             {
                 Console.WriteLine(ex.Message);
                 return new Kata();
+            }
+        }
+
+        public static Boolean UpdateKatas(Guid KataID, string Description, string KataName)
+        {
+            try
+            {
+                SqlConnection con = SqlHelper.GetConnection();
+
+                using (con)
+                {
+                    SqlCommand command = new SqlCommand("UpdateKata", con);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@KataID", KataID));
+                    command.Parameters.Add(new SqlParameter("@Description", Description));
+                    command.Parameters.Add(new SqlParameter("@KataName", KataName));
+
+                    con.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    Boolean result = false;
+
+                    if (reader.Read())
+                    {
+                        if (reader.GetBoolean(0))
+                        {
+                            result = true;
+                        }
+                    }
+                    con.Close();
+                    return result;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
             }
         }
     }
