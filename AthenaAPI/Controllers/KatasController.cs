@@ -89,6 +89,20 @@ namespace AthenaAPI.Controllers
                 return StatusCode(500, "An error occurred while creating kata.");
             }
         }
+
+        [HttpGet("{kataID:Guid}/{studentID:Guid}")]
+        public async Task<ActionResult<List<StudentKata>>> GetStudentKatas(Guid kataID, Guid studentID)
+        {
+            try
+            {
+                var studentKatas = await Task.Run(() => Utilities.StudentKatas.GetStudentKatas(kataID, studentID));
+                return studentKatas;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while fetching katas.");
+            }
+        }
         
     }
 }
