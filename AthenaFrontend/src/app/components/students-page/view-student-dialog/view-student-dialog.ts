@@ -47,18 +47,21 @@ export class ViewStudentDialog implements OnInit {
     };
     this.student = state.student;
 
-
-    this.getStudentMentors(this.student.RoleID);
-    this.getAllMentors();
-    this.getAllDailyStandups(this.student.RoleID);
-    this.standups.forEach((standup) => {
-      console.log(standup); // This will log each number in the array to the console.
-    });
-
-
     const pageName: string = this.student.Person.FirstName + this.student.Person.LastName;
     breadcrumb.makeCurrentPage(pageName, router.url, state);
     breadcrumb.setPrevPages();
+  }
+
+  public async ngOnInit(): Promise<void> {
+    await this.getStudentMentors(this.student.RoleID);
+    await this.getAllMentors();
+    this.getAllDailyStandups(this.student.RoleID);
+
+    this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
+      this.filterMentors(mentor);
+      this.changes = true;
+    });
+
   }
 
   public add(event: MatChipInputEvent): void {
@@ -74,13 +77,13 @@ export class ViewStudentDialog implements OnInit {
       input.value = '';
     }
     this.mentorCtrl.setValue(null);
-    this.changes = true;
+    this.saveChanges();
   }
 
   public remove(indx: number): void {
     const deleted = this.selectedMentors.splice(indx, 1);
     this.filteredMentors.push(deleted[0]);
-    this.changes = true;
+    this.saveChanges();
   }
 
   public selected(event: MatAutocompleteSelectedEvent): void {
@@ -103,11 +106,15 @@ export class ViewStudentDialog implements OnInit {
     if (response) {
       response.forEach((m: any) => {
         let mentor = new Role(m);
-        mentor.Person = new Mentor(m.mentor);
+        mentor.Person = new Mentor(m.person);
         this.allMentors.push(mentor);
-        if (!this.mentors.includes(mentor)) {
-          this.filteredMentors.push(mentor);
-        }
+
+        //Remove it from the filtered mentors if student is already assigned
+        this.mentors.forEach((m: Role) => {
+          if (m.RoleID != mentor.RoleID) {
+            this.filteredMentors.push(mentor);
+          }
+        });
       });
     }
   }
@@ -117,25 +124,19 @@ export class ViewStudentDialog implements OnInit {
     if (response) {
       response.forEach((m: any) => {
         let mentor = new Role(m);
-        mentor.Person = new Mentor(m.mentor);
+        mentor.Person = new Mentor(m.person);
         this.mentors.push(mentor);
+        console.log("Student Mentor: " + mentor.RoleID)
         this.selectedMentors.push(mentor);
       });
     }
   }
 
-  // public async saveChanges(): Promise<any> {
-  //   const response = await this.studentService.SaveStudentMentors(this.student.RoleID, this.selectedMentors);
-  //   this.dialogRef.close(response);
-  // }
-
-  public ngOnInit(): void {
-    this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
-      this.filterMentors(mentor);
-      this.changes = true;
-    });
-
+  public async saveChanges(): Promise<void> {
+    await this.studentService.SaveStudentMentors(this.student.RoleID, this.selectedMentors);
   }
+
+
 
 
 

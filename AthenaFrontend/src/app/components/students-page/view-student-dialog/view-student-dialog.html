@@ -83,7 +83,7 @@
             </h5>
           </div>
         </div>
-        <div class="col-md-6 info-section-body justify-content-end d-flex">
+        <div class="col-md-12 info-section-body justify-content-end d-flex">
           <mat-form-field class="mentor-chip-list">
             <mat-chip-grid #chipGrid aria-label="Mentor selection">
               <ng-container *ngFor="let mentor of selectedMentors; let indx=index;">
@@ -105,10 +105,13 @@
     
           </mat-form-field>
         </div>
+
+        <!-- Save Mentor Selection 
         <div class="col-md-6 info-section-body">
-          Button here?
+          <button id="submit" class="btn btn-primary" type="submit" (click)="saveChanges()" *ngIf="changes">Save Changes</button>
         </div>
       </div>
+      -->
       <!-- END Mentor Row -->
 
       <!-- Module Progress Row -->
@@ -154,7 +157,7 @@
           </div>
         </div>
         <div class="info-section-body">
-          <!--<app-view-student-standups [standups]="standups"></app-view-student-standups>-->
+          <!--<app-view-student-katas [katas]="katas"></app-view-student-katas>-->
         </div>
       </div>
       <!-- End Code Kata Row -->
