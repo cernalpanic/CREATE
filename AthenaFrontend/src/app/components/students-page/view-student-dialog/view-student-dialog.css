@@ -31,7 +31,7 @@
   min-width: 1500px;
 }
 
-.card-header{
+.card-header {
   color: var(--tabtext);
   background-color: var(--mainaccent);
   border-top-left-radius: 30px;
@@ -40,18 +40,23 @@
   border: none;
 }
 
-.card-title, .section-title {
+.card-title,
+.section-title {
   font-weight: 800;
 }
 
-.info-section-header{
+.info-section-header {
   font-weight: 800;
   border-bottom: 1px solid black;
   width: 400px;
 }
 
-.info-section-body{
+.info-section-body {
   padding: 20px;
+}
+
+.mentor-chip-list {
+  width: 1000px;
 }
 
 
@@ -79,4 +84,4 @@
 
 .row > * {
   padding: 15px;
-} */ 
+} */
