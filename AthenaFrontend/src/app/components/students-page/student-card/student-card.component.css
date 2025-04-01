@@ -21,7 +21,7 @@
   color: var(--cardsubtitle);
   font-size: 0.8rem;
 }
-.card-text b {
+.card-text b { /*Why are there two card-text's?*/
   font-weight: 800;
   color: var(--cardtextbold);
 }
