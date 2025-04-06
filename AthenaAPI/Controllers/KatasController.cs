@@ -74,7 +74,7 @@ namespace AthenaAPI.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost("AddKata")]
         public async Task<ActionResult<Kata>> CreateKata([FromBody] JObject kata)
         {
             try{
@@ -90,7 +90,7 @@ namespace AthenaAPI.Controllers
             }
         }
 
-        [HttpGet("{kataID:Guid}/{studentID:Guid}")]
+        [HttpGet("StudentKata{kataID:Guid}/{studentID:Guid}")]
         public async Task<ActionResult<List<StudentKata>>> GetStudentKatas(Guid kataID, Guid studentID)
         {
             try
@@ -103,6 +103,55 @@ namespace AthenaAPI.Controllers
                 return StatusCode(500, "An error occurred while fetching katas.");
             }
         }
-        
+
+        [HttpPost("AddStudentKata")]
+        public async Task<ActionResult<StudentKata>> CreateStudentKata([FromBody] JObject studentKata)
+        {
+            try{
+                // Deserialize JSON object to get KataID and other values
+                Guid KataID = Guid.Parse(studentKata["KataID"].ToString());
+                Guid StudentID = Guid.Parse(studentKata["StudentID"].ToString());
+
+
+                StudentKata newStudentKata = await Task.Run(() =>Utilities.StudentKatas.AddStudentKatas(StudentID, KataID)) ;
+                return newStudentKata;
+            }catch(Exception ex)
+            {
+                return StatusCode(500, "An error occurred while creating student kata.");
+            }
+        }
+
+        [HttpPut("UpdateStudentKata")]
+        public async Task<IActionResult> UpdateStudentKatas([FromBody] JObject studentKata)
+        {
+            try
+            {
+                // Deserialize JSON object to get KataID and other values
+                Guid KataID = Guid.Parse(studentKata["KataID"].ToString());
+                Guid StudentID = Guid.Parse(studentKata["StudentID"].ToString());
+                bool Complete = Boolean.Parse(studentKata["Complete"].ToString());
+                string CompletionTime = studentKata["CompletionTime"].ToString();
+                string StudentCode = studentKata["StudentCode"].ToString();
+                string StudentNotes = studentKata["StudentNotes"].ToString();
+                string AdminFeedback = studentKata["AdminFeedback"].ToString();
+
+                // Call your utility method to update the student kata
+                bool updateResult = Utilities.StudentKatas.UpdateStudentKatas(KataID, StudentID, CompletionTime, StudentCode, StudentNotes, AdminFeedback, Complete);
+
+                if (updateResult)
+                {
+                    return Ok(true);
+                }
+                else
+                {
+                    return NotFound();
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any exceptions
+                return StatusCode(500, ex.Message);
+            }
+        }
     }
 }
