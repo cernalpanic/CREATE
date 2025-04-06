@@ -153,5 +153,19 @@ namespace AthenaAPI.Controllers
                 return StatusCode(500, ex.Message);
             }
         }
+
+        [HttpGet("KataExamples{id:Guid}")]
+        public async Task<ActionResult<List<KataExamples>>> GetKataExamples(Guid id)
+        {
+            try
+            {
+                var kataExamples = await Task.Run(() => Utilities.KataExamplesUtility.GetKataExamples(id));
+                return kataExamples;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while fetching katas.");
+            }
+        }
     }
 }
