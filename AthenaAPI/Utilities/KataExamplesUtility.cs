@@ -45,5 +45,44 @@ namespace AthenaAPI.Utilities
                 return new List<KataExamples>();
             }
         }
+
+        public static KataExamples AddKataExamples(Guid KataID, string ExampleCode)
+        {
+            try
+            {
+                SqlConnection con = SqlHelper.GetConnection();
+
+                using (con)
+                {
+                    SqlCommand command = new SqlCommand("AddExample", con);
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.Parameters.Add(new SqlParameter("@KataID", KataID));
+                    command.Parameters.Add(new SqlParameter("@ExampleCode", ExampleCode));
+
+                    con.Open();
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    // Let's create a new Kata list to read the result
+                    KataExamples kataExample = new KataExamples();
+
+                    while (reader.Read())
+                    {
+                        // New Kata
+                        kataExample.KataID = Guid.Parse(reader["KataID"].ToString());
+                        kataExample.ExampleCode = reader["ExampleCode"].ToString();
+
+                    }
+
+                    con.Close();
+                    return kataExample;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return new KataExamples();
+            }
+        }
     }
 }

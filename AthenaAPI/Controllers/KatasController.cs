@@ -167,5 +167,22 @@ namespace AthenaAPI.Controllers
                 return StatusCode(500, "An error occurred while fetching katas.");
             }
         }
+
+        [HttpPost("AddKataExample")]
+        public async Task<ActionResult<KataExamples>> CreateKataExample([FromBody] JObject kataExample)
+        {
+            try{
+                // Deserialize JSON object to get KataID and other values
+                Guid KataID = Guid.Parse(kataExample["KataID"].ToString());
+                string ExampleCode = kataExample["ExampleCode"].ToString();
+
+
+                KataExamples newKataExample = await Task.Run(() =>Utilities.KataExamplesUtility.AddKataExamples(KataID, ExampleCode)) ;
+                return newKataExample;
+            }catch(Exception ex)
+            {
+                return StatusCode(500, "An error occurred while creating student kata.");
+            }
+        }
     }
 }
