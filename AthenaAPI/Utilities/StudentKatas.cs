@@ -78,19 +78,16 @@ namespace AthenaAPI.Utilities
 
                     while (reader.Read())
                     {
-                        // New Kata
+                        // New Student Kata
                         studentKata.KataID = Guid.Parse(reader["KataID"].ToString());
                         studentKata.StudentID = Guid.Parse(reader["StudentID"].ToString());
                         studentKata.UserID = Guid.Parse(reader["UserID"].ToString());
                         studentKata.Complete = Boolean.Parse(reader["Complete"].ToString());
-                        studentKata.CompleteDate = DateTime.Parse(reader["CompleteDate"].ToString());
+                        studentKata.CompleteDate = DateTime.Parse("0001-01-01T00:00:00");// Sets complete date to nothing
                         studentKata.CompletionTime = reader["CompletionTime"].ToString();
                         studentKata.StudentCode = reader["StudentCode"].ToString();
                         studentKata.StudentNotes = reader["StudentNotes"].ToString();
                         studentKata.AdminFeedback = reader["AdminFeedback"].ToString();
-                        studentKata.Description = reader["Description"].ToString();
-                        studentKata.DateAssigned = DateTime.Parse(reader["DateAssigned"].ToString());
-                        studentKata.KataName = reader["KataName"].ToString();
                     }
 
                     con.Close();
@@ -105,7 +102,7 @@ namespace AthenaAPI.Utilities
         }
 
          public static Boolean UpdateStudentKatas(Guid KataID, Guid StudentID, string CompletionTime, string StudentCode, string StudentNotes,
-            string AdminFeedback, bool Complete)
+            string AdminFeedback, bool Complete)// doesnt update complete date
         {
             try
             {
@@ -126,6 +123,7 @@ namespace AthenaAPI.Utilities
                     }else{
                         command.Parameters.Add(new SqlParameter("@Complete", 0));
                     }
+                    
                     
                     con.Open();
 
