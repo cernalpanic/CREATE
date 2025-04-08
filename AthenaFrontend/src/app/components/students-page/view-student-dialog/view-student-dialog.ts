@@ -37,15 +37,13 @@ export class ViewStudentDialog implements OnInit {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public mentorCtrl = new FormControl(null);
   public filteredMentors: Role[] = [];
-  //@ViewChild('mentorInput') mentorInput!: ElementRef<HTMLInputElement>;
-  //@Inject(MAT_DIALOG_DATA) public data: any, , public dialogRef: MatDialogRef<ViewStudentDialog>,
   constructor(public router: Router, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public studentService: StudentService, public breadcrumb: BreadcrumbService) {
-    //this.student = this.data.student;
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       student: Role;
     };
     this.student = state.student;
+
 
     const pageName: string = this.student.Person.FirstName + this.student.Person.LastName;
     breadcrumb.makeCurrentPage(pageName, router.url, state);

@@ -31,22 +31,4 @@ export class StudentCardComponent {
     this.studentUpdate.emit('updated');
   }
 
-  public async viewStudent(student: Role): Promise<void> {
-    const dialogRef = this.dialog.open(ViewStudentDialog, {
-      panelClass: 'custom-dialog',
-      data: { student: student }
-    });
-
-    dialogRef.afterClosed().subscribe(response => {
-      if (response == true) {
-        this.snackbar.open('Student successfully updated!', '', { duration: 3000 });
-        this.emitStudentUpdate();
-      } else if (response == false) {
-        this.snackbar.open('There was an error in updating the student. Please try again later.', '', { duration: 3000 });
-      }
-    });
-  }
-
-
-
 }
