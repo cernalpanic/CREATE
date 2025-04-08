@@ -90,12 +90,12 @@ namespace AthenaAPI.Controllers
             }
         }
 
-        [HttpGet("StudentKata{kataID:Guid}/{studentID:Guid}")]
-        public async Task<ActionResult<List<StudentKata>>> GetStudentKatas(Guid kataID, Guid studentID)
+        [HttpGet("StudentKata{studentID:Guid}")]
+        public async Task<ActionResult<List<StudentKata>>> GetStudentKatas(Guid studentID)
         {
             try
             {
-                var studentKatas = await Task.Run(() => Utilities.StudentKatas.GetStudentKatas(kataID, studentID));
+                var studentKatas = await Task.Run(() => Utilities.StudentKatas.GetStudentKatas(studentID));
                 return studentKatas;
             }
             catch (Exception ex)

@@ -7,7 +7,7 @@ namespace AthenaAPI.Utilities
 {
     public class StudentKatas
     {
-        public static List<StudentKata> GetStudentKatas(Guid kataID, Guid studentID)
+        public static List<StudentKata> GetStudentKatas(Guid studentID)
         {
             try
             {
@@ -17,7 +17,6 @@ namespace AthenaAPI.Utilities
                 {
                     SqlCommand command = new SqlCommand("GetStudentKatas", con);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@KataID", kataID));
                     command.Parameters.Add(new SqlParameter("@StudentID", studentID));
                     con.Open();
 

@@ -1,12 +1,15 @@
 CREATE PROCEDURE [dbo].[GetStudentKatas]
-	@KataID uniqueidentifier,
-    @StudentID uniqueidentifier
+    @StudentID uniqueidentifier,
+    @KataID uniqueidentifier = NULL
 AS
 BEGIN
+
+    SELECT @KataID = KataID FROM dbo.StudentKata WHERE StudentID = @StudentID
+
 	SELECT K.KataID, K.[Description], K.DateAssigned, K.KataName, 
         SK.StudentID, SK.UserID, SK.Complete, SK.CompleteDate, SK.CompletionTime, SK.StudentCode,
         SK.StudentNotes, SK.AdminFeedback
-	FROM dbo.[Kata] K
-    RIGHT JOIN dbo.StudentKata SK ON K.KataID = SK.KataID
+	FROM dbo.[StudentKata] SK
+    RIGHT JOIN dbo.Kata K ON SK.KataID = K.KataID
 	WHERE K.KataID = @KataID AND SK.StudentID = @StudentID
 END
