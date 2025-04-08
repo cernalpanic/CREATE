@@ -32,7 +32,12 @@ namespace AthenaAPI.Utilities
                         studentKata.StudentID = Guid.Parse(reader["StudentID"].ToString());
                         studentKata.UserID = Guid.Parse(reader["UserID"].ToString());
                         studentKata.Complete = Boolean.Parse(reader["Complete"].ToString());
-                        studentKata.CompleteDate = DateTime.Parse(reader["CompleteDate"].ToString());
+                        if(reader["CompleteDate"].ToString() == ""){
+                            studentKata.CompleteDate = DateTime.Parse("0001-01-01T00:00:00");
+                        }else{
+                            studentKata.CompleteDate = DateTime.Parse(reader["CompleteDate"].ToString());
+                        }
+                        
                         studentKata.CompletionTime = reader["CompletionTime"].ToString();
                         studentKata.StudentCode = reader["StudentCode"].ToString();
                         studentKata.StudentNotes = reader["StudentNotes"].ToString();
