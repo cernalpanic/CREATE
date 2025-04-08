@@ -43,7 +43,7 @@ export class KataService {
 
     //Updates a general kata
     public UpdateKata(kataID: any, description: string, dateAssigned: any, kataName: string): Promise<any> {
-        const data = {kataID: kataID, description: description, dateAssigned: dateAssigned, kataName: kataName};
+        const data = { kataID: kataID, description: description, dateAssigned: dateAssigned, kataName: kataName };
 
         return new Promise(resolve => {
             this.http.put(this.apiUrl + '/Katas/Update', data).subscribe((data: any) => {
@@ -56,7 +56,7 @@ export class KataService {
 
     //Updates a student's kata
     public UpdateStudentKata(kataID: any, studentID: any, complete: boolean, completionTime: string, studentCode: string, studentNotes: string, adminFeedback: string): Promise<any> {
-        const data = {kataID: kataID, studentID: studentID, complete: complete, completionTime: completionTime, studentCode: studentCode, studentNotes: studentNotes, adminFeedback: adminFeedback};
+        const data = { kataID: kataID, studentID: studentID, complete: complete, completionTime: completionTime, studentCode: studentCode, studentNotes: studentNotes, adminFeedback: adminFeedback };
 
         return new Promise(resolve => {
             this.http.put(this.apiUrl + '/Katas/UpdateStudentKata', data).subscribe((data: any) => {
