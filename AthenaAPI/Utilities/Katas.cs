@@ -8,7 +8,7 @@ namespace AthenaAPI.Utilities
     public class Katas
     {
 
-        public static List<Kata> GetKatas(Guid id)
+        public static List<Kata> GetKatas()
         {
             try
             {
@@ -18,7 +18,6 @@ namespace AthenaAPI.Utilities
                 {
                     SqlCommand command = new SqlCommand("GetKatas", con);
                     command.CommandType = CommandType.StoredProcedure;
-                    command.Parameters.Add(new SqlParameter("@KataID", id));
                     con.Open();
 
                     SqlDataReader reader = command.ExecuteReader();

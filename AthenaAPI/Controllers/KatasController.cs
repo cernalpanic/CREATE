@@ -30,13 +30,12 @@ namespace AthenaAPI.Controllers
         //{
         //    return Utilities.DailyStandups.GetDailyStandups();
         //}
-        [HttpGet("{id:Guid}")]
-        public async Task<ActionResult<List<Kata>>> GetKatas(Guid id)
+        [HttpGet]
+        public async Task<ActionResult<List<Kata>>> GetKatas()
         {
             try
             {
-                var katas = await Task.Run(() => Utilities.Katas.GetKatas(id));
-                return katas;
+                return Utilities.Katas.GetKatas();
             }
             catch (Exception ex)
             {
