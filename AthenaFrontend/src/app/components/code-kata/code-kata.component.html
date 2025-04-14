@@ -1,29 +1,31 @@
 <app-breadcrumbs [currentPage]=""></app-breadcrumbs>
+
+<!-- Mentor's Kata Page View -->
 <ng-container *ngIf="role.Name == 'Mentor'">
   <h2>All Katas</h2>
-  
-    <ng-container *ngFor="let kata of katas, let i = index">
-      <div class="row">
-        <table>
-          <tr>
-            <td>
-              <app-kata-card [kata]="katas[i]"></app-kata-card>
-            </td>
-            <td >
-              <app-kata-card *ngIf="katas[i+1]" [kata]="katas[i+1]"></app-kata-card>
-            </td>
-            <td >
-              <app-kata-card *ngIf="katas[i+2]" [kata]="katas[i+2]"></app-kata-card>
-            </td>
-          </tr>
-        </table>
+  <ng-container *ngFor="let kata of katas; let i = index">
+    <div *ngIf="i%3 == 0" class="row">
+      <div class="col-md-4">
+        <app-kata-card [kata]="katas[i]"></app-kata-card>
       </div>
-    </ng-container>
+      <div class="col-md-4">
+        <app-kata-card *ngIf="katas[i+1]" [kata]="katas[i+1]"></app-kata-card>
+      </div>
+      <div class="col-md-4">
+        <app-kata-card *ngIf="katas[i+2]" [kata]="katas[i+2]"></app-kata-card>
+      </div>
+    </div>
+
+  </ng-container>
 
 </ng-container>
+<!-- END Mentor's View-->
+
+<!-- Student's Kata Page View -->
 <ng-container *ngIf="role.Name == 'Student'">
   <h2>Available Katas</h2>
 </ng-container>
+<!-- END Student's View -->
 
 
 

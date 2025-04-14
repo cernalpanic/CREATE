@@ -12,6 +12,7 @@ import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { KataService } from 'src/app/services/kata.service';
 import { StudentKata } from 'src/models/studentkata.model';
 
+
 @Component({
   selector: 'app-code-kata',
   templateUrl: './code-kata.component.html',
@@ -22,6 +23,7 @@ export class CodeKataComponent {
   public katas: Kata[] = [];
   public studentKatas: StudentKata[] = [];
   public role: any;
+
 
   constructor(
     public dialog: MatDialog,
