@@ -6,30 +6,29 @@
         <div class="card">
           <div class="card-body">
             <div class="img-box">
-              <img src="{{getImgLink(module.Name)}}">
+              <img src="{{ getImgLink(module.Name) }}" />
             </div>
             <div class="info-box">
-              <h5 class="card-title">{{ module.Name + ' Module'}}</h5>
+              <h5 class="card-title">{{ module.Name + " Module" }}</h5>
               <p class="card-text">
                 {{ module.Description }}
               </p>
               <div class="btn-container">
-                <a href="#" class="btn btn-primary" [routerLink]="['/modules', module.ModuleID]" [state]="{ module: module }" [ngStyle]="{'background': '#' + module.Color, 'border-color': '#' + module.Color}">Go to module <i class="bi bi-arrow-right"></i></a>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  [routerLink]="['/modules', module.ModuleID]"
+                  [state]="{ module: module }"
+                  [ngStyle]="{
+                    background: '#' + module.Color,
+                    'border-color': '#' + module.Color
+                  }"
+                  >Go to module <i class="bi bi-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
         </div>
-        <!-- Leaving this here to be implemented at a later time -->
-        <!-- <div class="module-tabs">
-          <div class="card-tab" [ngStyle]="{'background': '#' + module.Color }">
-            <div class="tab-num">0</div>
-            <div class="tab-label">Quests</div>
-          </div>
-          <div class="card-tab" [ngStyle]="{'background': '#' + module.Color }">
-            <div class="tab-num">0</div>
-            <div class="tab-label">Students</div>
-          </div>
-        </div> -->
       </div>
     </ng-container>
   </div>
@@ -42,15 +41,25 @@
         <div class="card">
           <div class="card-body">
             <div class="img-box">
-              <img src="{{getImgLink(module.Name)}}">
+              <img src="{{ getImgLink(module.Name) }}" />
             </div>
             <div class="info-box">
-              <h5 class="card-title">{{ module.Name + ' Module'}}</h5>
+              <h5 class="card-title">{{ module.Name + " Module" }}</h5>
               <p class="card-text">
                 {{ module.Description }}
               </p>
               <div class="btn-container">
-                <a href="#" class="btn btn-primary" [routerLink]="['/modules', module.ModuleID]" [state]="{ module: module }" [ngStyle]="{'background': '#' + module.Color, 'border-color': '#' + module.Color}">Go to module <i class="bi bi-arrow-right"></i></a>
+                <a
+                  href="#"
+                  class="btn btn-primary"
+                  [routerLink]="['/modules', module.ModuleID]"
+                  [state]="{ module: module }"
+                  [ngStyle]="{
+                    background: '#' + module.Color,
+                    'border-color': '#' + module.Color
+                  }"
+                  >Go to module <i class="bi bi-arrow-right"></i
+                ></a>
               </div>
             </div>
           </div>
@@ -59,5 +68,3 @@
     </ng-container>
   </div>
 </ng-container>
-
-
