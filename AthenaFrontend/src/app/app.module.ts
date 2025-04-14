@@ -44,6 +44,9 @@ import { ModuleDashCardComponent } from './components/dashboard/module-dash-card
 import { CodeKataComponent } from './components/code-kata/code-kata.component';
 import { ViewStudentKatasComponent } from './components/students-page/view-student-dialog/view-student-katas/view-student-katas';
 import { EditStudentKataComponent } from './components/code-kata/edit-student-kata/edit-student-kata.component';
+import { CreateKataDialogComponent } from './components/code-kata/create-kata-dialog/create-kata-dialog.component';
+import { StudentKataCardComponent } from './components/code-kata/student-kata-card/student-kata-card.component';
+import { KataCardComponent } from './components/code-kata/kata-card/kata-card.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -111,7 +114,10 @@ const ROUTES: Routes = [
     ModuleDashCardComponent,
     CodeKataComponent,
     ViewStudentKatasComponent,
-    EditStudentKataComponent
+    EditStudentKataComponent,
+    CreateKataDialogComponent,
+    StudentKataCardComponent,
+    KataCardComponent
   ],
 
   imports: [
