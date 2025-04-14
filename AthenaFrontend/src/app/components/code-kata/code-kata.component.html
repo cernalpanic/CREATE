@@ -2,10 +2,22 @@
 <ng-container *ngIf="role.Name == 'Mentor'">
   <h2>All Katas</h2>
   
-    <ng-container *ngFor="let kata of katas">
-<div class="row">
-      <app-kata-card [kata]="kata"></app-kata-card>
-        </div>
+    <ng-container *ngFor="let kata of katas, let i = index">
+      <div class="row">
+        <table>
+          <tr>
+            <td>
+              <app-kata-card [kata]="katas[i]"></app-kata-card>
+            </td>
+            <td >
+              <app-kata-card *ngIf="katas[i+1]" [kata]="katas[i+1]"></app-kata-card>
+            </td>
+            <td >
+              <app-kata-card *ngIf="katas[i+2]" [kata]="katas[i+2]"></app-kata-card>
+            </td>
+          </tr>
+        </table>
+      </div>
     </ng-container>
 
 </ng-container>
