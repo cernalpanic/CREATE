@@ -1,6 +1,13 @@
 <app-breadcrumbs [currentPage]=""></app-breadcrumbs>
 <ng-container *ngIf="role.Name == 'Mentor'">
   <h2>All Katas</h2>
+  
+    <ng-container *ngFor="let kata of katas">
+<div class="row">
+      <app-kata-card [kata]="kata"></app-kata-card>
+        </div>
+    </ng-container>
+
 </ng-container>
 <ng-container *ngIf="role.Name == 'Student'">
   <h2>Available Katas</h2>
