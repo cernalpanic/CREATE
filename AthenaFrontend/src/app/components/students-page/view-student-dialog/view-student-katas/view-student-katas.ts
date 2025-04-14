@@ -5,6 +5,7 @@ import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 import { StudentKata } from 'src/models/studentkata.model';
 import { EditStudentKataComponent } from 'src/app/components/code-kata/edit-student-kata/edit-student-kata.component';
 import { Kata } from 'src/models/kata.model';
+import { KataService } from 'src/app/services/kata.service';
 
 @Component({
   selector: 'app-view-student-katas',
@@ -40,15 +41,28 @@ export class ViewStudentKatasComponent {
     this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
   }
 
-  constructor(public dialog: MatDialog, public snackbar: MatSnackBar) { }
+  constructor(public dialog: MatDialog, public snackbar: MatSnackBar, public kataService: KataService) { }
 
   statusText = 'Not Completed';
   thisdate = new Date;
 
   public async editKata(studentKata: StudentKata): Promise<void> {
+
+    //this should be changed by adding a API function to get a Kata by ID
+    //but its not implemented yet so this is a temp solution
+    const katas: Kata[] = await this.kataService.GetKatas();
+    let kata: any;
+    katas.forEach(k => {
+      kata = new Kata(k);
+      let i = 0;
+      if (kata.KataID == studentKata.KataID && i == 0) {
+        i = 1;
+      }
+    })
+
     this.dialog.open(EditStudentKataComponent, {
       panelClass: 'kata-dialog',
-      data: {studentKata: studentKata}
+      data: { studentKata: studentKata, kata: kata }
     });
   }
 }
