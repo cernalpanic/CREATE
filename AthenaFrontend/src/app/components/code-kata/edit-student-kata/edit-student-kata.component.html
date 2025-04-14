@@ -1,12 +1,11 @@
 <div class="dialog-heading">
-    <i class="bi bi-person-fill"></i> Code Kata - {{kata.KataName}}
+    <i class="bi bi-code-square"></i> Code Kata - {{kata.KataName}}
     <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
   </div>
   <mat-dialog-content>
     <div class="row g-3">
         <!-- Student's card view -->
       <ng-container *ngIf="role.Name == 'Student'">
-        <div class="hint">Feel free to add HTML markdown to style your text and add links!</div>
         <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating">
           <label class="textarea-label" for="dsYesterdayTask">What I did yesterday:</label>
           <textarea class="form-control"
