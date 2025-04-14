@@ -34,9 +34,7 @@
         <div class="stat-circle" [style]="{ background: '#' + module.Color }">
           <i class="bi bi-exclamation-lg"></i>
         </div>
-        <div class="stat-num">
-          0% {{ studentIncompleteQuests.length }} {{ totalQuests }}
-        </div>
+        <div class="stat-num">{{ averageQuestsCompleted }}%</div>
         <div class="stat-info">Average Quest Completion</div>
       </div>
       <div class="stat">

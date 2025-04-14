@@ -44,12 +44,14 @@ export class InnerModuleComponent {
   public allPostedQuests: Quest[] = [];
   public allUnpostedQuests: Quest[] = [];
   protected totalEarnedExp: number = 0;
-  protected studentNum = 0;
-  protected totalQuests = 0;
+  protected allAvailableQuests: number = 0;
+  protected allCompletedQuests: number = 0;
   protected allStudents: any[] = [];
   protected moduleCompletedTotal: number = 0;
   protected averageModuleCompletion: number = 0;
+  protected averageQuestsCompleted: number = 0;
   protected studentModuleCompletionStatuses: any[] = [];
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -87,13 +89,6 @@ export class InnerModuleComponent {
     return await this.authService.getAuthentication();
   }
 
-  public async getMentorStudentsNum(id: string): Promise<void> {
-    const response = await this.mentorService.GetMentorStudents(id);
-    if (response) {
-      this.studentNum = response.length;
-    }
-  }
-
   public async getAllStudents() {
     const response = await this.studentService.GetAllStudents();
     this.allStudents = response;
@@ -112,8 +107,14 @@ export class InnerModuleComponent {
           this.studentModuleCompletionStatuses[j].ModuleID ===
           this.module.ModuleID
         ) {
+          this.allAvailableQuests =
+            this.allAvailableQuests +
+            this.studentModuleCompletionStatuses[j].QuestsAvailable;
+          this.allCompletedQuests =
+            this.allCompletedQuests +
+            this.studentModuleCompletionStatuses[j].QuestsCompleted;
           if (
-            this.studentModuleCompletionStatuses[j].QuestsCompleted ==
+            this.studentModuleCompletionStatuses[j].QuestsCompleted >=
             this.studentModuleCompletionStatuses[j].QuestsAvailable
           ) {
             this.moduleCompletedTotal++;
@@ -121,6 +122,9 @@ export class InnerModuleComponent {
         }
       }
     }
+    this.averageQuestsCompleted = Math.trunc(
+      (this.allCompletedQuests / this.allAvailableQuests) * 100
+    );
     this.averageModuleCompletion = Math.trunc(
       (this.moduleCompletedTotal / this.allStudents.length) * 100
     );
@@ -149,10 +153,8 @@ export class InnerModuleComponent {
   async ngOnInit() {
     await this.initialize();
     await this.loadQuestsWithStatus();
-    await this.getMentorStudentsNum(this.role.RoleID);
     await this.getAverageCompletionRate();
 
-    this.totalQuests = this.allPostedQuests.length * this.studentNum;
     const response = await this.getAuthentication();
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
