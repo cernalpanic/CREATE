@@ -52,11 +52,14 @@ export class ViewStudentKatasComponent {
     //but its not implemented yet so this is a temp solution
     const katas: Kata[] = await this.kataService.GetKatas();
     let kata: any;
+    let i = 0;
     katas.forEach(k => {
-      kata = new Kata(k);
-      let i = 0;
-      if (kata.KataID == studentKata.KataID && i == 0) {
-        i = 1;
+
+      if (i == 0) {
+        kata = new Kata(k);
+        if (kata.KataID == studentKata.KataID) {
+          i = 1;
+        }
       }
     })
 

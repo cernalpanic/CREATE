@@ -50,3 +50,7 @@ textarea {
 h6 {
   text-decoration: underline;
 }
+
+.mat-dialog-content {
+  min-width: 300px;
+}
