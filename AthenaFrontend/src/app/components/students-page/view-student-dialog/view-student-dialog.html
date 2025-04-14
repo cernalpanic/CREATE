@@ -47,6 +47,12 @@
       <app-view-student-standups [standups]="standups"></app-view-student-standups>
     </div>
   </div>
+  <div class="col-md-12">
+    <b style="display: block; padding-bottom: 10px;">Student Katas</b>
+    <div>
+      <app-view-student-katas [katas]="katas"></app-view-student-katas>
+    </div>
+  </div>
   <div class="col-12">
     <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()" *ngIf="!changes">OK</button>
     <button id="submit" class="btn btn-primary" type="submit" (click)="saveChanges()" *ngIf="changes">Save Changes</button>

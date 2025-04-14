@@ -33,7 +33,7 @@ export class KataService {
     //Returns all katas related to the Student
     public GetStudentKatas(studentID: any): Promise<any> {
         return new Promise(resolve => {
-            this.http.get(this.apiUrl + '/Katas/StudentKatas/' + studentID).subscribe((data: any) => {
+            this.http.get(this.apiUrl + '/Katas/StudentKata' + studentID).subscribe((data: any) => {
                 resolve(data);
             }, error => {
                 resolve(false);

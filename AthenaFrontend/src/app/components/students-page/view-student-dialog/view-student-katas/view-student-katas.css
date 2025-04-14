@@ -1,0 +1,38 @@
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+    background: var(--mainaccent);
+    color: var(--tabtext)
+  }
+  
+  .mat-expansion-panel-header-title {
+    color: var(--tabtext);
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 10px;
+  }
+  
+  .mat-expansion-panel-header-description {
+    color: var(--tabtext);
+    font-size: 0.8rem;
+  }
+  
+  .mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+    background: var(--mainaccent);
+  }
+  
+  .feedback-button {
+    background-color: var(--mainaccent);
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+  
+  .mat-expansion-panel-header-title {
+    color: var(--tabtext);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 10px;
+  }

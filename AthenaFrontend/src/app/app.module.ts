@@ -42,6 +42,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ModuleDashCardComponent } from './components/dashboard/module-dash-card/module-dash-card.component';
 import { CodeKataComponent } from './components/code-kata/code-kata.component';
+import { ViewStudentKatasComponent } from './components/students-page/view-student-dialog/view-student-katas/view-student-katas';
+import { EditStudentKataComponent } from './components/code-kata/edit-student-kata/edit-student-kata.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -108,6 +110,8 @@ const ROUTES: Routes = [
     ModuleProgressComponent,
     ModuleDashCardComponent,
     CodeKataComponent,
+    ViewStudentKatasComponent,
+    EditStudentKataComponent
   ],
 
   imports: [

@@ -13,14 +13,14 @@ export class StudentKata {
 
     constructor(studentKata: any) {
         if (studentKata.KataID || studentKata.kataID) {
-            this.KataID = studentKata.KataID | studentKata.kataID;
-            this.StudentID = studentKata.StudentID | studentKata.studentID;
-            this.Complete = studentKata.Complete | studentKata.complete;
-            this.CompleteDate = studentKata.CompleteDate | studentKata.completeDate;
-            this.CompletionTime = studentKata.CompletionTime | studentKata.completionTime;
-            this.StudentCode = studentKata.StudentCode | studentKata.studentCode;
-            this.StudentNotes = studentKata.StudentNotes | studentKata.studentNotes;
-            this.AdminFeedback = studentKata.AdminFeedback | studentKata.adminFeedback;
+            this.KataID = studentKata.KataID || studentKata.kataID;
+            this.StudentID = studentKata.StudentID || studentKata.studentID;
+            this.Complete = studentKata.Complete || studentKata.complete;
+            this.CompleteDate = studentKata.CompleteDate || studentKata.completeDate;
+            this.CompletionTime = studentKata.CompletionTime || studentKata.completionTime;
+            this.StudentCode = studentKata.StudentCode || studentKata.studentCode;
+            this.StudentNotes = studentKata.StudentNotes || studentKata.studentNotes;
+            this.AdminFeedback = studentKata.AdminFeedback || studentKata.adminFeedback;
 
         } else {
             this.KataID = '';
