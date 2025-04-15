@@ -4,7 +4,7 @@ h2 {
   color: var(--mainheading);
   font-size: 1.8rem;
 }
-@media screen and (max-width: 1550px){
+@media screen and (max-width: 1400px){
   #card-container{
     display: flex;
     gap: 10px;
@@ -42,6 +42,7 @@ h2 {
 }
 .img-box {
   grid-area: 'img';
+  max-width: 200px;
 }
 .info-box {
   grid-area: 'info';

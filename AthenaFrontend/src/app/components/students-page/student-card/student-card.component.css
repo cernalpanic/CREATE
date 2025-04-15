@@ -1,8 +1,21 @@
+@media screen and (max-width: 1550px){
+  #card-container{
+    display: flex;
+    justify-content: center;
+  }
+}
+.col{
+    flex-direction: row;
+    flex-basis: 400px;
+    flex-wrap: wrap;
+    flex-grow: .15;
+}
 .card {
-  margin: 0;
   border-radius: 30px;
   box-shadow: 0px 2px 20px 2px var(--boxshadow);
   border: none;
+  position: relative;
+  height: fit-content;
 }
 .card-body img {
   float: left;
