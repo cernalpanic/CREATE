@@ -23,6 +23,7 @@ h2 {
   box-shadow: 0px 2px 20px 2px var(--boxshadow);
   border: none;
   position: relative;
+  min-width: 500px;
   height: fit-content;
 }
 
@@ -50,9 +51,8 @@ h2 {
 .card-title {
   font-weight: 800;
   font-size: 1.5rem;
-  padding-bottom: 10px;
   margin: 0 13px;
-  height: 15%;
+  height: 10%;
 }
 .card-subtitle {
   text-transform: uppercase;
@@ -66,11 +66,13 @@ h2 {
 }
 .card-text {
   margin-bottom: 0.5rem;
+  padding-top: 10px;
   font-size: 15px;
   color: var(--moduletext);
   font-weight: 600;
   text-align: justify;
-  height: 68%;
+  height: fit-content;
+  min-height: 75%;
   margin: 0 15px;
   overflow: visible;
 }
@@ -81,14 +83,12 @@ h2 {
 }
 .btn-container {
   width: 100%;
-  height: 17%;
+  height: fit-content;
   text-align: right;
-  vertical-align: bottom;
 }
 .btn-primary {
   background-color: var(--btncolor);
   border-color: var(--btncolor);
-  
 }
 .row { margin: 0; }
 .row > * { padding: 15px; }
