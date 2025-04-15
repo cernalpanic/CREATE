@@ -70,7 +70,7 @@ h2 {
   color: var(--moduletext);
   font-weight: 600;
   text-align: justify;
-  height: 70%;
+  height: 68%;
   margin: 0 15px;
   overflow: visible;
 }
@@ -81,7 +81,7 @@ h2 {
 }
 .btn-container {
   width: 100%;
-  height: 15%;
+  height: 17%;
   text-align: right;
   vertical-align: bottom;
 }

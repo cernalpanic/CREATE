@@ -3,12 +3,11 @@
 }
 
 #sidebar {
+  min-width: 200px;
   width: 15%;
-  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  padding-top: 2vh;
   background: var(--sidebarbg);
   border-radius: 0 0px 0px 0;
   text-align: center;
@@ -17,8 +16,7 @@
 #main-content {
   width: 80%;
   position: relative;
-  right: 0;
-  left: 17%;
+  margin: 0 1% 0 1%;
 }
 
 #user-name {
@@ -32,7 +30,7 @@
   margin: auto;
   width: 150px;
   height: 150px;
-  padding-bottom: 30%;
+  margin-top: 15px;
   border-radius: 50%;
   background: var(--profiledefaultbg);
 }
@@ -109,9 +107,7 @@
 }
 
 #side-nav {
-  margin-top: 5vh;
   display: grid;
-
   grid-template-areas: "icons links";
   align-items: center;
 }
@@ -120,11 +116,11 @@
 .navlink {
   padding: 1.5vh 0;
   line-height: 5vh;
+  min-height: 70px;
 }
 
 .nav-icons {
   grid-area: "icons";
-
   color: var(--navlink);
 }
 
