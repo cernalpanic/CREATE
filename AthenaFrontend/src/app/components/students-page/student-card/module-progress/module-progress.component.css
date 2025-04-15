@@ -1,3 +1,14 @@
+.all-circles-container{
+  display: flex;
+  width: 100%;
+  height: fit-content;
+  justify-content: space-around;
+}
+.one-circle-container{
+  width:fit-content;
+  display: flex;
+  float: left;
+}
 .card-text {
   font-size: 15px;
   color: var(--cardtext);
