@@ -5,7 +5,7 @@
 }
 
 #sidebar {
-  min-width: 200px;
+  min-width: 230px;
   width: 15%;
   position: relative;
   top: 0;
@@ -49,7 +49,7 @@
 .stats {
   display: flex;
   background: var(--statsbg);
-  margin: 1em 2em;
+  margin: 1em 1em;
   border-radius: 15px;
   justify-content: center;
   align-items: center;
