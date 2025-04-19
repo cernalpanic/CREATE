@@ -103,7 +103,7 @@ namespace AthenaAPI.Controllers
             }
         }
 
-        [HttpPost("AddStudentKata")]
+        [HttpPost("CreateStudentKata")]
         public async Task<ActionResult<StudentKata>> CreateStudentKata([FromBody] JObject studentKata)
         {
             try{
