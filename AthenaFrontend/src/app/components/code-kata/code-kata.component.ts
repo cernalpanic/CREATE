@@ -40,6 +40,8 @@ export class CodeKataComponent {
     breadcrumb.setPrevPages();
   }
 
+  
+
   public async ngOnInit() {
     const response = await this.authService.getAuthentication();
     const auth = new AuthToken(response);
@@ -48,9 +50,17 @@ export class CodeKataComponent {
       this.role.Person = new Student(this.role.Person);
       const studentKatasResult: StudentKata[] = await this.kataService.GetStudentKatas(this.role.RoleID);
       studentKatasResult.forEach(sk => {
-        let kata = new StudentKata(sk);
-        this.studentKatas.push(kata);
+        let studentkata = new StudentKata(sk);
+        this.studentKatas.push(studentkata);
+        
       })
+      const katasResult: Kata[] = await this.kataService.GetKatas();
+      katasResult.forEach(k => {
+        let kata = new Kata(k);
+        this.katas.push(kata);
+      });
+      
+
     } else if (this.role.Name == 'Mentor') {
       this.role.Person = new Mentor(this.role.Person);
       const katasResult: Kata[] = await this.kataService.GetKatas();
@@ -60,4 +70,8 @@ export class CodeKataComponent {
       });
     }
   }
+  getStudentKataForKata(kata: Kata): StudentKata | undefined {
+    return this.studentKatas?.find(sk => sk.KataID === kata.KataID);
+  }
+
 }
