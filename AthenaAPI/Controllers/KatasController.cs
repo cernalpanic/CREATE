@@ -73,7 +73,7 @@ namespace AthenaAPI.Controllers
             }
         }
 
-        [HttpPost("AddKata")]
+        [HttpPost("CreateKata")]
         public async Task<ActionResult<Kata>> CreateKata([FromBody] JObject kata)
         {
             try{
