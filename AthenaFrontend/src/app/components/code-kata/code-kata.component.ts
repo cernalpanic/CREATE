@@ -11,6 +11,7 @@ import { Mentor } from 'src/models/mentor.model';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { KataService } from 'src/app/services/kata.service';
 import { StudentKata } from 'src/models/studentkata.model';
+import { CreateKataDialogComponent } from './create-kata-dialog/create-kata-dialog.component';
 
 
 @Component({
@@ -74,4 +75,11 @@ export class CodeKataComponent {
     return this.studentKatas?.find(sk => sk.KataID === kata.KataID);
   }
 
+  openCreateKataDiaglogue(): void {
+    this.dialog.open(CreateKataDialogComponent, {
+      width: '400px', // optional
+      data: { /* optional data to pass */ }
+    });
+
+}
 }
