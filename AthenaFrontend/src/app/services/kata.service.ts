@@ -68,9 +68,11 @@ export class KataService {
     }
 
     //Adds a new general Kata
-    public AddKata(kata: any): Promise<any> {
+    public AddKata(name: any, description: any): Promise<any> {
+        const data = { Description: description, KataName: name};
+        console.log(data);
         return new Promise(resolve => {
-            this.http.post(this.apiUrl + '/Katas/AddKata', JSON.stringify(kata), { headers: this.postHeaders }).subscribe((data: any) => {
+            this.http.post(this.apiUrl + '/Katas/CreateKata', data).subscribe((data: any) => {
                 resolve(data);
             }, error => {
                 resolve(false);
