@@ -12,6 +12,7 @@ import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 import { KataService } from 'src/app/services/kata.service';
 import { StudentKata } from 'src/models/studentkata.model';
 import { CreateKataDialogComponent } from './create-kata-dialog/create-kata-dialog.component';
+import { PageEvent } from '@angular/material/paginator';
 
 
 @Component({
@@ -22,8 +23,55 @@ import { CreateKataDialogComponent } from './create-kata-dialog/create-kata-dial
 
 export class CodeKataComponent {
   public katas: Kata[] = [];
+  public paginatedKatas: Kata[] = [];
   public studentKatas: StudentKata[] = [];
+  public paginatedStudentKatas: StudentKata[] = [];
   public role: any;
+
+  //paginator setup
+  pageSize = 9; //default page size
+  pageIndex = 0; //intial page index
+  pageSizeOptions = [9, 12, 15];
+
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
+
+  //default lower and upper (6 katas)
+  paginatedLower = 0;
+  paginatedUpper = 9;
+
+  pageEvent: any;
+
+  //Mentor View Paginator
+  handleKataPageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+
+    //get lower and upper pagination bounds
+    this.paginatedLower = (this.pageIndex * this.pageSize);
+    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
+
+    //set paginated katas
+    this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
+  }
+
+  //Student View Paginator
+  handleStudentKataPageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+
+    //get lower and upper pagination bounds
+    this.paginatedLower = (this.pageIndex * this.pageSize);
+    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
+
+    //set paginated katas
+    this.paginatedStudentKatas = this.studentKatas.slice(this.paginatedLower, this.paginatedUpper);
+  }
+
 
 
   constructor(
@@ -53,26 +101,31 @@ export class CodeKataComponent {
       studentKatasResult.forEach(sk => {
         let studentkata = new StudentKata(sk);
         this.studentKatas.push(studentkata);
-
-      })
-      const katasResult: Kata[] = await this.kataService.GetKatas();
-      katasResult.forEach(k => {
-        let kata = new Kata(k);
-        this.katas.push(kata);
       });
-
-
+      this.paginatedStudentKatas = this.studentKatas.slice(this.paginatedLower, this.paginatedUpper);
     } else if (this.role.Name == 'Mentor') {
       this.role.Person = new Mentor(this.role.Person);
-      const katasResult: Kata[] = await this.kataService.GetKatas();
-      katasResult.forEach(k => {
-        let kata = new Kata(k);
-        this.katas.push(kata);
-      });
     }
+    //katas array is needed for both mentors and students
+    const katasResult: Kata[] = await this.kataService.GetKatas();
+    katasResult.forEach(k => {
+      let kata = new Kata(k);
+      this.katas.push(kata);
+    });
+    this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
   }
   getStudentKataForKata(kata: Kata): StudentKata | undefined {
     return this.studentKatas?.find(sk => sk.KataID === kata.KataID);
+  }
+
+  public getKata(kataID: string): any {
+    let returnKata: any = null;
+    this.katas.forEach(k => {
+      if (k.KataID == kataID) {
+        returnKata = k;
+      }
+    });
+    return returnKata; //Should always be assigned to a kata object
   }
 
   openCreateKataDiaglogue(): void {

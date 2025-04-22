@@ -8,41 +8,66 @@
         <!-- Button to create new kata -->
         <a class="btn btn-primary" (click)="openCreateKataDiaglogue()"><i class="bi bi-plus"></i>Add Kata</a> 
     </div>
-  <ng-container *ngFor="let kata of katas; let i = index">
+  <ng-container *ngFor="let kata of paginatedKatas; let i = index">
     <div *ngIf="i%3 == 0" class="row">
       <div class="col-md-4">
-        <app-kata-card [kata]="katas[i]"></app-kata-card>
+        <app-kata-card [kata]="paginatedKatas[i]"></app-kata-card>
       </div>
       <div class="col-md-4">
-        <app-kata-card *ngIf="katas[i+1]" [kata]="katas[i+1]"></app-kata-card>
+        <app-kata-card *ngIf="paginatedKatas[i+1]" [kata]="paginatedKatas[i+1]"></app-kata-card>
       </div>
       <div class="col-md-4">
-        <app-kata-card *ngIf="katas[i+2]" [kata]="katas[i+2]"></app-kata-card>
+        <app-kata-card *ngIf="paginatedKatas[i+2]" [kata]="paginatedKatas[i+2]"></app-kata-card>
       </div>
     </div>
-
   </ng-container>
-
+  <!-- Paginator Control for table -->
+  <mat-paginator #paginator
+  class="previous-standup-paginator"
+  (page)="handleKataPageEvent($event)"
+  [length]="this.katas.length"
+  [pageSize]="pageSize"
+  [disabled]="disabled"
+  [showFirstLastButtons]="showFirstLastButtons"
+  [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+  [hidePageSize]="hidePageSize"
+  [pageIndex]="pageIndex"
+  aria-label="Select page">
+</mat-paginator>
 </ng-container>
 <!-- END Mentor's View-->
 
 <!-- Student's Kata Page View -->
 <ng-container *ngIf="role.Name == 'Student'">
   <h2>Available Katas</h2>
-  <ng-container *ngFor="let kata of katas; let i = index">
+  <ng-container *ngFor="let studentKata of paginatedStudentKatas; let i = index">
     <div *ngIf="i%3 == 0" class="row">
       <div class="col-md-4">
-        <app-student-kata-card [kata]="katas[i]" [studentKata]="getStudentKataForKata(katas[i])" [role]="role"></app-student-kata-card>
+        <app-student-kata-card [kata]="getKata(paginatedStudentKatas[i].KataID)" [studentKata]="paginatedStudentKatas[i]" [role]="role"></app-student-kata-card>
       </div>
       <div class="col-md-4">
-        <app-student-kata-card *ngIf="katas[i+1]" [kata]="katas[i+1]" [studentKata]="getStudentKataForKata(katas[i+1])" [role]="role"></app-student-kata-card>
+        <app-student-kata-card *ngIf="paginatedStudentKatas[i+1]" [kata]="getKata(paginatedStudentKatas[i+1].KataID)" [studentKata]="paginatedStudentKatas[i+1]" [role]="role"></app-student-kata-card>
       </div>
       <div class="col-md-4">
-        <app-student-kata-card *ngIf="katas[i+2]" [kata]="katas[i+2]" [studentKata]="getStudentKataForKata(katas[i+2])" [role]="role"></app-student-kata-card>
+        <app-student-kata-card *ngIf="paginatedStudentKatas[i+2]" [kata]="getKata(paginatedStudentKatas[i+2].KataID)" [studentKata]="paginatedStudentKatas[i+2]" [role]="role"></app-student-kata-card>
       </div>
     </div>
 
   </ng-container>
+
+  <!-- Paginator Control for table -->
+  <mat-paginator #paginator
+  class="previous-standup-paginator"
+  (page)="handleStudentKataPageEvent($event)"
+  [length]="this.studentKatas.length"
+  [pageSize]="pageSize"
+  [disabled]="disabled"
+  [showFirstLastButtons]="showFirstLastButtons"
+  [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+  [hidePageSize]="hidePageSize"
+  [pageIndex]="pageIndex"
+  aria-label="Select page">
+</mat-paginator>
 </ng-container>
 <!-- END Student's View -->
 
