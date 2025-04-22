@@ -3,7 +3,8 @@
   background: var(--modulebg);
   border-radius: 50px;
   box-shadow: 0px 2px 20px 2px var(--boxshadow);
-  margin-top: 20px;
+  margin-top: 10px;
+  margin-bottom: -30px;
 }
 .breadcrumbs {
   display: flex;

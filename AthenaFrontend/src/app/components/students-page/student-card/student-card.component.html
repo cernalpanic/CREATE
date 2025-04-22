@@ -1,27 +1,31 @@
-<div class="row row-cols-3 row-cols-md-3 g-4">
+<div id ="card-container" class="row row-cols-3 row-cols-md-3 g-4">
   <ng-container *ngFor="let student of students">
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <img [src]="student.ImageURL" />
-          <h5 class="card-title">
-            {{ student.Person.FirstName + " " + student.Person.LastName }}
-          </h5>
-          <p class="card-text">
-            <b>Availability</b> {{ student.Person.Availability }}
-          </p>
-          <p class="card-text"><b>Email</b> {{ student.Person.Email }}</p>
-          <p class="card-text">
-            <b>Overall Progress</b>
-          </p>
-          <app-module-progress
-            [studentID]="student.RoleID"
-            [details]="false"
-          ></app-module-progress>
-          <div class="btn-container">
-            <a class="btn btn-primary" (click)="viewStudent(student)"
-              >View Details</a
-            >
+          <div class="card-upper">
+            <img [src]="student.ImageURL" />
+            <h5 class="card-title">
+              {{ student.Person.FirstName + " " + student.Person.LastName }}
+            </h5>
+            <b>Availability</b>
+            <p class="card-text">{{ student.Person.Availability }}</p>
+            <b>Email</b>
+            <p class="card-text">{{ student.Person.Email }}</p>
+          </div>
+          <div class="card-lower">
+            <p class="progress-header">
+              <b>Overall Progress</b>
+            </p>
+            <app-module-progress
+              [studentID]="student.RoleID"
+              [details]="false"
+            ></app-module-progress>
+            <div class="btn-container">
+              <a class="btn btn-primary" (click)="viewStudent(student)"
+                >View Details</a
+              >
+            </div>
           </div>
         </div>
       </div>
