@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StudentService } from 'src/app/services/student.service';
 import { StudentQuest } from 'src/models/studentQuest.model';
+import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
+
 
 export class ModuleProgress {
   public ModuleID: string;
@@ -34,7 +36,32 @@ export class ModuleProgressComponent implements OnInit {
   panelOpenState = false;
   displayedColumns: string[] = ['quest_name', 'completed'];
 
-  constructor(public studentService: StudentService) {}
+  //paginator setup
+  pageSize = 5; //default page size
+  pageIndex = 0; //intial page index
+  pageSizeOptions = [5, 10, 15];
+
+  hidePageSize = false;
+  showPageSizeOptions = true;
+  showFirstLastButtons = true;
+  disabled = false;
+
+  paginatedLower = 0;
+  paginatedUpper = 6;
+
+  pageEvent: any;
+
+  handlePageEvent(e: PageEvent) {
+    this.pageEvent = e;
+    this.pageSize = e.pageSize;
+    this.pageIndex = e.pageIndex;
+
+    //get lower and upper pagination bounds
+    this.paginatedLower = (this.pageIndex * this.pageSize);
+    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
+  }
+
+  constructor(public studentService: StudentService) { }
 
   public async getModuleProgress(studentID: string, details: boolean): Promise<ModuleProgress[]> {
     const response = await this.studentService.GetModuleProgress(studentID, details);
@@ -42,7 +69,7 @@ export class ModuleProgressComponent implements OnInit {
     if (response) {
       response.forEach((module: any) => {
         const mod = new ModuleProgress(module);
-        if (details){
+        if (details) {
           module.Quests.forEach((quest: any) => {
             const q = new StudentQuest(quest);
             mod.Quests.push(q);

@@ -37,6 +37,19 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <!-- Paginator Control for table -->
+      <mat-paginator #paginator
+      class="previous-standup-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="module.Quests.length"
+      [pageSize]="pageSize"
+      [disabled]="disabled"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex"
+      aria-label="Select page">
+    </mat-paginator>
     </mat-expansion-panel>
   </mat-accordion>
 </ng-container>

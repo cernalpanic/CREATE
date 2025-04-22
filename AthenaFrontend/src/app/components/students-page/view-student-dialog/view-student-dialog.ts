@@ -6,10 +6,13 @@ import { Role } from 'src/models/role.model';
 import { MentorService } from 'src/app/services/mentor.service';
 import { Mentor } from 'src/models/mentor.model';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { MatChipInputEvent } from '@angular/material/chips';
+import { MatChipInputEvent, MatChipListbox } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DailyStandup } from 'src/models/dailystandup';
 import { DailyStandupService } from '../../../services/dailyStandup.service';
+import { Router } from '@angular/router';
+import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
+
 
 export interface StudentData {
   FirstName: string;
@@ -34,13 +37,28 @@ export class ViewStudentDialog implements OnInit {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public mentorCtrl = new FormControl(null);
   public filteredMentors: Role[] = [];
-  @ViewChild('mentorInput') mentorInput!: ElementRef<HTMLInputElement>;
+  constructor(public router: Router, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public studentService: StudentService, public breadcrumb: BreadcrumbService) {
+    const navigation = this.router.getCurrentNavigation();
+    const state = navigation?.extras.state as {
+      student: Role;
+    };
+    this.student = state.student;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewStudentDialog>, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public studentService: StudentService) {
-    this.student = this.data.student;
+
+    const pageName: string = this.student.Person.FirstName + this.student.Person.LastName;
+    breadcrumb.makeCurrentPage(pageName, router.url, state);
+    breadcrumb.setPrevPages();
+  }
+
+  public ngOnInit(): void {
     this.getStudentMentors(this.student.RoleID);
     this.getAllMentors();
     this.getAllDailyStandups(this.student.RoleID);
+
+    this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
+      this.filterMentors(mentor);
+      this.changes = true;
+    });
   }
 
   public add(event: MatChipInputEvent): void {
@@ -48,27 +66,30 @@ export class ViewStudentDialog implements OnInit {
     const value = event.value;
     // Add our mentor
     if (value != undefined && value != null) {
+      console.log(value)
       this.selectedMentors.push(this.allMentors.find((x: Role) => x.RoleID == value.trim())!);
     }
-
+    console.log()
     // Reset the input value
     if (input) {
       input.value = '';
     }
+    this.saveChanges();
     this.mentorCtrl.setValue(null);
-    this.changes = true;
+
   }
 
   public remove(indx: number): void {
     const deleted = this.selectedMentors.splice(indx, 1);
     this.filteredMentors.push(deleted[0]);
-    this.changes = true;
+    this.saveChanges();
   }
 
   public selected(event: MatAutocompleteSelectedEvent): void {
     this.selectedMentors.push(event.option.value);
-    this.mentorInput.nativeElement.value = '';
+    //this.mentorInput.nativeElement.value = '';
     this.mentorCtrl.setValue(null);
+    this.saveChanges();
   }
 
   private filterMentors(mentor: Role | null): void {
@@ -85,9 +106,17 @@ export class ViewStudentDialog implements OnInit {
     if (response) {
       response.forEach((m: any) => {
         let mentor = new Role(m);
-        mentor.Person = new Mentor(m.mentor);
+        mentor.Person = new Mentor(m.person);
         this.allMentors.push(mentor);
-        if (!this.mentors.includes(mentor)) {
+
+        //Add it to the filtered mentors if student isn't already assigned the mentor
+        let addFilteredMentor = true;
+        this.mentors.forEach((ment: Role) => {
+          if (ment.RoleID == mentor.RoleID) {
+            addFilteredMentor = false;
+          }
+        });
+        if (addFilteredMentor) {
           this.filteredMentors.push(mentor);
         }
       });
@@ -99,30 +128,24 @@ export class ViewStudentDialog implements OnInit {
     if (response) {
       response.forEach((m: any) => {
         let mentor = new Role(m);
-        mentor.Person = new Mentor(m.mentor);
+        mentor.Person = new Mentor(m.person);
         this.mentors.push(mentor);
         this.selectedMentors.push(mentor);
       });
     }
   }
 
-  public async saveChanges(): Promise<any> {
-    const response = await this.studentService.SaveStudentMentors(this.student.RoleID, this.selectedMentors);
-    this.dialogRef.close(response);
-  }
-
-  public ngOnInit(): void {
-    this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
-      this.filterMentors(mentor);
-      this.changes = true;
-    });
+  public async saveChanges(): Promise<void> {
+    await this.studentService.SaveStudentMentors(this.student.RoleID, this.selectedMentors);
   }
 
 
 
-  public okClose(): void {
-    this.dialogRef.close(true);
-  }
+
+
+  // public okClose(): void {
+  //   this.dialogRef.close(true);
+  // }
 
   public async getAllDailyStandups(id: string): Promise<void> {
     this.standups = [];

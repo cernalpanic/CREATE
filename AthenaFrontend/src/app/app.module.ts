@@ -45,16 +45,9 @@ import { CodeKataComponent } from './components/code-kata/code-kata.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
-  {
-    path: 'dashboard',
-    component: DashboardComponent,
-    canActivate: [AuthGuard],
-  },
-  {
-    path: 'students',
-    component: StudentsPageComponent,
-    canActivate: [RoleGuard, AuthGuard],
-  },
+  { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
+  { path: 'students', component: StudentsPageComponent, canActivate: [RoleGuard] },
+  { path: 'students/:StudentName', component: ViewStudentDialog, canActivate: [RoleGuard] },
   {
     path: 'code-kata',
     component: CodeKataComponent,
@@ -72,13 +65,8 @@ const ROUTES: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  {
-    path: 'edit-daily-standup',
-    component: EditDailyStandupComponent,
-    canActivate: [AuthGuard],
-  },
-];
-
+  //{ path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
+]
 
 @NgModule({
   declarations: [
