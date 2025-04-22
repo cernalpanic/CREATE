@@ -1,8 +1,24 @@
+@media screen and (max-width: 1550px){
+  #card-container{
+    display: flex;
+    justify-content: center;
+  }
+}
+.col{
+  flex-direction: row;
+  flex-basis: 400px;
+  flex-wrap: wrap;
+  flex-grow: .15;
+}
 .card {
-  margin: 0;
   border-radius: 30px;
   box-shadow: 0px 2px 20px 2px var(--boxshadow);
   border: none;
+  position: relative;
+  height: fit-content;
+}
+.card-upper{
+  height: fit-content;
 }
 .card-body img {
   float: left;
@@ -10,7 +26,7 @@
   height: 100px;
   border-radius: 100%;
   object-fit: cover;
-  margin: 0 15px 0 0;
+  margin: 0 15px 15px 0;
 }
 .card-title {
   font-weight: 800;
@@ -21,26 +37,31 @@
   color: var(--cardsubtitle);
   font-size: 0.8rem;
 }
-.card-text b {
+.card-text b { /*Why are there two card-text's?*/
   font-weight: 800;
   color: var(--cardtextbold);
 }
 .card-text {
-  margin-bottom: 0.5rem;
   font-size: 15px;
   color: var(--cardtext);
   font-weight: 600;
+  margin-bottom: 0;
+  height: 22.5px;
+}
+.card-lower{
+  justify-content: center;
+}
+.progress-header{
+  text-align: center;
+  width: 100%;
 }
 .btn {
-  margin: auto;
   border-radius: 50px;
   font-weight: 800;
 }
 .btn-container {
   width: 100%;
   text-align: center;
-  position: absolute;
-  margin-left: -15px;
 }
 .btn-primary {
   background-color: var(--btncolor);
