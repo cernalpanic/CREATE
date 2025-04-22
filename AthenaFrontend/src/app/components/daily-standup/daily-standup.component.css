@@ -1,5 +1,10 @@
-.horizontal-scroll {
-  overflow-x: auto;
+.app-daily-standup-card{
+  width: 100%;
+  height: fit-content;
+}
+
+#card-container{
+  overflow-x: scroll;
 }
 
 .btn {
