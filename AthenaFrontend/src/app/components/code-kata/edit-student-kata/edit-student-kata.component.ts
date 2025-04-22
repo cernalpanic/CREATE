@@ -29,7 +29,6 @@ export class EditStudentKataComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<EditStudentKataComponent>, public kataService: KataService, public authService: AuthService, public studentService: StudentService, private router: Router) {
     this.kata = this.data.kata;
     this.studentKata = this.data.studentKata;
-    console.log(this.kata);
     this.studentCode.setValue(this.studentKata.StudentCode);
     this.studentNotes.setValue(this.studentKata.StudentNotes);
     this.completionTime.setValue(this.studentKata.CompletionTime);

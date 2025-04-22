@@ -131,7 +131,6 @@ export class CodeKataComponent {
   openCreateKataDiaglogue(): void {
     this.dialog.open(CreateKataDialogComponent, {
       panelClass: 'kata-dialog',
-      data: { /* optional data to pass */ }
     });
 
   }

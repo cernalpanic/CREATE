@@ -7,17 +7,17 @@
         <!-- Student's card view -->
       <ng-container *ngIf="role.Name == 'Student'">
         <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating">
-          <label class="textarea-label" for="dsYesterdayTask">What I did yesterday:</label>
+          <label class="textarea-label" for="dsYesterdayTask">My Code:</label>
           <textarea class="form-control"
                     id="dsYesterdayTask"
                     [formControl]="studentCode">
           </textarea>
-          <label for="dsTodayPlan" class="textarea-label">What I plan to do today:</label>
+          <label for="dsTodayPlan" class="textarea-label">My Notes:</label>
           <textarea class="form-control"
                     id="dsTodayPlan"
                     [formControl]="studentNotes">
           </textarea>
-          <label for="blockers" class="textarea-label">Blockers stopping my progress:</label>
+          <label for="blockers" class="textarea-label">Completion Time: </label>
           <textarea class="form-control"
                     id="blockers"
                     [formControl]="completionTime"> 
