@@ -102,7 +102,9 @@ export class CodeKataComponent {
         let studentkata = new StudentKata(sk);
         this.studentKatas.push(studentkata);
       });
+      
       this.paginatedStudentKatas = this.studentKatas.slice(this.paginatedLower, this.paginatedUpper);
+
     } else if (this.role.Name == 'Mentor') {
       this.role.Person = new Mentor(this.role.Person);
     }
@@ -113,7 +115,15 @@ export class CodeKataComponent {
       this.katas.push(kata);
     });
     this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
+    
+    if (this.role.Name == 'Student'){
+    for(let kata of this.katas)//Populate student katas to show all student katas(Currently needs a refresh to display new katas)
+      {
+        this.createStudentKata(this.getStudentKataForKata(kata), kata);
+      }}
   }
+
+  
   getStudentKataForKata(kata: Kata): StudentKata | undefined {
     return this.studentKatas?.find(sk => sk.KataID === kata.KataID);
   }
@@ -133,5 +143,11 @@ export class CodeKataComponent {
       panelClass: 'kata-dialog',
     });
 
+  }
+
+  createStudentKata(sk: StudentKata | undefined, k: Kata){
+     if(!sk){
+       this.kataService.AddStudentKata(this.role.RoleID, k.KataID);
+     }
   }
 }
