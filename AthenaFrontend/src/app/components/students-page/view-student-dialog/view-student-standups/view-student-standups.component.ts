@@ -4,6 +4,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { EditDailyStandupComponent } from '../../../daily-standup/edit-daily-standup/edit-daily-standup.component';
 import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
+import { Role } from 'src/models/role.model';
 
 @Component({
   selector: 'app-view-student-standups',
@@ -12,6 +13,7 @@ import { PageEvent, MatPaginatorModule } from '@angular/material/paginator';
 })
 export class ViewStudentStandupsComponent {
   @Input() standups: DailyStandup[] = [];
+  @Input() student: any;
   displayedColumns: string[] = ["standup_date", "completed", "add_feedback"];
 
   //paginator setup
@@ -44,10 +46,10 @@ export class ViewStudentStandupsComponent {
   statusText = 'Not Completed';
   thisdate = new Date;
 
-  public async editStandup(standup: DailyStandup): Promise<void> {
+  public async editStandup(standup: DailyStandup, student: any): Promise<void> {
     this.dialog.open(EditDailyStandupComponent, {
       panelClass: 'standup-dialog',
-      data: { standup: standup, canEdit: true }
+      data: { standup: standup, canEdit: true, student: student }
     });
   }
 }

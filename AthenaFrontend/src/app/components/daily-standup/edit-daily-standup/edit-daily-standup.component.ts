@@ -51,6 +51,9 @@ export class EditDailyStandupComponent {
       const student = await this.studentService.GetStudent(this.role.RoleID);
       this.student = student.student;
     }
+    else{
+      this.student = this.data.student;
+    }
   }
 
   public updateDailyStandup(): void {
@@ -58,7 +61,6 @@ export class EditDailyStandupComponent {
     const newTodayPlan = this.dsTodayPlan.value || '';
     const newBlockers = this.dsBlockers.value || '';
     const newAdminFeedback = this.dsAdminFeedback.value || '';
-
 
     //update the standup
     this.dailyStandupService.UpdateDailyStandup(this.standup.standupID.toString(), newYesterdayTask, newTodayPlan, newBlockers, newAdminFeedback).then((result: boolean) => {
@@ -81,7 +83,13 @@ export class EditDailyStandupComponent {
   private refreshPage(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([this.router.url]);
+
+    //Mentor is viewing from student card and needs to pass the student back
+    if(this.role.Name != "Student")
+      this.router.navigate([this.router.url], {state: { student: this.student, auth: this.auth, expectedRole: 'Mentor' }});
+    //Student is viewing from dashboard and does not need additional parameters
+    else
+      this.router.navigate([this.router.url]);
   }
 
 }
