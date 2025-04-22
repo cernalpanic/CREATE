@@ -41,7 +41,7 @@ export class CodeKataComponent {
     breadcrumb.setPrevPages();
   }
 
-  
+
 
   public async ngOnInit() {
     const response = await this.authService.getAuthentication();
@@ -53,14 +53,14 @@ export class CodeKataComponent {
       studentKatasResult.forEach(sk => {
         let studentkata = new StudentKata(sk);
         this.studentKatas.push(studentkata);
-        
+
       })
       const katasResult: Kata[] = await this.kataService.GetKatas();
       katasResult.forEach(k => {
         let kata = new Kata(k);
         this.katas.push(kata);
       });
-      
+
 
     } else if (this.role.Name == 'Mentor') {
       this.role.Person = new Mentor(this.role.Person);
@@ -77,9 +77,9 @@ export class CodeKataComponent {
 
   openCreateKataDiaglogue(): void {
     this.dialog.open(CreateKataDialogComponent, {
-      width: '400px', // optional
+      panelClass: 'kata-dialog',
       data: { /* optional data to pass */ }
     });
 
-}
+  }
 }
