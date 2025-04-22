@@ -47,6 +47,7 @@ import { EditStudentKataComponent } from './components/code-kata/edit-student-ka
 import { CreateKataDialogComponent } from './components/code-kata/create-kata-dialog/create-kata-dialog.component';
 import { StudentKataCardComponent } from './components/code-kata/student-kata-card/student-kata-card.component';
 import { KataCardComponent } from './components/code-kata/kata-card/kata-card.component';
+import { InnerKataComponent } from './components/code-kata/inner-kata/inner-kata.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -117,7 +118,8 @@ const ROUTES: Routes = [
     EditStudentKataComponent,
     CreateKataDialogComponent,
     StudentKataCardComponent,
-    KataCardComponent
+    KataCardComponent,
+    InnerKataComponent
   ],
 
   imports: [
