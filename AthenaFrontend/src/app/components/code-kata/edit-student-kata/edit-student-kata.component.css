@@ -1,0 +1,56 @@
+.form-floating>label {
+  left: 8px;
+}
+
+.form-control {
+  position: relative;
+}
+
+.input-group .form-floating>label {
+  left: 0;
+}
+
+
+#show-hide {
+  transition: all .5s ease;
+}
+
+#show-hide:hover {
+  cursor: pointer;
+  background: var(--headingbg);
+  color: var(--headingtext);
+}
+
+.btn-primary {
+  background-color: var(--kataprimary);
+  border-color: var(--kataprimary);
+  font-weight: 700;
+}
+
+.hint {
+  font-size: 0.8rem;
+  font-weight: 700;
+  font-style: italic;
+}
+
+.textarea-label {
+  position: relative;
+  display: contents;
+  font-size: medium;
+  color: black;
+  padding-left: 0px;
+}
+
+textarea {
+  height: 200px;
+  margin-bottom: 20px;
+  margin-top: 5px;
+}
+
+h6 {
+  text-decoration: underline;
+}
+
+.mat-dialog-content {
+  min-width: 300px;
+}

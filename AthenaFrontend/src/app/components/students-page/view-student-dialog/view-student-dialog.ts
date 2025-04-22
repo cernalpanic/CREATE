@@ -10,16 +10,12 @@ import { MatChipInputEvent, MatChipListbox } from '@angular/material/chips';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { DailyStandup } from 'src/models/dailystandup';
 import { DailyStandupService } from '../../../services/dailyStandup.service';
+import { StudentKata } from 'src/models/studentkata.model';
+import { KataService } from 'src/app/services/kata.service';
 import { Router } from '@angular/router';
 import { BreadcrumbService } from 'src/app/services/breadcrumb.service';
 
 
-export interface StudentData {
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Password: string;
-}
 
 @Component({
   selector: 'app-view-student-dialog',
@@ -33,6 +29,7 @@ export class ViewStudentDialog implements OnInit {
   public allMentors: Role[] = [];
   public changes: boolean = false;
   public standups: DailyStandup[] = [];
+  public katas: StudentKata[] = [];
 
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public mentorCtrl = new FormControl(null);
@@ -50,9 +47,14 @@ export class ViewStudentDialog implements OnInit {
     breadcrumb.setPrevPages();
   }
 
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewStudentDialog>, public mentorService: MentorService, public kataService: KataService, public dailyStandupService: DailyStandupService, public studentService: StudentService) {
+    this.student = this.data.student;
+
   public ngOnInit(): void {
     this.getStudentMentors(this.student.RoleID);
     this.getAllMentors();
+    this.getAllStudentKatas(this.student.RoleID);
     this.getAllDailyStandups(this.student.RoleID);
 
     this.mentorCtrl.valueChanges.subscribe((mentor: Role | null) => {
@@ -139,14 +141,6 @@ export class ViewStudentDialog implements OnInit {
     await this.studentService.SaveStudentMentors(this.student.RoleID, this.selectedMentors);
   }
 
-
-
-
-
-  // public okClose(): void {
-  //   this.dialogRef.close(true);
-  // }
-
   public async getAllDailyStandups(id: string): Promise<void> {
     this.standups = [];
     const response = await this.dailyStandupService.GetAllDailyStandups(id);
@@ -154,6 +148,17 @@ export class ViewStudentDialog implements OnInit {
       for (let ds of response) {
         const standup = new DailyStandup(ds.standupID, ds.studentID, ds.userID, ds.dateCreated, ds.yesterdayTask, ds.todayPlan, ds.blockers, ds.adminFeedback);
         this.standups.push(standup);
+      }
+    }
+  }
+
+  public async getAllStudentKatas(id: string): Promise<void> {
+    this.katas = [];
+    const response = await this.kataService.GetStudentKatas(id);
+    if (response) {
+      for (let sk of response) {
+        const kata = new StudentKata(sk);
+        this.katas.push(kata);
       }
     }
   }

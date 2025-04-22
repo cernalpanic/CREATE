@@ -1,0 +1,24 @@
+<div class="card">
+    <div class="card-body">
+        <div class="row">
+            <div class="col-md-4 icon-div">
+                <div class="kataicon"><i class="bi bi-code-square"></i></div>
+            </div>
+            <div class="col-md-8 info-section">
+                <div class="row">
+                    <h4 class="card-subtitle mb-2">{{ kata.KataName}}</h4>
+
+                    
+                    <h4 class="card-subtitle mb-2">Complete:<span *ngIf="studentKata && getCompleteStatus(studentKata)"> <i class="bi bi-check-circle"></i></span></h4>
+                </div>
+                <div class="row">
+                    <div class="btn-container">
+
+                        <!-- Button creates a new student kata if one does not already exist -->
+                        <a class="btn btn-primary" (click)="editStudentKata(studentKata,kata)">View Details <i class="bi bi-arrow-right"></i></a> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

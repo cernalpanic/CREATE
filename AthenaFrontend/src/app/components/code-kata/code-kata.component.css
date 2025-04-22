@@ -4,6 +4,7 @@ h2 {
   color: var(--mainheading);
   font-size: 1.8rem;
 }
+
 .card {
   margin: 0;
   border-radius: 30px;
@@ -12,38 +13,46 @@ h2 {
   position: relative;
   z-index: 2;
 }
+
 .card-body {
   display: grid;
   grid-template-areas: 'img info';
 }
-.card-body > div > img {
+
+.card-body>div>img {
   max-width: 200px;
   max-height: 200px;
   margin: 0 15px 0 0;
   border-radius: 20px;
 }
+
 .img-box {
   grid-area: 'img';
 }
+
 .info-box {
   grid-area: 'info';
 }
+
 .card-title {
   font-weight: 800;
   font-size: 1.5rem;
   padding-bottom: 10px;
   margin: 0 13px;
 }
+
 .card-subtitle {
   text-transform: uppercase;
   font-weight: 700;
   color: var(--cardsubtitle);
   font-size: 0.8rem;
 }
+
 .card-text b {
   font-weight: 800;
   color: var(--cardtextbold);
 }
+
 .card-text {
   margin-bottom: 0.5rem;
   font-size: 15px;
@@ -54,26 +63,37 @@ h2 {
   margin: 0 15px;
   overflow: auto;
 }
+
 .btn {
   margin: auto;
   border-radius: 50px;
   font-weight: 800;
 }
+
 .btn-container {
   width: 100%;
   text-align: right;
   vertical-align: bottom;
 }
+
 .btn-primary {
-  background-color: var(--btncolor);
-  border-color: var(--btncolor);
+  background-color: var(--kataprimary);
+  border-color: var(--kataprimary);
 }
-.row { margin: 0; }
-.row > * { padding: 15px; }
+
+.row {
+  margin: 0;
+}
+
+.row>* {
+  padding: 15px;
+}
+
 .module-tabs {
   display: flex;
   flex-direction: row;
 }
+
 .card-tab {
   background-color: var(--btncolor);
   position: relative;
@@ -84,12 +104,14 @@ h2 {
   color: var(--tabtext);
   text-align: center;
 }
+
 .tab-num {
   font-size: 1.7rem;
   font-weight: 800;
   margin-bottom: -10px;
   padding: 0;
 }
+
 .tab-label {
   font-size: 0.8rem;
   font-weight: 700;

@@ -42,6 +42,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ModuleDashCardComponent } from './components/dashboard/module-dash-card/module-dash-card.component';
 import { CodeKataComponent } from './components/code-kata/code-kata.component';
+import { ViewStudentKatasComponent } from './components/students-page/view-student-dialog/view-student-katas/view-student-katas';
+import { EditStudentKataComponent } from './components/code-kata/edit-student-kata/edit-student-kata.component';
+import { CreateKataDialogComponent } from './components/code-kata/create-kata-dialog/create-kata-dialog.component';
+import { StudentKataCardComponent } from './components/code-kata/student-kata-card/student-kata-card.component';
+import { KataCardComponent } from './components/code-kata/kata-card/kata-card.component';
+import { InnerKataComponent } from './components/code-kata/inner-kata/inner-kata.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
@@ -67,6 +73,7 @@ const ROUTES: Routes = [
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
   //{ path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
 ]
+
 
 @NgModule({
   declarations: [
@@ -96,6 +103,12 @@ const ROUTES: Routes = [
     ModuleProgressComponent,
     ModuleDashCardComponent,
     CodeKataComponent,
+    ViewStudentKatasComponent,
+    EditStudentKataComponent,
+    CreateKataDialogComponent,
+    StudentKataCardComponent,
+    KataCardComponent,
+    InnerKataComponent
   ],
 
   imports: [
