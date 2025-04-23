@@ -103,6 +103,20 @@ namespace AthenaAPI.Controllers
             }
         }
 
+        [HttpGet("AllStudentKatas")]
+        public async Task<ActionResult<List<StudentKata>>> GetAllStudentKatas()
+        {
+            try
+            {
+                var studentKatas = await Task.Run(() => Utilities.StudentKatas.GetAllStudentKatas());
+                return studentKatas;
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "An error occurred while fetching katas.");
+            }
+        }
+
         [HttpPost("CreateStudentKata")]
         public async Task<ActionResult<StudentKata>> CreateStudentKata([FromBody] JObject studentKata)
         {

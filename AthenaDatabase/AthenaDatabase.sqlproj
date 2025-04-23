@@ -112,6 +112,7 @@
     <Build Include="dbo\Stored Procedures\GetOverallProgress.sql" />
     <Build Include="dbo\Stored Procedures\UpdateModule.sql" />
     <Build Include="dbo\Stored Procedures\GetModuleProgress.sql" />
+    <Build Include="dbo\Stored Procedures\GetAllStudentKatas.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AthenaDatabase.refactorlog" />
