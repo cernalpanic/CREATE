@@ -34,7 +34,7 @@ export class ViewStudentDialog implements OnInit {
   public separatorKeysCodes: number[] = [ENTER, COMMA];
   public mentorCtrl = new FormControl(null);
   public filteredMentors: Role[] = [];
-  constructor(public router: Router, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public studentService: StudentService, public breadcrumb: BreadcrumbService) {
+  constructor(public router: Router, public mentorService: MentorService, public dailyStandupService: DailyStandupService, public kataService: KataService, public studentService: StudentService, public breadcrumb: BreadcrumbService) {
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       student: Role;
@@ -46,10 +46,6 @@ export class ViewStudentDialog implements OnInit {
     breadcrumb.makeCurrentPage(pageName, router.url, state);
     breadcrumb.setPrevPages();
   }
-
-
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, public dialogRef: MatDialogRef<ViewStudentDialog>, public mentorService: MentorService, public kataService: KataService, public dailyStandupService: DailyStandupService, public studentService: StudentService) {
-    this.student = this.data.student;
 
   public ngOnInit(): void {
     this.getStudentMentors(this.student.RoleID);
