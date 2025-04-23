@@ -13,11 +13,14 @@ export class InnerKataComponent {
   public kata: Kata;
 
   constructor(private router: Router, public kataService: KataService, public breadcrumb: BreadcrumbService) {
+    //Get the kata from the router state
     const navigation = this.router.getCurrentNavigation();
     const state = navigation?.extras.state as {
       kata: Kata;
     };
     this.kata = state.kata;
+
+    //Set the breadcrumb
     const pageName: string = this.kata.KataName;
     breadcrumb.makeCurrentPage(pageName, router.url, state);
     breadcrumb.setPrevPages();

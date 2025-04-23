@@ -1,10 +1,17 @@
 <app-breadcrumbs [currentPage]=""></app-breadcrumbs>
-<div class="card" style="width: 18rem;">
-    <div class="card-body">
-        <h5 class="card-title">{{kata.KataName}}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Card Subtitle</h6>
-        <p class="card-text">This is a simple card example using Bootstrap. You can add more content here.</p>
-        <a href="#" class="card-link">Card Link</a>
-        <a href="#" class="card-link">Another Link</a>
+<h2>{{kata.KataName}}</h2>
+<div class="kata-container row">
+
+    <div class="kata-icon col-3-md">
+        <i class="bi bi-code-square"></i>
+    </div>
+
+    <div class="info-box col-9-md">
+        <div class="info-box-header">
+            <h3>Description</h3>
+        </div>
+        <div class="info-box-content">
+            <p>{{kata.Description}}</p>
+        </div>
     </div>
 </div>
