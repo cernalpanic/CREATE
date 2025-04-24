@@ -7,6 +7,12 @@
         <!-- Student's card view -->
       <ng-container *ngIf="role.Name == 'Student'">
         <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating">
+          <div>
+            <span>
+              <h6>Description:</h6>
+              <p>{{kata.Description}}</p>
+            </span>
+          </div>
           <label class="textarea-label" for="dsYesterdayTask">My Code:</label>
           <textarea class="form-control"
                     id="dsYesterdayTask"

@@ -114,13 +114,22 @@ export class CodeKataComponent {
       let kata = new Kata(k);
       this.katas.push(kata);
     });
-    this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
     
     if (this.role.Name == 'Student'){
-    for(let kata of this.katas)//Populate student katas to show all student katas(Currently needs a refresh to display new katas)
+      let needsRefresh = false;
+      for(let kata of this.katas)//Populate student katas to show all student katas(Currently needs a refresh to display new katas)
       {
-        this.createStudentKata(this.getStudentKataForKata(kata), kata);
-      }}
+        if(this.createStudentKata(this.getStudentKataForKata(kata), kata))
+        needsRefresh = true;
+      }
+      if(needsRefresh){
+        this.refreshPage();
+      }
+    }
+
+    this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
+    
+    
   }
 
   
@@ -148,6 +157,15 @@ export class CodeKataComponent {
   createStudentKata(sk: StudentKata | undefined, k: Kata){
      if(!sk){
        this.kataService.AddStudentKata(this.role.RoleID, k.KataID);
+       return true;
+     }else{
+      return false;
      }
   }
+
+  private refreshPage(): void {
+      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+      this.router.onSameUrlNavigation = 'reload';
+      this.router.navigate([this.router.url]);
+    }
 }
