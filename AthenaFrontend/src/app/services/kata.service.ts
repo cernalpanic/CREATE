@@ -94,7 +94,6 @@ export class KataService {
     //Adds a student kata
     public AddStudentKata(studentID: any, kataID: any): Promise<any> {
         const data = { KataID: kataID, StudentID: studentID };
-        console.log(data);
         return new Promise(resolve => {
             this.http.post(this.apiUrl + '/Katas/CreateStudentKata', data).subscribe((data: any) => {
                 resolve(data);

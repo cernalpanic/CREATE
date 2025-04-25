@@ -32,8 +32,44 @@
               Description is required
             </div>
           </div>
-        </div>
+
+          <!-- If the user is a student // NOT IMPLEMENTED, but can be added later
+          <ng-container *ngIf="role.Name == 'Student'">
+            <h6>My Code:</h6>
+            <textarea class="form-control"
+                      id="studentCode"
+                      [(ngModel)]="studentCode"
+                      name="studentCode"
+                      required
+                      #descField="ngModel">
+            </textarea>
+            <div *ngIf="descField.invalid && descField.touched" class="text-danger">
+              Description is required
+            </div>
+
+            <h6>My Notes:</h6>
+            <textarea class="form-control"
+                      id="studentNotes"
+                      [(ngModel)]="studentNotes"
+                      name="studentNotes"
+                      required
+                      #descField="ngModel">
+            </textarea>
+
+            <h6>Completion Time:</h6>
+            <textarea class="form-control"
+                      id="completionTime"
+                      [(ngModel)]="completionTime"
+                      name="completionTime"
+                      required
+                      #descField="ngModel">
+            </textarea>
+          </ng-container>
+           -->
   
+        </div>
+
+        
         <div class="col-12">
           <button id="submit"
                   class="btn btn-primary"
