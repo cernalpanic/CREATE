@@ -48,7 +48,6 @@ export class ViewStudentDialog implements OnInit {
     breadcrumb.setPrevPages();
   }
 
-
   public ngOnInit(): void {
     this.getStudentMentors(this.student.RoleID);
     this.getAllMentors();
