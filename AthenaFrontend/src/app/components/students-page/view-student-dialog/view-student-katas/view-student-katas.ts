@@ -14,6 +14,7 @@ import { KataService } from 'src/app/services/kata.service';
 })
 export class ViewStudentKatasComponent {
   @Input() studentKatas: StudentKata[] = [];
+  @Input() student: any;
   public katas: Kata[] = [];
   displayedColumns: string[] = ["kata_name", "completed", "add_feedback"];
 
@@ -84,7 +85,7 @@ export class ViewStudentKatasComponent {
 
     this.dialog.open(EditStudentKataComponent, {
       panelClass: 'kata-dialog',
-      data: { studentKata: studentKata, kata: kata }
+      data: { studentKata: studentKata, kata: kata, student: this.student }
     });
   }
 }
