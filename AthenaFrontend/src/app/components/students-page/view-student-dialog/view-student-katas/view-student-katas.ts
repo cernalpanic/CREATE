@@ -13,7 +13,8 @@ import { KataService } from 'src/app/services/kata.service';
   styleUrls: ['./view-student-katas.css']
 })
 export class ViewStudentKatasComponent {
-  @Input() katas: StudentKata[] = [];
+  @Input() studentKatas: StudentKata[] = [];
+  public katas: Kata[] = [];
   displayedColumns: string[] = ["kata_name", "completed", "add_feedback"];
 
   //paginator setup
@@ -43,11 +44,26 @@ export class ViewStudentKatasComponent {
 
   constructor(public dialog: MatDialog, public snackbar: MatSnackBar, public kataService: KataService) { }
 
-  statusText = 'Not Completed';
-  thisdate = new Date;
+  public async ngOnInit(): Promise<void> {
+    //get all katas for kata name
+    const kataQuery: Kata[] = await this.kataService.GetKatas();
+    kataQuery.forEach(k => {
+      this.katas.push(new Kata(k));
+    });
+  }
+
+  public getKataName(kataID: string): string {
+    let kataName = "";
+    this.katas.forEach(k => {
+      if (k.KataID == kataID) {
+        kataName = k.KataName;
+      }
+    });
+    return kataName;
+  }
+
 
   public async editKata(studentKata: StudentKata): Promise<void> {
-
     //this should be changed by adding a API function to get a Kata by ID
     //but its not implemented yet so this is a temp solution
     const katas: Kata[] = await this.kataService.GetKatas();
@@ -58,10 +74,13 @@ export class ViewStudentKatasComponent {
       if (i == 0) {
         kata = new Kata(k);
         if (kata.KataID == studentKata.KataID) {
-          i = 1;
+          i = 1; //found kata, no need to continue searching
         }
       }
-    })
+      else {
+        return;
+      }
+    });
 
     this.dialog.open(EditStudentKataComponent, {
       panelClass: 'kata-dialog',
