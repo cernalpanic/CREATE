@@ -1,4 +1,16 @@
 
+@media screen and (max-width: 1400px){
+  #cards-container{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+.col{
+  flex-shrink: 0;
+  flex-grow: 0;
+  min-width: 380px;
+}
 .card {
   margin: 0;
   border-radius: 30px;
