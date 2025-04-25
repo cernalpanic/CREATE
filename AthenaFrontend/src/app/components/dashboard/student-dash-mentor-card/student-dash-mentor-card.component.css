@@ -10,6 +10,7 @@
   flex-grow: 0;
   flex-shrink: 0;
   flex-basis: 33%;
+  width: fit-content;
 }
 .card {
   margin: 0;
@@ -18,7 +19,7 @@
   border: none;
   position: relative;
   height: fit-content;
-  min-width: 200px;
+  min-width: 380px;
 }
 
 .card-body img {
