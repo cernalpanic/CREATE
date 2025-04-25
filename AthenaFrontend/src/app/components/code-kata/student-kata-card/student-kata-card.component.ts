@@ -48,11 +48,12 @@ export class StudentKataCardComponent {
       return sk.Complete;
     }
   }
-  // createStudentKata(sk: StudentKata | undefined, k: Kata){
-  //   if(!sk){
-  //     this.kataService.AddStudentKata(this.role.RoleID, k.KataID);
-  //   }
-  // }
+   createStudentKata(sk: StudentKata | undefined, k: Kata){
+     if(!sk){
+       this.kataService.AddStudentKata(this.role.RoleID, k.KataID);
+     }
+  }
+
 
   editStudentKata(sk: StudentKata, kata: Kata) {
     this.dialog.open(EditStudentKataComponent, {

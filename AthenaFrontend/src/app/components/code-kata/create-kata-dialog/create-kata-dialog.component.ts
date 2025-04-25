@@ -20,6 +20,10 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./create-kata-dialog.component.css']
 })
 export class CreateKataDialogComponent {
+  public auth: any;
+  public role: any;
+  //public katas: Kata[] = [];
+
   constructor(
     public dialogRef: MatDialogRef<CreateKataDialogComponent>,
     public dialog: MatDialog,
@@ -36,12 +40,20 @@ export class CreateKataDialogComponent {
     breadcrumb.setPrevPages();
   }
 
+  public async ngOnInit() {
+    this.auth = new AuthToken(await this.authService.getAuthentication());
+    this.role = this.auth.Role;
+  }
+
+
   name: string = '';
   description: string = '';
+  // studentCode: string = '';
+  // studentNotes: string = '';
+  // completionTime: string = '';
 
-  createKata(name: string, desc: string){
-
-    this.kataService.AddKata(desc,name).then((result: boolean) => {
+  async createKata(name: string, desc: string) {
+    this.kataService.AddKata(desc, name).then((result: boolean) => {
       if (result) {
         this.dialogRef.close(true);
         this.refreshPage();
@@ -52,11 +64,12 @@ export class CreateKataDialogComponent {
     }).catch((error) => {
       console.error('Error:', error);
     });
-    }
 
-    private refreshPage(): void {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([this.router.url]);
-    }
   }
+
+  private refreshPage(): void {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload'
+    this.router.navigate([this.router.url]);
+  }
+}
