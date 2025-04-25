@@ -1,44 +1,6 @@
 <ng-container *ngIf="katas">
     <mat-accordion>
-      <!-- Commented out for now because does not add additional functionality -->
-      <!-- Panel showing today's standup 
-      <mat-expansion-panel hideToggle>
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-              Most Recent Standup
-          </mat-panel-title>
-      </mat-expansion-panel-header>
-      <table mat-table [dataSource]="standups | slice:0:1" class="mat-elevation-z8">
-        -->
-        <!-- Standup Date Column
-        <ng-container matColumnDef="standup_date">
-          <th mat-header-cell *matHeaderCellDef> Standup Date </th>
-          <td mat-cell *matCellDef="let standup"> {{standup.dateCreated | date: "MM/dd/yyyy"}} </td>
-        </ng-container>
-         -->
-        <!-- Completed Column 
-        <ng-container matColumnDef="completed">
-          <th mat-header-cell *matHeaderCellDef> Completed? </th>
-          <td mat-cell *matCellDef="let standup"> 
-            {{(standup.yesterdayTask.trim() != '' && standup.todayPlan.trim() != '' && standup.blockers.trim() != '') ? 'Yes' : 'No' }} 
-          </td>
-        </ng-container>
-        -->
-        <!-- Add Feedback Column 
-        <ng-container matColumnDef="add_feedback">
-          <th mat-header-cell *matHeaderCellDef> Add Feedback </th>
-          <td mat-cell *matCellDef="let standup"> 
-            <button class="btn feedback-button btn-sm" (click)="editStandup(standup)">Add Feedback</button>
-          </td>
-        </ng-container>
-    
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
-      </mat-expansion-panel>
-      -->
-    
-      <!-- Paginated table panel showing past standups -->
+      <!-- Paginated table panel showing katas -->
       <mat-expansion-panel hideToggle>
         <mat-expansion-panel-header>
           <mat-panel-title>

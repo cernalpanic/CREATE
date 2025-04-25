@@ -22,6 +22,22 @@ h3 {
     align-items: center;
 }
 
+.katas-table {
+    padding: 30px;
+    background-color: var(--kataprimary);
+}
+
+.student-kata-container {
+    background: var(--modulebg);
+    border-radius: 30px;
+    box-shadow: 0px 2px 20px 2px var(--boxshadow);
+    padding: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+    align-items: center;
+}
+
 .kata-icon {
     float: left;
     width: 100px;
@@ -34,4 +50,43 @@ h3 {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+    background: var(--kataprimary);
+    color: var(--tabtext)
+}
+
+.mat-expansion-panel-header-title {
+    color: var(--tabtext);
+    font-weight: 800;
+    font-size: 0.8rem;
+    padding: 10px;
+}
+
+.mat-expansion-panel-header-description {
+    color: var(--tabtext);
+    font-size: 0.8rem;
+}
+
+.mat-expansion-panel:not([class*="mat-elevation-z"]) {
+    box-shadow: none;
+    background: var(--kataprimary);
+}
+
+.feedback-button {
+    background-color: var(--kataprimary);
+    color: white;
+    border-radius: 12px;
+    text-align: center;
+    padding: 5px 10px;
+    font-size: 14px;
+}
+
+.mat-expansion-panel-header-title {
+    color: var(--tabtext);
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 10px;
 }
