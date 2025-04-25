@@ -52,7 +52,7 @@ export class CodeKataComponent {
 
     //get lower and upper pagination bounds
     this.paginatedLower = (this.pageIndex * this.pageSize);
-    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
+    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize;
 
     //set paginated katas
     this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
@@ -66,7 +66,7 @@ export class CodeKataComponent {
 
     //get lower and upper pagination bounds
     this.paginatedLower = (this.pageIndex * this.pageSize);
-    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize + 1;
+    this.paginatedUpper = (this.pageIndex * this.pageSize) + this.pageSize;
 
     //set paginated katas
     this.paginatedStudentKatas = this.studentKatas.slice(this.paginatedLower, this.paginatedUpper);
@@ -102,7 +102,7 @@ export class CodeKataComponent {
         let studentkata = new StudentKata(sk);
         this.studentKatas.push(studentkata);
       });
-      
+
       this.paginatedStudentKatas = this.studentKatas.slice(this.paginatedLower, this.paginatedUpper);
 
     } else if (this.role.Name == 'Mentor') {
@@ -114,25 +114,25 @@ export class CodeKataComponent {
       let kata = new Kata(k);
       this.katas.push(kata);
     });
-    
-    if (this.role.Name == 'Student'){
+
+    if (this.role.Name == 'Student') {
       let needsRefresh = false;
-      for(let kata of this.katas)//Populate student katas to show all student katas(Currently needs a refresh to display new katas)
+      for (let kata of this.katas)//Populate student katas to show all student katas(Currently needs a refresh to display new katas)
       {
-        if(this.createStudentKata(this.getStudentKataForKata(kata), kata))
-        needsRefresh = true;
+        if (this.createStudentKata(this.getStudentKataForKata(kata), kata))
+          needsRefresh = true;
       }
-      if(needsRefresh){
+      if (needsRefresh) {
         this.refreshPage();
       }
     }
 
     this.paginatedKatas = this.katas.slice(this.paginatedLower, this.paginatedUpper);
-    
-    
+
+
   }
 
-  
+
   getStudentKataForKata(kata: Kata): StudentKata | undefined {
     return this.studentKatas?.find(sk => sk.KataID === kata.KataID);
   }
@@ -154,18 +154,18 @@ export class CodeKataComponent {
 
   }
 
-  createStudentKata(sk: StudentKata | undefined, k: Kata){
-     if(!sk){
-       this.kataService.AddStudentKata(this.role.RoleID, k.KataID);
-       return true;
-     }else{
+  createStudentKata(sk: StudentKata | undefined, k: Kata) {
+    if (!sk) {
+      this.kataService.AddStudentKata(this.role.RoleID, k.KataID);
+      return true;
+    } else {
       return false;
-     }
+    }
   }
 
   private refreshPage(): void {
-      this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-      this.router.onSameUrlNavigation = 'reload';
-      this.router.navigate([this.router.url]);
-    }
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
+    this.router.navigate([this.router.url]);
+  }
 }
