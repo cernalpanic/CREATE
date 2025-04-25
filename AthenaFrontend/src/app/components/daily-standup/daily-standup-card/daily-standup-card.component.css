@@ -9,9 +9,10 @@
 .col{
   flex-shrink: 0;
   flex-grow: 0;
-  min-width: 380px;
+  width: fit-content;
 }
 .card {
+  min-width: 400px;
   margin: 0;
   border-radius: 30px;
   box-shadow: 0px 2px 20px 2px var(--boxshadow);
