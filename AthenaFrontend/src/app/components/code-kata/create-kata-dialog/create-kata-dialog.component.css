@@ -9,7 +9,9 @@
   .input-group .form-floating>label {
     left: 0;
   }
-  
+  form{
+    min-width: 1000px;
+  }
   
   #show-hide {
     transition: all .5s ease;
