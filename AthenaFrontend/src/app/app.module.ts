@@ -71,7 +71,7 @@ const ROUTES: Routes = [
     canActivate: [AuthGuard],
   },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  //{ path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
+  { path: 'code-kata/:KataName', component: InnerKataComponent, canActivate: [AuthGuard] },
 ]
 
 

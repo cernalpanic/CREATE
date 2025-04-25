@@ -8,6 +8,7 @@ import { AuthToken } from '../../../../models/authtoken.model';
 import { StudentService } from '../../../services/student.service';
 import { Kata } from 'src/models/kata.model';
 import { KataService } from 'src/app/services/kata.service';
+import { Role } from 'src/models/role.model';
 
 @Component({
   selector: 'app-edit-student-kata',
@@ -44,6 +45,11 @@ export class EditStudentKataComponent {
       const student = await this.studentService.GetStudent(this.role.RoleID);
       this.student = student.student;
     }
+    //Need to get the student from the data
+    else {
+      this.student = this.data.student;
+
+    }
   }
 
   public updateStudentKata(): void {
@@ -77,6 +83,12 @@ export class EditStudentKataComponent {
   private refreshPage(): void {
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
-    this.router.navigate([this.router.url]);
+
+    //Mentor is viewing from student page and needs to pass the student back
+    if (this.role.Name != "Student")
+      this.router.navigate([this.router.url], { state: { student: this.student, auth: this.auth, expectedRole: 'Mentor' } });
+    //Student is viewing from dashboard and does not need additional parameters
+    else
+      this.router.navigate([this.router.url]);
   }
 }

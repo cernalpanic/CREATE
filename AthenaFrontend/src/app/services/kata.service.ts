@@ -41,6 +41,17 @@ export class KataService {
         });
     }
 
+    //Returns all student katas
+    public GetAllStudentKatas(): Promise<any> {
+        return new Promise(resolve => {
+            this.http.get(this.apiUrl + '/Katas/AllStudentKatas').subscribe((data: any) => {
+                resolve(data);
+            }, error => {
+                resolve(false);
+            });
+        });
+    }
+
     //Updates a general kata
     public UpdateKata(kataID: any, description: string, dateAssigned: any, kataName: string): Promise<any> {
         const data = { kataID: kataID, description: description, dateAssigned: dateAssigned, kataName: kataName };
@@ -69,7 +80,7 @@ export class KataService {
 
     //Adds a new general Kata
     public AddKata(name: any, description: any): Promise<any> {
-        const data = { Description: description, KataName: name};
+        const data = { Description: description, KataName: name };
         console.log(data);
         return new Promise(resolve => {
             this.http.post(this.apiUrl + '/Katas/CreateKata', data).subscribe((data: any) => {
@@ -82,8 +93,7 @@ export class KataService {
 
     //Adds a student kata
     public AddStudentKata(studentID: any, kataID: any): Promise<any> {
-        const data = { KataID: kataID, StudentID: studentID};
-        console.log(data);
+        const data = { KataID: kataID, StudentID: studentID };
         return new Promise(resolve => {
             this.http.post(this.apiUrl + '/Katas/CreateStudentKata', data).subscribe((data: any) => {
                 resolve(data);

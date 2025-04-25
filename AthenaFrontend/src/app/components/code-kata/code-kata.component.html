@@ -4,7 +4,6 @@
 <ng-container *ngIf="role.Name == 'Mentor'">
   <h2>All Katas</h2>
     <div class="btn-container">
-
         <!-- Button to create new kata -->
         <a class="btn btn-primary" (click)="openCreateKataDiaglogue()"><i class="bi bi-plus"></i>Add Kata</a> 
     </div>
@@ -42,6 +41,10 @@
 <!-- Student's Kata Page View -->
 <ng-container *ngIf="role.Name == 'Student'">
   <h2>Available Katas</h2>
+  <div class="btn-container">
+    <!-- Button to create new kata -->
+    <a class="btn btn-primary" (click)="openCreateKataDiaglogue()"><i class="bi bi-plus"></i>Add Kata</a> 
+  </div>
   <ng-container *ngFor="let studentKata of paginatedStudentKatas; let i = index">
     <div *ngIf="i%3 == 0" class="row">
       <div class="col-md-4">
