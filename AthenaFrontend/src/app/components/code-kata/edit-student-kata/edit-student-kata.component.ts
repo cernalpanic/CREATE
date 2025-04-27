@@ -62,6 +62,7 @@ export class EditStudentKataComponent {
     if (newStudentCode != '' && newStudentCode != null)
       completed = true;
 
+
     //update the standup
     this.kataService.UpdateStudentKata(this.kata.KataID.toString(), this.studentKata.StudentID.toString(), completed, completionTime, newStudentCode, newStudentNotes, newAdminFeedback).then((result: boolean) => {
       if (result) {
@@ -86,7 +87,7 @@ export class EditStudentKataComponent {
 
     //Mentor is viewing from student page and needs to pass the student back
     if (this.role.Name != "Student")
-      this.router.navigate([this.router.url], { state: { student: this.student, auth: this.auth, expectedRole: 'Mentor' } });
+      this.router.navigate([this.router.url], { state: { student: this.student, kata: this.kata, auth: this.auth, expectedRole: 'Mentor' } });
     //Student is viewing from dashboard and does not need additional parameters
     else
       this.router.navigate([this.router.url]);

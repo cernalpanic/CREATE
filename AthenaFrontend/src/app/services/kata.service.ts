@@ -68,7 +68,6 @@ export class KataService {
     //Updates a student's kata
     public UpdateStudentKata(kataID: any, studentID: any, complete: boolean, completionTime: string, studentCode: string, studentNotes: string, adminFeedback: string): Promise<any> {
         const data = { KataID: kataID, StudentID: studentID, Complete: complete, CompletionTime: completionTime, StudentCode: studentCode, StudentNotes: studentNotes, AdminFeedback: adminFeedback };
-        console.log(data);
         return new Promise(resolve => {
             this.http.put(this.apiUrl + '/Katas/UpdateStudentKata', data).subscribe((data: any) => {
                 resolve(data);
