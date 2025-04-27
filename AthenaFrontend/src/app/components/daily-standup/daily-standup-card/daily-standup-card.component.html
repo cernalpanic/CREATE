@@ -10,7 +10,8 @@
             <b *ngIf="standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''">Completed</b>
           </p>
           <div class="btn-container">
-            <a class="btn btn-primary" *ngIf="standup.getDateCreated.getTime() >= today.getTime()" (click)="editStandup(standup, true)">Edit Daily Standup</a>
+            <a class="btn btn-primary" style="background-color: var(--errormsgcolor);" *ngIf="standup.getDateCreated.getTime() >= today.getTime() && (standup.yesterdayTask == '' || standup.todayPlan == '' || standup.blockers == '')" (click)="editStandup(standup, true)">Start Daily Standup</a>
+            <a class="btn btn-primary" *ngIf="standup.getDateCreated.getTime() >= today.getTime() && standup.yesterdayTask != '' && standup.todayPlan != '' && standup.blockers != ''" (click)="editStandup(standup, true)">Edit Daily Standup</a>
             <a class="btn btn-primary" *ngIf="standup.dateCreated.getTime() < today.getTime()" (click)="editStandup(standup, false)">View Daily Standup</a>
           </div>
         </div>
