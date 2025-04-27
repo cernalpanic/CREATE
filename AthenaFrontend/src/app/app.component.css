@@ -21,6 +21,7 @@
   position: relative;
   margin: 0 1% 0 1%;
   min-height: 100%;
+  height: fit-content;
 }
 
 #user-name {
