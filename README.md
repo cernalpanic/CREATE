@@ -57,7 +57,7 @@ The API requires a SQL Server database for local development. Follow these steps
 
 ## Notes
 - Ensure that all dependencies for .NET 9 and Angular are installed.
-- For Angular, use `npm install` in the `AthenaFrontend` directory to set up the required dependencies, after that use `ng serve` to start the front end
+- For Angular, use `npm install` in the `AthenaFrontend` directory to set up the required dependencies, after that use `ng serve` to start the front end.
 - For the API, use the `.NET CLI` or Visual Studio to restore dependencies and run the project.
 ## Unfinished Feature Notes
 - Katas currently functional, but need implementation for the kata examples. The backend is set up to handle getting and adding kata examples, but the project currently lacks any front end implementation for them.
