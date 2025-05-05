@@ -59,8 +59,36 @@ The API requires a SQL Server database for local development. Follow these steps
 - Ensure that all dependencies for .NET 9 and Angular are installed.
 - For Angular, use `npm install` in the `AthenaFrontend` directory to set up the required dependencies, after that use `ng serve` to start the front end.
 - For the API, use the `.NET CLI` or Visual Studio to restore dependencies and run the project.
-## Unfinished Feature Notes
+
+## NDSU 2025 Capstone Team
+We had four major lines of effort:
+- Code Katas
+- Daily Standups
+- CSS Refactor
+- Bug Fixes/Finishing incomplete features
+Our team left some notes below for where we left off on each line item.
+
+###CSS Refactor/Restyling
+   Main Problem: Major HTML/CSS elements don't react well to screen resizing.
+   Solution: Incorporate Flexboxes into the CSS code for the specific HTML classes.
+   Pages in the application where this is mostly complete:
+      Mentor Side: Dashboard, Students
+      Student Side: Dashboard
+   Pages where this is incomplete:
+      Mentor Side: Modules*, Katas, Settings
+      Student Side: Modules*, Katas, Settings
+   Special Notes:
+      The two different sides of the application, Student and Mentor, share most HTML/CSS elements so fixing this problem for one side fixes it for both.
+      For some reason the modules page pulls its module cards from a different HTML file than the Dashboard, unless something different is going to be done with          the modules page’s cards this is redundant.
+   Minor Problems:
+      Adjusting weird margins, padding, hardcoded values that should be dynamic, text overflow, etc.
+
+###Code Katas
 - Katas currently functional, but need implementation for the kata examples. The backend is set up to handle getting and adding kata examples, but the project currently lacks any front end implementation for them.
 - Another feature currently missing for the kata component is any 'gamification' such as experience and badges.
+
+###Daily Standups
+
+###Bug Fixes/Finishing Incomplete Features
 
 ---
