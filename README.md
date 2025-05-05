@@ -68,7 +68,7 @@ We had four major lines of effort:
 - Bug Fixes/Finishing incomplete features
 Our team left some notes below for where we left off on each line item.
 
-###CSS Refactor/Restyling
+### CSS Refactor/Restyling
    Main Problem: Major HTML/CSS elements don't react well to screen resizing.
    Solution: Incorporate Flexboxes into the CSS code for the specific HTML classes.
    Pages in the application where this is mostly complete:
@@ -83,12 +83,12 @@ Our team left some notes below for where we left off on each line item.
    Minor Problems:
       Adjusting weird margins, padding, hardcoded values that should be dynamic, text overflow, etc.
 
-###Code Katas
+## Code Katas
 - Katas currently functional, but need implementation for the kata examples. The backend is set up to handle getting and adding kata examples, but the project currently lacks any front end implementation for them.
 - Another feature currently missing for the kata component is any 'gamification' such as experience and badges.
 
-###Daily Standups
+### Daily Standups
 
-###Bug Fixes/Finishing Incomplete Features
+### Bug Fixes/Finishing Incomplete Features
 
 ---
