@@ -66,6 +66,7 @@ We had four major lines of effort:
 - Daily Standups
 - CSS Refactor
 - Bug Fixes/Finishing incomplete features
+  
 Our team left some notes below for where we left off on each line item.  
 
 ### CSS Refactor/Restyling
@@ -88,12 +89,28 @@ Our team left some notes below for where we left off on each line item.
 **Minor Problems:**  
 - Adjusting weird margins, padding, hardcoded values that should be dynamic, text overflow, etc.  
 
-## Code Katas
+### Code Katas
 - Katas currently functional, but need implementation for the kata examples. The backend is set up to handle getting and adding kata examples, but the project currently lacks any front end implementation for them.
 - Another feature currently missing for the kata component is any 'gamification' such as experience and badges.
 
 ### Daily Standups
 
 ### Bug Fixes/Finishing Incomplete Features
+**Main Problem:** There were bugs present in the project, along with unfinished features that were present on the web app
+
+**Solution:** Find and solve the bugs present in the code, and complete the unfinished features
+
+**Completed Bugs and Features:**
+- A comprehensive list of fixed bugs can be found in the GitHub issues
+   - Examples include the Logout issue and user profile picture 
+- For unfinished features, the stats shown on a Mentor’s view of a module were not functional. Using API calls, the stats were calculated in their respective TypeScript file, and are now shown on the module page
+- Also, module tabs were axed, as they did not provided a use (further explanation in GitHub Issues). Work done on this was transferred over to having the amount of quests, posted and unposted, shown to a mentor on a module webpage
+
+**Incomplete Bus and Issues:**
+- Again, there is a comprehensive list on the Github Issues for bugs and issues that were not solved.
+   - Examples include going to the dashboard when refreshing a page and the deciding how to handle unposted quest from a students perspective (cascading issue)
+
+**Special Notes:** 
+The major bugs left are more issues with the current way things are handled than errors or faulty code, such as unposted quests; do you hard delete a students work or do you store it someplace new in the database when a completed quest is unposted? The first steps to solving these issues would be to determine with FBS what they would like or need out of the web app, and then go about implementing a solution the is inline with that vision.
 
 ---
