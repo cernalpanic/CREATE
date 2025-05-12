@@ -94,6 +94,15 @@ Our team left some notes below for where we left off on each line item.
 - Another feature currently missing for the kata component is any 'gamification' such as experience and badges.
 
 ### Daily Standups
+**Main:** 
+- The Daily Standup feature is mainly complete, with a few potential quality of life updates that could be made.
+- Mentors are able to view and give feedback to their mentee's daily standups.
+- Responsive buttons give easy visuals for students to see if they have completed today's and for mentor's to see if they have added feedback to a student's standup
+
+**Potential Improvements:**
+- Streak tracking currently does not check the day, such as weekends or holidays. A student would have to do the standup these days to keep up their streak.
+- Currently, students can only see their three most recent standups as this value is hardcoded. It could be possible to add a paginated view or a page that shows all their previous standups if desired by FBS.
+- The standup dialog card does not have the best design, especially if students were to use many html tags that affect text appearance.
 
 ### Bug Fixes/Finishing Incomplete Features
 **Main Problem:** There were bugs present in the project, along with unfinished features that were present on the web app
