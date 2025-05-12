@@ -120,6 +120,6 @@ Our team left some notes below for where we left off on each line item.
    - Examples include going to the dashboard when refreshing a page and the deciding how to handle unposted quest from a students perspective (cascading issue)
 
 **Special Notes:** 
-The major bugs left are more issues with the current way things are handled than errors or faulty code, such as unposted quests; do you hard delete a students work or do you store it someplace new in the database when a completed quest is unposted? The first steps to solving these issues would be to determine with FBS what they would like or need out of the web app, and then go about implementing a solution the is inline with that vision.
+The majority of bugs left are more issues with the current way things are handled than errors or faulty code, such as unposted quests; do you hard delete a students work or do you store it someplace new in the database when a completed quest is unposted? The first steps to solving these issues would be to determine with FBS what they would like or need out of the web app, and then go about implementing a solution the is inline with that vision.
 
 ---
