@@ -55,6 +55,21 @@ The API requires a SQL Server database for local development. Follow these steps
 
 ---
 
+### 4. Running the Application
+
+- Complete steps 2 and 3 above
+- Run the API:
+     - Open the Visual Studio .sln file in Visual Studio to build and run the application
+     - OR open the AthenaAPI folder in cmd and run the command "dotnet run"
+- Run the Frontend
+     - Open the AthenaFrontend folder in a terminal
+     - Ensure you have run "npm install" to install dependencies
+     - Run "ng serve" to start the application
+- To view the API, navigate to [localhost:](https://localhost:7145/swagger) in any browser
+- To view the CREATE App, navigate to [localhost:](https://localhost:4200) in any browser
+
+---
+
 ## Notes
 - Ensure that all dependencies for .NET 9 and Angular are installed.
 - For Angular, use `npm install` in the `AthenaFrontend` directory to set up the required dependencies, after that use `ng serve` to start the front end.
