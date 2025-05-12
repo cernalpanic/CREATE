@@ -46,7 +46,8 @@ export class AppComponent {
     if (
       this.authService.token != undefined &&
       this.authService.token != null &&
-      this.authService.token != ''
+      this.authService.token != '' &&
+      this.authService.token != '00000000-0000-0000-0000-000000000000'
     ) {
       const authResponse = await this.authService.isAuthenticated();
       if (authResponse) {
@@ -112,10 +113,10 @@ export class AppComponent {
     }
   }
 
-  // ensures that the role is set to null on logout
-  // this prevents the sidebar from appearing on login page
+  // set role to null
+  // logout the user
   public logout() {
     this.role = null;
-    localStorage.removeItem('token');
+    this.authService.logout();
   }
 }

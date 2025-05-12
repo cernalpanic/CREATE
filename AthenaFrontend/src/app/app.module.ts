@@ -11,6 +11,7 @@ import { AuthGuardService as AuthGuard } from './services/auth/auth-guard.servic
 import { RoleGuardService as RoleGuard } from './services/auth/role-guard.service';
 import { StudentCardComponent } from './components/students-page/student-card/student-card.component';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatSelectModule } from '@angular/material/select';
@@ -40,17 +41,39 @@ import { NgCircleProgressModule } from 'ng-circle-progress';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { ModuleDashCardComponent } from './components/dashboard/module-dash-card/module-dash-card.component';
+import { CodeKataComponent } from './components/code-kata/code-kata.component';
+import { ViewStudentKatasComponent } from './components/students-page/view-student-dialog/view-student-katas/view-student-katas';
+import { EditStudentKataComponent } from './components/code-kata/edit-student-kata/edit-student-kata.component';
+import { CreateKataDialogComponent } from './components/code-kata/create-kata-dialog/create-kata-dialog.component';
+import { StudentKataCardComponent } from './components/code-kata/student-kata-card/student-kata-card.component';
+import { KataCardComponent } from './components/code-kata/kata-card/kata-card.component';
+import { InnerKataComponent } from './components/code-kata/inner-kata/inner-kata.component';
 
 const ROUTES: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'students', component: StudentsPageComponent, canActivate: [RoleGuard] },
+  { path: 'students/:StudentName', component: ViewStudentDialog, canActivate: [RoleGuard] },
+  {
+    path: 'code-kata',
+    component: CodeKataComponent,
+    canActivate: [AuthGuard], //Set to role guard when working
+  },
   { path: 'modules', component: ModulesComponent, canActivate: [AuthGuard] },
-  { path: 'modules/:ModuleID', component: InnerModuleComponent, canActivate: [AuthGuard] },
-  { path: 'quests/:QuestID', component: QuestsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'modules/:ModuleID',
+    component: InnerModuleComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'quests/:QuestID',
+    component: QuestsComponent,
+    canActivate: [AuthGuard],
+  },
   { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
-  { path: 'edit-daily-standup', component: EditDailyStandupComponent, canActivate: [AuthGuard] },
+  { path: 'code-kata/:KataName', component: InnerKataComponent, canActivate: [AuthGuard] },
 ]
+
 
 @NgModule({
   declarations: [
@@ -78,7 +101,14 @@ const ROUTES: Routes = [
     EditDailyStandupComponent,
     ViewStudentStandupsComponent,
     ModuleProgressComponent,
-    ModuleDashCardComponent
+    ModuleDashCardComponent,
+    CodeKataComponent,
+    ViewStudentKatasComponent,
+    EditStudentKataComponent,
+    CreateKataDialogComponent,
+    StudentKataCardComponent,
+    KataCardComponent,
+    InnerKataComponent
   ],
 
   imports: [
@@ -103,17 +133,19 @@ const ROUTES: Routes = [
       radius: 40,
       outerStrokeWidth: 16,
       innerStrokeWidth: 8,
-      outerStrokeColor: "#78C000",
-      innerStrokeColor: "#C7E596",
+      outerStrokeColor: '#78C000',
+      innerStrokeColor: '#C7E596',
       animationDuration: 300,
       animation: true,
       showTitle: true,
       showInnerStroke: false,
-      showBackground: false
-    })
+      showBackground: false,
+    }),
+    MatPaginatorModule
+
   ],
 
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

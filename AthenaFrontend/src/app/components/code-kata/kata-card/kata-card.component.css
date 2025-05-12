@@ -1,0 +1,59 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+}
+.card {
+    margin: 0;
+    border-radius: 30px;
+    box-shadow: 0px 2px 20px 2px var(--boxshadow);
+    border: none;
+    max-height: 200px;
+    min-width: 375px;
+}
+
+
+.card-body .kataicon {
+    float: left;
+    width: 100px;
+    height: 100px;
+    margin: 20px;
+    border-radius: 20px;
+    background: var(--kataprimary);
+    color: var(--tabtext);
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn {
+    margin: auto;
+    border-radius: 50px;
+    font-weight: 800;
+}
+
+.btn-container {
+    width: 100%;
+    text-align: center;
+    position: relative;
+    margin-left: 15px;
+
+}
+
+.info-section {
+    text-align: center;
+}
+
+.btn-primary {
+    background-color: var(--kataprimary);
+    border-color: var(--kataprimary);
+}
+
+.row {
+    margin: 0;
+}
+
+.row>* {
+    padding: 15px;
+}

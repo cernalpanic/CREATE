@@ -1,24 +1,22 @@
-
-<div class="row row-cols-3 row-cols-md-2 g-4">
-    <ng-container *ngFor="let mentor of mentors">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <div class="img-box">
-              <img [src]="mentor.ImageURL">
-            </div>
-            <div class="info-box">
-              <h5 class="card-title">{{ mentor.Person.FirstName + ' ' + mentor.Person.LastName}}</h5>
-              <p class="card-text">
-                <b>Availability</b> {{ mentor.Person.Availability }}
-              </p>
-              <p class="card-text">
-                <b>Email</b> {{ mentor.Person.Email }}
-              </p>
-            </div>
+<div id="card-container" class="row row-cols-3 row-cols-md-2 g-4">
+  <ng-container *ngFor="let mentor of mentors">
+    <div class="col">
+      <div class="card">
+        <div class="card-body">
+          <div class="img-box">
+            <img [src]="mentor.ImageURL" />
+          </div>
+          <div class="info-box">
+            <h5 class="card-title">
+              {{ mentor.Person.FirstName + " " + mentor.Person.LastName }}
+            </h5>
+            <p class="card-text">
+              <b>Availability</b> {{ mentor.Person.Availability }}
+            </p>
+            <p class="card-text"><b>Email</b> {{ mentor.Person.Email }}</p>
           </div>
         </div>
       </div>
-    </ng-container>
-  </div>
-
+    </div>
+  </ng-container>
+</div>

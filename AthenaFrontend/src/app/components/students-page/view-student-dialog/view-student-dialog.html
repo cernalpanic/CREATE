@@ -1,55 +1,145 @@
-<div class="dialog-heading">
-  <i class="bi bi-person-fill"></i> View {{student.Person.FirstName + ' ' + student.Person.LastName}}
-  <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
+<div>
+  <app-breadcrumbs [currentPage]=""></app-breadcrumbs>
 </div>
-<mat-dialog-content>
-  <div class="row g-3">
-  <div class="col-md-12">
-    <b>Full Name</b>: {{ student.Person.FirstName + ' ' + student.Person.LastName }}
-  </div>
-  <div class="col-md-12">
-    <b>Email</b>: {{ student.Person.Email }}
-  </div>
-  <div class="col-md-12">
-    <b>Availability</b>: {{ student.Person.Availability }}
-  </div>
-  <div class="col-md-12">
-      <mat-form-field class="mentor-chip-list">
-        <mat-label>Mentors</mat-label>
-        <mat-chip-grid #chipGrid aria-label="Mentor selection">
-          <ng-container *ngFor="let mentor of selectedMentors; let indx=index;">
-            <mat-chip-row (removed)="remove(indx)">
-              {{mentor.Person.FirstName + ' ' + mentor.Person.LastName }}
-              <button matChipRemove>
-                <mat-icon>cancel</mat-icon>
-              </button>
-            </mat-chip-row>
-          </ng-container>
-        </mat-chip-grid>
-        <input placeholder="New Mentor..." #mentorInput [formControl]="mentorCtrl" [matChipInputFor]="chipGrid"
-          [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-          (matChipInputTokenEnd)="add($event)" />
-        <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-          <mat-option *ngFor="let mentor of filteredMentors" [value]="mentor">{{ mentor.Person.FirstName + ' ' +
-            mentor.Person.LastName }}</mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-  </div>
-  <div class="col-md-12">
-    <b style="display: block; padding-bottom: 10px;">Module Progress</b>
-    <div>
-      <app-module-progress [studentID]="student.RoleID" [details]="true"></app-module-progress>
+<!-- View the Student as a card to resemble the rest of the website -->
+ <div class="col-12 justify-content-center d-flex">
+  <div class="card">
+    <div class="col-md-12 card-header text-center">
+      <h3 class="card-title">
+        {{ student.Person.FirstName + " " + student.Person.LastName }}
+      </h3>
+    </div>
+    <div class="card-body">
+      <!-- Combined Student Info/Mentors Row-->
+      <div class="row d-flex">
+
+        <!-- Student Info Row -->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-12 justify-content-center d-flex">
+              <div class="info-section-header text-center">
+                <h5 class="section-title">
+                  Student Info
+                </h5>
+              </div>
+            </div>
+            <div class="info-section-body justify-content-center d-flex">
+              <div class="">
+                <table class="table">
+                  <tr>
+                    <td class="table-head">Email: </td>
+                    <td>{{this.student.Person.Email}}</td>
+                  </tr>
+                  <tr>
+                    <td class="table-head">Availability: </td>
+                    <td *ngIf="this.student.Person.Availability != null && this.student.Person.Availability != ''">{{this.student.Person.Availability}}</td>
+                    <td *ngIf="this.student.Person.Availability == null || this.student.Person.Availability == ''">Not Available</td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- END Module Progress Row -->
+
+        <!-- Mentor Row -->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-12 justify-content-center d-flex">
+              <div class="info-section-header text-center">
+                <h5 class="section-title">
+                  Mentors
+                </h5>
+              </div>
+            </div>
+            <div class="col-md-12 info-section-body justify-content-center d-flex">
+              <mat-form-field class="mentor-chip-list">
+                <mat-chip-grid #chipGrid aria-label="Mentor selection">
+                  <ng-container *ngFor="let mentor of selectedMentors; let indx=index;">
+                    <mat-chip-row (removed)="remove(indx)">
+                      {{mentor.Person.FirstName + ' ' + mentor.Person.LastName }}
+                      <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                      </button>
+                    </mat-chip-row>
+                  </ng-container>
+                </mat-chip-grid>
+                <input placeholder="New Mentor..." #mentorInput [formControl]="mentorCtrl" [matChipInputFor]="chipGrid"
+                  [matAutocomplete]="auto" [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                  (matChipInputTokenEnd)="add($event)" />
+                <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+                  <mat-option *ngFor="let mentor of filteredMentors" [value]="mentor">{{ mentor.Person.FirstName + ' ' +
+                    mentor.Person.LastName }}</mat-option>
+                </mat-autocomplete> 
+        
+              </mat-form-field>
+            </div>
+          </div>
+          </div>
+
+        <!-- END Mentor Row -->
+
+      </div>
+      <!-- END Mentor/Module Row -->
+
+      <!-- Combinend Modules/Standups Row-->
+      <div class="row">
+      <!-- Module Progress Row -->
+      <div class="col-md-6">
+        <div class="row">
+          <div class="col-12 justify-content-center d-flex">
+            <div class="info-section-header text-center">
+              <h5 class="section-title">
+                Modules Progress
+              </h5>
+            </div>
+          </div>
+          <div class="info-section-body">
+            <div>
+              <app-module-progress [studentID]="student.RoleID" [details]="true"></app-module-progress>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- END Module Progress Row -->
+
+        <!-- Daily Standup Row -->
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-12 justify-content-center d-flex">
+              <div class="info-section-header text-center">
+                <h5 class="section-title">
+                  Standup Progress
+                </h5>
+              </div>
+            </div>
+            <div class="info-section-body">
+              <app-view-student-standups [standups]="standups" [student]="student"></app-view-student-standups>
+            </div>
+          </div>
+        </div>
+        <!-- END Daily Standup Row -->
+
+        
+      </div>
+      <!-- END Combined Standup/Kata Row -->
+
+      <!-- Code Kata Row -->
+      <div class="col-md-12">
+        <div class="row">
+          <div class="col-12 justify-content-center d-flex">
+            <div class="info-section-header text-center">
+              <h5 class="section-title">
+                Code Kata Progress
+              </h5>
+            </div>
+          </div>
+          <div class="kata-row justify-content-center d-flex">
+            <app-view-student-katas [studentKatas]="katas" [student]="student"></app-view-student-katas>
+          </div>
+        </div>
+      </div>
+      <!-- End Code Kata Row -->
     </div>
   </div>
-  <div class="col-md-12">
-    <b style="display: block; padding-bottom: 10px;">Standup Progress</b>
-    <div>
-      <app-view-student-standups [standups]="standups"></app-view-student-standups>
-    </div>
-  </div>
-  <div class="col-12">
-    <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()" *ngIf="!changes">OK</button>
-    <button id="submit" class="btn btn-primary" type="submit" (click)="saveChanges()" *ngIf="changes">Save Changes</button>
-  </div>
-  </div>
-</mat-dialog-content>
+

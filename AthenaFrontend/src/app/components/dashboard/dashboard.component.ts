@@ -5,6 +5,7 @@ import { StudentService } from 'src/app/services/student.service';
 import { ModuleService } from 'src/app/services/module.service';
 import { AddMentorDialog } from './add-mentor-dialog/add-mentor-dialog';
 import { Role } from 'src/models/role.model';
+import { DailyStandup } from 'src/models/dailystandup';
 import { Mentor } from 'src/models/mentor.model';
 import { Student } from 'src/models/student.model';
 import { Module } from 'src/models/module';
@@ -30,6 +31,7 @@ export class DashboardComponent {
 
   public allModules: Module[] = [];
   public studentMentors: any;
+  public currentUser: any;
 
   constructor(
     public dialog: MatDialog,
@@ -42,19 +44,20 @@ export class DashboardComponent {
     public authService: AuthService,
     public breadcrumb: BreadcrumbService
   ) {
-    this.initialize();
-
     const pageName: string = 'dashboard';
     breadcrumb.makeCurrentPage(pageName, router.url, '');
     breadcrumb.setPrevPages();
   }
 
-  public async initialize() {
+  public async ngOnInit() {
+    console.log("dashboard initialize has run!");
     const response = await this.authService.getAuthentication();
     this.auth = new AuthToken(response);
     this.role = this.auth.Role;
     if (this.role.Name == 'Student') {
+      const student = await this.studentService.GetStudent(this.role.RoleID);
       this.role.Person = new Student(this.role.Person);
+      this.currentUser = student.student;
       this.showS = true;
     } else if (this.role.Name == 'Mentor') {
       this.role.Person = new Mentor(this.role.Person);
@@ -133,4 +136,6 @@ export class DashboardComponent {
       duration: 3000,
     });
   }
+
+
 }

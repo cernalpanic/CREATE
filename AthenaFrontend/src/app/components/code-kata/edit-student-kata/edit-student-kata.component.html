@@ -1,0 +1,79 @@
+<div class="dialog-heading">
+    <i class="bi bi-code-square"></i> Code Kata - {{kata.KataName}}
+    <div class="close" [mat-dialog-close]><i class="bi bi-x-lg"></i></div>
+  </div>
+  <mat-dialog-content>
+    <div class="row g-3">
+        <!-- Student's card view -->
+      <ng-container *ngIf="role.Name == 'Student'">
+        <div *ngIf="role.Name == 'Student'" class="col-md-12 form-floating">
+          <div>
+            <span>
+              <h6>Description:</h6>
+              <p>{{kata.Description}}</p>
+            </span>
+          </div>
+          <label class="textarea-label" for="dsYesterdayTask">My Code:</label>
+          <textarea class="form-control"
+                    id="dsYesterdayTask"
+                    [formControl]="studentCode">
+          </textarea>
+          <label for="dsTodayPlan" class="textarea-label">My Notes:</label>
+          <textarea class="form-control"
+                    id="dsTodayPlan"
+                    [formControl]="studentNotes">
+          </textarea>
+          <label for="blockers" class="textarea-label">Completion Time: </label>
+          <textarea class="form-control"
+                    id="blockers"
+                    [formControl]="completionTime"> 
+          </textarea>
+          <div>
+            <span>
+              <h6>Admin Feedback:</h6>
+              <p>{{studentKata.AdminFeedback}}</p>
+            </span>
+          </div>
+        </div>
+      </ng-container>
+
+      <!-- Mentor's card view -->
+      <ng-container *ngIf="role.Name == 'Mentor'">
+          <div class="col-md-12">
+            <div>
+              <span>
+                <h6>Student's Code:</h6>
+                <p>{{studentKata.StudentCode}}</p>
+              </span>
+            </div>
+            <div>
+              <span>
+                <h6>Student's Note:</h6>
+                <p>{{studentKata.StudentNotes}}</p>
+              </span>
+            </div>
+            <div>
+              <span>
+                <h6>Complete?:</h6>
+                <p>{{studentKata.Complete}}</p>
+              </span>
+            </div>
+            <div>
+                <span>
+                    <h6>Time to Complete:</h6>
+                    <p>{{studentKata.CompletionTime}}</p>
+                </span>
+            </div>
+            <label for="feedback" class="textarea-label">Feedback for student:</label>
+          <textarea class="form-control"
+                    id="feedback"
+                    [formControl]="adminFeedback"> 
+          </textarea>
+          </div>
+      </ng-container>
+      <div class="col-12">
+        <button id="submit" class="btn btn-primary" type="submit" (click)="okClose()">OK</button>
+      </div>
+    </div>
+  </mat-dialog-content>
+  

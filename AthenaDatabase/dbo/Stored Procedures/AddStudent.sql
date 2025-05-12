@@ -4,8 +4,8 @@ AS
 BEGIN
 	DECLARE @StudentID uniqueidentifier = NEWID()
 	INSERT INTO dbo.[Student] 
-	(UserID, StudentID, [Exp], [Availability]) 
-	VALUES(@UserID, @StudentID, 0, '')
+	(UserID, StudentID, [Exp], [Availability],[CurrentStandupStreak], [LongestStandupStreak]) 
+	VALUES(@UserID, @StudentID, 0, '', 0, 0)
 
 	INSERT INTO dbo.UserImage (UserID, [URL]) VALUES (@UserID, '')
 

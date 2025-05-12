@@ -9,6 +9,10 @@ namespace AthenaAPI.Models
         public Guid StudentID { get; set; }
         public Guid UserID { get; set; }
         public DateTime DateCreated { get; set; }
-        public string? Description { get; set; }
+        public string? YesterdayTask { get; set; }
+        public string? TodayPlan { get; set; }
+        public string? Blockers { get; set; }
+        public string? AdminFeedback { get; set; }
+
     }
 }

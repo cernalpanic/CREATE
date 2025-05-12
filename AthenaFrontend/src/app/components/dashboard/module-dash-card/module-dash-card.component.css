@@ -4,35 +4,56 @@ h2 {
   color: var(--mainheading);
   font-size: 1.8rem;
 }
+@media screen and (max-width: 1400px){
+  #card-container{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+  }
+}
+.col{
+  flex-direction: row;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 50%;
+}
 .card {
-  margin: 0;
+  margin-top: -30px;
   border-radius: 30px;
   box-shadow: 0px 2px 20px 2px var(--boxshadow);
   border: none;
   position: relative;
-  z-index: 2;
+  min-width: 500px;
+  height: fit-content;
 }
+
 .card-body {
   display: grid;
   grid-template-areas: 'img info';
+  height: fit-content;
 }
 .card-body > div > img {
+  width:auto;
+  height:auto;
   max-width: 200px;
   max-height: 200px;
-  margin: 0 15px 0 0;
+  margin: 0 0 0 0;
   border-radius: 20px;
 }
 .img-box {
   grid-area: 'img';
+  max-width: 200px;
 }
 .info-box {
   grid-area: 'info';
+  width: 100%;
+  height: 100%;
 }
 .card-title {
   font-weight: 800;
   font-size: 1.5rem;
-  padding-bottom: 10px;
   margin: 0 13px;
+  height: 10%;
 }
 .card-subtitle {
   text-transform: uppercase;
@@ -46,13 +67,15 @@ h2 {
 }
 .card-text {
   margin-bottom: 0.5rem;
+  padding-top: 10px;
   font-size: 15px;
   color: var(--moduletext);
   font-weight: 600;
   text-align: justify;
-  height: 60%;
+  height: fit-content;
+  min-height: 75%;
   margin: 0 15px;
-  overflow: auto;
+  overflow: visible;
 }
 .btn {
   margin: auto;
@@ -61,8 +84,8 @@ h2 {
 }
 .btn-container {
   width: 100%;
+  height: fit-content;
   text-align: right;
-  vertical-align: bottom;
 }
 .btn-primary {
   background-color: var(--btncolor);

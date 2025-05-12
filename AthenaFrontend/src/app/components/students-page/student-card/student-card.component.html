@@ -1,23 +1,31 @@
-<div class="row row-cols-3 row-cols-md-3 g-4">
+<div id ="card-container" class="row row-cols-3 row-cols-md-3 g-4">
   <ng-container *ngFor="let student of students">
     <div class="col">
       <div class="card">
         <div class="card-body">
-          <img [src]="student.ImageURL">
-          <h5 class="card-title">{{ student.Person.FirstName + ' ' + student.Person.LastName }}</h5>
+          <img [src]="student.ImageURL" />
+          <h5 class="card-title">
+            {{ student.Person.FirstName + " " + student.Person.LastName }}
+          </h5>
           <p class="card-text">
             <b>Availability</b> {{ student.Person.Availability }}
           </p>
-          <p class="card-text">
-            <b>Email</b> {{ student.Person.Email }}
-          </p>
+          <p class="card-text"><b>Email</b> {{ student.Person.Email }}</p>
           <p class="card-text">
             <b>Overall Progress</b>
           </p>
-          <app-module-progress [studentID]="student.RoleID" [details]="false"></app-module-progress>
+          <app-module-progress
+            [studentID]="student.RoleID"
+            [details]="false"
+          ></app-module-progress>
+          <div class="btn-container">
+            <a class="btn btn-primary" [routerLink]="['/students', student.Person.FirstName + student.Person.LastName]" [state]="{ student: student, auth: this.auth, expectedRole: 'Mentor' }">View Student <i class="bi bi-arrow-right"></i></a>
+          </div>
+          <!--
           <div class="btn-container">
             <a class="btn btn-primary" (click)="viewStudent(student)">View Details</a>
           </div>
+           -->
         </div>
       </div>
     </div>

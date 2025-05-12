@@ -1,4 +1,4 @@
-.form-floating > label {
+/* .form-floating > label {
   left: 8px;
 }
 .form-control {
@@ -19,4 +19,62 @@
   background-color: var(--btncolor);
   border-color: var(--btncolor);
   font-weight: 700;
+} */
+
+
+.card {
+  margin: 50px;
+  border-radius: 30px;
+  box-shadow: 0px 2px 20px 2px var(--boxshadow);
+  border: none;
+  min-height: 1000px;
+  width: 1500px;
+}
+
+.card-header {
+  color: var(--tabtext);
+  background-color: var(--mainaccent);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
+  box-shadow: 0px 2px 20px 2px var(--boxshadow);
+  border: none;
+}
+
+.card-title,
+.section-title {
+  font-weight: 800;
+}
+
+.info-section-header {
+  font-weight: 800;
+  border-bottom: 1px solid black;
+  width: 400px;
+  margin-top: 10px;
+}
+
+.info-section-body {
+  padding: 20px;
+  max-width: 1000px;
+}
+
+
+.mentor-chip-list {
+  width: 1000px;
+}
+
+
+.table-head {
+  padding: 15px;
+  font-weight: 800;
+  text-decoration: underline;
+  min-width: 60px;
+
+}
+
+.table {
+  min-width: 200px;
+}
+
+.kata-row {
+  padding: 20px;
 }

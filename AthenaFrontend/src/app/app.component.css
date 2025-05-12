@@ -1,132 +1,152 @@
 #main {
   display: flex;
+  min-height: 100%;
+  height: fit-content;
 }
 
 #sidebar {
+  min-width: 230px;
   width: 15%;
-  position: absolute;
+  position: relative;
   top: 0;
   bottom: 0;
   left: 0;
-  padding-top: 2vh;
   background: var(--sidebarbg);
-  border-radius: 0 50px 50px 0;
+  border-radius: 0 0px 0px 0;
   text-align: center;
 }
 
 #main-content {
   width: 80%;
   position: relative;
-  right: 0;
-  left: 17%;
+  margin: 0 1% 0 1%;
+  min-height: 100%;
+  height: fit-content;
 }
 
 #user-name {
-font-size: 1.5rem;
-font-weight: 800;
-color: var(--namecolor);
-text-align: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--namecolor);
+  text-align: center;
 }
 
 #profilepic {
-margin: auto;
-width: 100px;
-height: 100px;
-padding-bottom: 30%;
-border-radius: 50%;
-background: var(--profiledefaultbg);
+  margin: auto;
+  width: 150px;
+  height: 150px;
+  margin-top: 15px;
+  border-radius: 50%;
+  background: var(--profiledefaultbg);
 }
 
 #profilepic img {
-  max-width: 100px;
+  width: 150px;
+  height: 150px;
   border-radius: 100%;
+  object-fit: cover;
 }
 
 .stats {
-display: flex;
-background: var(--statsbg);
-margin: 1em 2em;
-border-radius: 15px;
-justify-content: center;
-align-items: center;
+  display: flex;
+  background: var(--statsbg);
+  margin: 1em 1em;
+  border-radius: 15px;
+  justify-content: center;
+  align-items: center;
 }
+
 .progress {
-border-right: 1px solid var(--statsborder);
-background-color: transparent;
-border-radius: 0;
+  border-right: 1px solid var(--statsborder);
+  background-color: transparent;
+  border-radius: 0;
 }
-.progress, .exp {
-margin: 10px 0;
-display: flex;
-flex-direction: column;
-height: 100%;
-text-align: center;
-padding: 0 10px;
+
+.progress,
+.exp {
+  margin: 10px 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-align: center;
+  padding: 0 10px;
 }
+
 .stats-mini {
-font-size: 0.6rem;
-text-transform: uppercase;
-color: var(--statsmini);
-font-weight: 700;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  color: var(--statsmini);
+  font-weight: 700;
 }
+
 .stats-heading {
-font-size: 1rem;
-color: var(--statsheading);
-font-weight: 800
+  font-size: 1rem;
+  color: var(--statsheading);
+  font-weight: 800;
 }
+
 .stats-num {
-font-size: 1.2rem;
-color: var(--statsnum);
-font-weight: 800;
+  font-size: 1.2rem;
+  color: var(--statsnum);
+  font-weight: 800;
 }
+
 .rank {
-height: 1px;
-background: var(--statsborder);
-position: relative;
-margin: 2vh 2em -12px 2em;
-z-index: 1;
+  height: 1px;
+  background: var(--statsborder);
+  position: relative;
+  margin: 2vh 2em -12px 2em;
+  z-index: 1;
 }
+
 .title {
-font-size: 1rem;
-color: var(--statsheading);
-font-weight: 800;
-background: var(--rankbg);
-display: inline-block;
-padding: 0 10px;
-text-align: center;
-position: relative;
-z-index: 2;
+  font-size: 1rem;
+  color: var(--statsheading);
+  font-weight: 800;
+  background: var(--rankbg);
+  display: inline-block;
+  padding: 0 10px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
 }
 
 #side-nav {
-margin-top: 5vh;
-display: grid;
-grid-template-areas: 'icons links';
-align-items: center;
+  display: grid;
+  grid-template-areas: "icons links";
+  align-items: center;
 }
-.nav-icon, .navlink {
-padding: 1.5vh 0;
-line-height: 5vh;
+
+.nav-icon,
+.navlink {
+  padding: 1.5vh 0;
+  line-height: 5vh;
+  min-height: 70px;
 }
+
 .nav-icons {
-grid-area: 'icons';
-color: var(--navlink);
+  grid-area: "icons";
+  color: var(--navlink);
 }
+
 .nav-links {
-grid-area: 'links';
-text-align: justify;
-font-weight: 800;
-color: var(--navlink);
-font-size: 1.2rem;
+  grid-area: "links";
+  text-align: justify;
+  font-weight: 800;
+  color: var(--navlink);
+  font-size: 1.2rem;
 }
+
 .nav-icon.active {
-color: var(--activeiconcolor);
+  color: var(--activeiconcolor);
 }
+
 .nav-icon.active i {
-background: var(--navlink);
-padding: 10px 12px;
-border-radius: 100%;;
+  background: var(--navlink);
+  padding: 10px 12px;
+  border-radius: 100%;
 }
+
 .nav-links:hover {
-cursor: pointer;
+  cursor: pointer;
 }

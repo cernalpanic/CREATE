@@ -1,12 +1,16 @@
 <ng-container *ngIf="!details">
-  <ng-container *ngFor="let module of modules">
-    <circle-progress [percent]="module.Progress" [outerStrokeColor]="'#' + module.Color" [title]="'auto'" [subtitle]="module.Name"></circle-progress>
-  </ng-container>
-  <ng-container *ngIf="modules.length == 0">
-    <div class="card-text">
-      No progress recorded.
-    </div>
-  </ng-container>
+  <div class="all-circles-container">
+    <ng-container *ngFor="let module of modules">
+      <div class="one-circle-container">
+        <circle-progress [percent]="module.Progress" [outerStrokeColor]="'#' + module.Color" [title]="'auto'" [subtitle]="module.Name"></circle-progress>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="modules.length == 0">
+      <div class="card-text">
+        No progress recorded.
+      </div>
+    </ng-container>
+  </div>
 </ng-container>
 <ng-container *ngIf="details">
   <mat-accordion>
@@ -33,6 +37,19 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
+      <!-- Paginator Control for table -->
+      <mat-paginator #paginator
+      class="previous-standup-paginator"
+      (page)="handlePageEvent($event)"
+      [length]="module.Quests.length"
+      [pageSize]="pageSize"
+      [disabled]="disabled"
+      [showFirstLastButtons]="showFirstLastButtons"
+      [pageSizeOptions]="showPageSizeOptions ? pageSizeOptions : []"
+      [hidePageSize]="hidePageSize"
+      [pageIndex]="pageIndex"
+      aria-label="Select page">
+    </mat-paginator>
     </mat-expansion-panel>
   </mat-accordion>
 </ng-container>

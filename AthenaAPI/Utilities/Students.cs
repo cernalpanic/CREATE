@@ -103,6 +103,8 @@ namespace AthenaAPI.Utilities
                         st.Email = reader["Email"].ToString();
                         st.Exp = Int32.Parse(reader["Exp"].ToString());
                         st.Availability = reader["Availability"].ToString();
+                        st.CurrentStandupStreak = Int32.Parse(reader["CurrentStandupStreak"].ToString());
+                        st.LongestStandupStreak = Int32.Parse(reader["LongestStandupStreak"].ToString());
                         student.ImageURL = reader["URL"].ToString();
                         student.Student = st;
                         students.Add(student);
@@ -143,12 +145,16 @@ namespace AthenaAPI.Utilities
                     {
                         // New Student object
                         Student st = new Student();
-                        student.RoleID = Guid.Parse(reader["StudentID"].ToString());
                         st.FirstName = reader["FirstName"].ToString();
                         st.LastName = reader["LastName"].ToString();
                         st.Email = reader["Email"].ToString();
                         st.Exp = Int32.Parse(reader["Exp"].ToString());
                         st.Availability = reader["Availability"].ToString();
+                        st.CurrentStandupStreak = Int32.Parse(reader["CurrentStandupStreak"].ToString());
+                        st.LongestStandupStreak = Int32.Parse(reader["LongestStandupStreak"].ToString());
+
+                        // New Student Role object
+                        student.RoleID = Guid.Parse(reader["StudentID"].ToString());
                         student.ImageURL = reader["URL"].ToString();
                         student.Student = st;
                     }
@@ -342,6 +348,8 @@ namespace AthenaAPI.Utilities
                         st.Email = reader["Email"].ToString();
                         st.Exp = Int32.Parse(reader["Exp"].ToString());
                         st.Availability = reader["Availability"].ToString();
+                        st.CurrentStandupStreak = Int32.Parse(reader["CurrentStandupStreak"].ToString());
+                        st.LongestStandupStreak = Int32.Parse(reader["LongestStandupStreak"].ToString());
                         student.Student = st;
                     }
 
@@ -369,6 +377,8 @@ namespace AthenaAPI.Utilities
                     command.Parameters.Add(new SqlParameter("@StudentID", student.RoleID));
                     command.Parameters.Add(new SqlParameter("@Exp", student.Student.Exp));
                     command.Parameters.Add(new SqlParameter("@Availability", student.Student.Availability));
+                    command.Parameters.Add(new SqlParameter("@CurrentStandupStreak", student.Student.CurrentStandupStreak));
+                    command.Parameters.Add(new SqlParameter("@LongestStandupStreak", student.Student.LongestStandupStreak));
                     con.Open();
 
                     SqlDataReader reader = command.ExecuteReader();
